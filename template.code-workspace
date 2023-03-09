@@ -1,0 +1,11 @@
+{
+    "folders": [
+        {
+            "path": "template"
+        }
+    ],
+    "settings": {
+        "react-native-tools.reactNativePackagerCommandName": "webpack-start",
+        "react-native.packager.port": 9000,
+    }
+}
