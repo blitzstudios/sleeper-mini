@@ -1,0 +1,9 @@
+{
+  "name": "template",
+  "displayName": "template",
+  "remoteIP": "192.168.86.248",
+  "localSocketPort": 8082,
+  "remoteSocketPort": 9092,
+  "remoteBundlePort": 9091,
+  "release": false
+}

@@ -1,0 +1,53 @@
+{
+  "name": "template",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android --no-packager",
+    "ios": "react-native run-ios --no-packager",
+    "start": "react-native webpack-start --port 9000",
+    "test": "jest",
+    "lint": "eslint .",
+    "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "@react-native-community/netinfo": "^9.3.7",
+    "react": "17.0.2",
+    "react-native": "0.66.5",
+    "react-native-udp": "^4.1.6",
+    "react-native-linear-gradient": "2.5.6",
+    "react-native-svg": "13.7.0",
+    "lodash": "4.17.21",
+    "@react-native-async-storage/async-storage": "https://github.com/blitzstudios/async-storage.git#release/1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-typescript": "^7.16.7",
+    "@babel/runtime": "^7.12.5",
+    "@callstack/repack": "blitzstudios/repack.git#callstack-repack-v2.5.3-gitpkg",
+    "@callstack/repack-dev-server": "blitzstudios/repack.git#callstack-repack-dev-server-v1.0.5-gitpkg",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/lodash": "^4.14.182",
+    "@types/react-native": "0.66.5",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.5",
+    "eslint": "7.14.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
+    "react-test-renderer": "17.0.2",
+    "terser-webpack-plugin": "^5.3.3",
+    "typescript": "^4.7.2",
+    "webpack": "^5.73.0"
+  },
+  "resolutions": {
+    "react-devtools-core": "~4.25.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
