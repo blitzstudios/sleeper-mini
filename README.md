@@ -24,6 +24,12 @@
 7. If all goes well, the Sleeper app will automatically connect after a few seconds.
 8. You can now make any change you want in the mini, and when you hit the "refresh" button in Sleeper, the new code will update.
 
+## Editing the app
+
+1. All user changes should hook into the main entry file: [App.tsx](https://github.com/blitzstudios/sleeper-mini/blob/main/template/src/App.tsx). Feel free to delete or modify components here as necessary, but refrain from modifying any library files or [index.tsx](https://github.com/blitzstudios/sleeper-mini/blob/main/template/index.tsx), as those handle some behind the scenes communication events.
+2. Some types and components have been provided for use. Check out the library files in the [Sleeper](https://github.com/blitzstudios/sleeper-mini/tree/main/template/src/Sleeper) folder for details.
+3. Further documentation and API hooks are in development.
+
 ## Troubleshooting
 
 ### Auto refresh stops working, or socket-related errors appear in the console.
