@@ -10,31 +10,33 @@ import {
   release,
   remoteIP,
 } from '../../app.json';
+import axios from 'axios';
 
 const remoteBundleHost = release ? remoteIP : 'localhost';
 const remoteBundlePort = release ? _remoteBundlePort : 8081;
 
 ScriptManager.shared.addResolver(async (scriptId, caller) => {
+  const extension =
+    scriptId === 'sleeper' ? '.container.bundle' : '.chunk.bundle';
   const resolveURL = Federated.createURLResolver({
     containers: {
-      sleeper: `http://${remoteBundleHost}:${remoteBundlePort}/[name][ext]`,
+      sleeper: `http://${remoteBundleHost}:${remoteBundlePort}/[name]${extension}`,
     },
   });
 
   // Try to resolve URL based on scriptId and caller
   const url = resolveURL(scriptId, caller);
-  console.log('[Sleeper] load script:', scriptId, caller, url);
-  if (url) {
-    return {
-      url,
-      // Prod app will serve bundle without platform query.
-      // Debug app requires a platform query to serve data.
-      query: release
-        ? undefined
-        : {
-            platform: Platform.OS,
-          },
-    };
+  const query = release ? undefined : {platform: Platform.OS};
+
+  const response = await axios
+    .get(url + '?' + new URLSearchParams(query), {method: 'HEAD'})
+    .catch(() => ({
+      status: 404,
+    }));
+
+  console.log('[Sleeper] load script:', scriptId, caller);
+  if (response?.status === 200) {
+    return {url, query};
   }
 });
 
