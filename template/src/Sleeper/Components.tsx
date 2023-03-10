@@ -10,7 +10,14 @@ import {Federated} from '@callstack/repack/client';
 import {Context} from './Types';
 
 const _SleeperModule = React.lazy(() =>
-  Federated.importModule('sleeper', 'index'),
+  Federated.importModule('sleeper', 'index').catch(() => ({
+    default: props => {
+      console.log(
+        `[Sleeper] Failed to load <${props?.component}>. Check connection to the app.`,
+      );
+      return <View />;
+    },
+  })),
 );
 
 type ButtonProps = {
