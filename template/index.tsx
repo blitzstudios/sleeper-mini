@@ -1,9 +1,11 @@
 import React, {useCallback, useState} from 'react';
 import {AppRegistry, View, StyleSheet} from 'react-native';
+import {DevServer, Types} from '@sleeperhq/mini-core';
 
 import App from './src/App';
-import {name as appName} from './app.json';
-import {DevServer, Types} from './src/Sleeper';
+import config from './app.json';
+
+DevServer.init(config);
 
 const Template = () => {
   const [context, setContext] = useState<Types.Context>({});
@@ -27,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent(appName, () => Template);
+AppRegistry.registerComponent(config.name, () => Template);

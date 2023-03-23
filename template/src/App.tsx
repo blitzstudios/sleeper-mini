@@ -1,6 +1,6 @@
 import React from 'react';
 import * as RN from 'react-native';
-import {Types, Sleeper} from './Sleeper';
+import {Types, Sleeper} from '@sleeperhq/mini-core';
 
 type OwnProps = {
   context: Types.Context;

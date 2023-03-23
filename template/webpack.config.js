@@ -157,6 +157,7 @@ module.exports = env => {
             /node_modules(.*[/\\])+metro/,
             /node_modules(.*[/\\])+abort-controller/,
             /node_modules(.*[/\\])+@callstack\/repack/,
+            /node_modules(.*[/\\])+@sleeperhq\/mini-core/,
           ],
           use: {
             loader: 'babel-loader',
