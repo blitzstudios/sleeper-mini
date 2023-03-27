@@ -346,8 +346,6 @@ PODS:
     - React-jsi (= 0.66.5)
     - React-logger (= 0.66.5)
     - React-perflogger (= 0.66.5)
-  - RNCAsyncStorage (1.15.15):
-    - React-Core
   - RNSVG (13.7.0):
     - React-Core
   - Yoga (1.14.0)
@@ -411,7 +409,6 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -499,8 +496,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  RNCAsyncStorage:
-    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   Yoga:
@@ -553,7 +548,6 @@ SPEC CHECKSUMS:
   React-RCTVibration: 96dbefca7504f3e52ff47cd0ad0826d20e3a789f
   React-runtimeexecutor: 09041c28ce04143a113eac2d357a6b06bd64b607
   ReactCommon: 8a7a138ae43c04bb8dd760935589f326ca810484
-  RNCAsyncStorage: 0bef6a21517c0254bd6bd59a3672963abfa0d18e
   RNSVG: d787d64ca06b9158e763ad2638a8c4edce00782a
   Yoga: b316a990bb6d115afa1b436b5626ac7c61717d17
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

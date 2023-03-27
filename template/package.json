@@ -11,8 +11,8 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "https://github.com/blitzstudios/async-storage.git#release/1.1",
     "@react-native-community/netinfo": "^9.3.7",
+    "@sleeperhq/mini-core": "1.0.1",
     "axios": "0.15.3",
     "lodash": "4.17.21",
     "react": "17.0.2",
