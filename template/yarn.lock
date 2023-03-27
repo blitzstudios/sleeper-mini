@@ -1590,8 +1590,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@../../sleeper-mini-core":
-  version "1.0.0"
+"@sleeperhq/mini-core@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.0.1.tgz#da61e2d6d6e5922ee229bbd4769065b043280dec"
+  integrity sha512-VWr+EwMagYU10IYmxZ9X/VEQGt72CncwIAzJzgakJleK5V1jerImqpmEcSg/Brpw+CWynxF6hY4vYJxfEWdudg==
 
 "@tootallnate/once@1":
   version "1.1.2"
