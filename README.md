@@ -4,11 +4,22 @@
 
 ## How to run
 
-1. Install the latest version of our custom vscode-react-native [plugin](https://github.com/blitzstudios/sleeper-mini/blob/main/template/dev_tools/vscode-react-native-3.1.0.vsix). This is a [fork](https://github.com/blitzstudios/vscode-react-native/commits/release/3.0) of the official project that includes fixes to run webpack with react native.
-2. Clone this repo locally.
-3. Run `yarn` and `pod install` to set up node modules and native dependencies.
-4. If running in VS code, make sure to start the app from the [vscode project file](https://github.com/blitzstudios/sleeper-mini/blob/main/template.code-workspace). This will automatically set your webpack dev server to the correct ports.
-5. If running manually, make sure to run with `yarn start` and `yarn ios`. These will also make sure your dev ports are set up correctly.
+1. This project requires a working setup of [React Native](https://reactnative.dev/docs/environment-setup?guide=native). Follow the steps in this guide under the `React Native CLI Quickstart` tab.
+2. Sleeper uses the following tool versions for development. If you run into any issues with setup, you can try changing your environment to point to these versions. We recommend a version manager like [asdf](https://asdf-vm.com/) to automate switching these between projects.
+
+| Tool | Version |
+| --- | --- |
+| XCode | 14.2 |
+| MacOS | 12.6 |
+| java | zulu-11.56.19 |
+| nodejs | 16.13.1 |
+| ruby | 3.1.0 |
+
+3. Install the latest version of our custom vscode-react-native [plugin](https://github.com/blitzstudios/sleeper-mini/blob/main/template/dev_tools/vscode-react-native-3.1.0.vsix). This is a [fork](https://github.com/blitzstudios/vscode-react-native/commits/release/3.0) of the official project that includes fixes to run webpack with react native.
+4. Clone this repo locally.
+5. Run `yarn` and `pod install` to set up node modules and native dependencies.
+6. If running in VS code, make sure to start the app from the [vscode project file](https://github.com/blitzstudios/sleeper-mini/blob/main/template.code-workspace). This will automatically set your webpack dev server to the correct ports.
+7. If running manually, make sure to run with `yarn start` and `yarn ios`. These will also make sure your dev ports are set up correctly.
 
 ## To connect with a running prod app on your local network:
 
@@ -27,7 +38,7 @@
 ## Editing the app
 
 1. All user changes should hook into the main entry file: [App.tsx](https://github.com/blitzstudios/sleeper-mini/blob/main/template/src/App.tsx). Feel free to delete or modify components here as necessary, but refrain from modifying any library files or [index.tsx](https://github.com/blitzstudios/sleeper-mini/blob/main/template/index.tsx), as those handle some behind the scenes communication events.
-2. Some types and components have been provided for use. Check out the library files in the [Sleeper](https://github.com/blitzstudios/sleeper-mini/tree/main/template/src/Sleeper) folder for details.
+2. Some types and components have been provided for use through an included `@sleeperhq/mini-core` package. You can check out the repo [here](https://github.com/blitzstudios/sleeper-mini-core).
 3. Further documentation and API hooks are in development.
 
 ## Troubleshooting
