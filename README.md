@@ -25,12 +25,12 @@
 
 1. Contact us to enable developer mode on your account.
 2. Start up the Sleeper app. This can be the production app, a development mode app in a simulator or on device, or a [Mac Catalyst](https://apps.apple.com/us/app/sleeper-fantasy-sports/id987367543) build.
-3. Scroll to the right panel. Tap on the `Mini` button.
-4. You will see the device's IP address listed on the debug window.
+3. If your account is marked as a developer, you may, at any point, <b>physically shake</b> your phone to open up a connection window. This displays your device's IP, current connection status to this template project on your computer, and buttons to refresh + send data manually to your PC at any time.
+4. Scroll to the right panel. Tap on the `Mini` button.
 
-![Screen Shot 2023-03-08 at 9 27 06 PM](https://user-images.githubusercontent.com/61988202/223928554-ee2acd51-d38f-4b74-a43d-5dcb0e734053.png)
+<img width="330" alt="Simulator Screen Shot - iPhone 13 - 2023-04-07 at 14 38 02" src="https://user-images.githubusercontent.com/61988202/230682656-f8572992-eec8-4635-9d40-8e2ca427f7c8.png">
 
-5. Copy this IP address, and paste it in [app.json](https://github.com/blitzstudios/sleeper-mini/blob/main/template/app.json).
+5. Copy the IP address from the dev menu, and paste it in [app.json](https://github.com/blitzstudios/sleeper-mini/blob/main/template/app.json).
 6. Launch this app by following the steps in [how to run](#how-to-run) above.
 7. If all goes well, the Sleeper app will automatically connect after a few seconds.
 8. You can now make any change you want in the mini, and when you hit the "refresh" button in Sleeper, the new code will update.
