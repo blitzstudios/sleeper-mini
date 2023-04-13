@@ -1,7 +1,13 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const Repack = require('@callstack/repack');
-const LISTENER_IP = require('./app.json').remoteIP;
+const config = require('./app.json');
+const {dependencies} = require('./package.json');
+
+const sharedDeps = Object.keys(dependencies).reduce((acc, key) => {
+  acc[key] = {singleton: true, eager: true};
+  return acc;
+}, {});
 
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
@@ -35,6 +41,8 @@ module.exports = env => {
   if (!platform) {
     throw new Error('Missing platform');
   }
+
+  const dev = mode === 'development';
 
   /**
    * Using Module Federation might require disabling hmr.
@@ -106,7 +114,11 @@ module.exports = env => {
     output: {
       clean: true,
       path: path.join(__dirname, 'build', platform),
-      filename: 'index.bundle',
+      filename: dev
+        ? 'index.bundle'
+        : platform === 'android'
+        ? 'index.android.bundle'
+        : 'index.ios.bundle',
       chunkFilename: '[name].chunk.bundle',
       publicPath: Repack.getPublicPath({platform, devServer}),
     },
@@ -167,6 +179,7 @@ module.exports = env => {
                 '@babel/preset-typescript',
               ],
               babelrc: false,
+              cacheDirectory: true,
             },
           },
         },
@@ -194,6 +207,7 @@ module.exports = env => {
                   : undefined,
               babelrc: false,
               comments: true, // necessary for named chunks
+              cacheDirectory: true,
             },
           },
         },
@@ -208,34 +222,32 @@ module.exports = env => {
          * ```
          */
         {
-          test: Repack.getAssetExtensionsRegExp(
-            Repack.ASSET_EXTENSIONS.filter(ext => ext !== 'svg'),
-          ),
+          test: Repack.getAssetExtensionsRegExp(Repack.SCALABLE_ASSETS),
           use: {
             loader: '@callstack/repack/assets-loader',
             options: {
+              // In order to support codepush updates for remote chunks,
+              // we need to encode their image dependencies directly into their bundle files as base64.
+              // However, in dev, this slows down source mapping as bundles now include image data.
+              // We can disable in dev and allow images to be hosted by localhost through the normal process instead.
+              inline: !dev,
               platform,
               devServerEnabled: Boolean(devServer),
-              /**
-               * Defines which assets are scalable - which assets can have
-               * scale suffixes: `@1x`, `@2x` and so on.
-               * By default all images are scalable.
-               */
               scalableAssetExtensions: Repack.SCALABLE_ASSETS,
             },
           },
         },
         {
-          test: /\.svg$/,
-          use: [
-            {
-              loader: '@svgr/webpack',
-              options: {
-                native: true,
-                dimensions: false,
-              },
+          test: Repack.getAssetExtensionsRegExp(Repack.NON_SCALABLE_ASSETS),
+          use: {
+            loader: '@callstack/repack/assets-loader',
+            options: {
+              inline: false, // all other assets must be included in the main bundle.
+              platform,
+              devServerEnabled: Boolean(devServer),
+              scalableAssetExtensions: Repack.SCALABLE_ASSETS,
             },
-          ],
+          },
         },
       ],
     },
@@ -259,15 +271,29 @@ module.exports = env => {
           sourceMapFilename,
           assetsPath,
         },
-        listenerIP: LISTENER_IP,
+        extraChunks: [
+          {
+            include: new RegExp('.*'),
+            type: 'remote',
+            outputPath: path.join(__dirname, 'bundles', 'dist'),
+          },
+        ],
+        listenerIP: config.LISTENER_IP,
       }),
 
       new Repack.plugins.ModuleFederationPlugin({
-        name: 'template',
+        name: config.name,
         exposes: {
-          app: './src/App.tsx',
+          app: './src/App',
         },
         shared: {
+          // Adding this here fixes the named chunks problem.
+          // It also makes sure any third party javascript packages are included in the container,
+          // not exported to a separate chunk.
+          // The only separate chunk is the exposed stuff.
+          ...sharedDeps,
+          // if we don't do the above, then instead each package that is not included in this list will
+          // split off into a seperate chunk, and named chunks will break (assume that's a bug that we can fix).
           react: {
             ...Repack.Federated.SHARED_REACT,
             requiredVersion: '17.0.2',
