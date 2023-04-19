@@ -9,6 +9,11 @@ const sharedDeps = Object.keys(dependencies).reduce((acc, key) => {
   return acc;
 }, {});
 
+const samples = config.samples;
+const selectedSample = config.selectedSample;
+const sampleClassPath = `./src/${samples[selectedSample]}/${samples[selectedSample]}.tsx`;
+const sampleEntry = `./src/${samples[selectedSample]}/index.tsx`;
+
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
  * https://github.com/callstack/repack/blob/main/README.md
@@ -28,7 +33,7 @@ module.exports = env => {
   const {
     mode = 'development',
     context = __dirname,
-    entry = './index.tsx',
+    entry = sampleEntry,
     platform,
     minimize = mode === 'production',
     devServer = undefined,
@@ -284,7 +289,7 @@ module.exports = env => {
       new Repack.plugins.ModuleFederationPlugin({
         name: config.name,
         exposes: {
-          app: './src/App',
+          app: sampleClassPath,
         },
         shared: {
           // Adding this here fixes the named chunks problem.

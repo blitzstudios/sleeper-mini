@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import {DevServer, Types} from '@sleeperhq/mini-core';
 
-import App from './src/App';
-import config from './app.json';
+import Fetch from './Fetch';
+import config from '../../app.json';
 
 DevServer.init(config);
 
@@ -40,7 +40,7 @@ const Template = () => {
         onContextChanged={_onContextChanged}
         onConnected={_onConnected}
       />
-      {connected && <App context={context} />}
+      {connected && <Fetch context={context} />}
       {!connected && _renderWaitingForConnection()}
     </View>
   );
