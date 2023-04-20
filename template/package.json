@@ -12,20 +12,20 @@
   },
   "dependencies": {
     "@react-native-community/netinfo": "^9.3.7",
-    "@sleeperhq/mini-core": "1.0.3",
+    "@sleeperhq/mini-core": "1.0.4",
     "axios": "0.15.3",
     "lodash": "4.17.21",
     "react": "17.0.2",
     "react-native": "0.66.5",
     "react-native-linear-gradient": "2.5.6",
     "react-native-svg": "13.7.0",
-    "react-native-udp": "^4.1.6"
+    "react-native-tcp-socket": "^6.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.12.5",
-    "@callstack/repack": "blitzstudios/repack.git#callstack-repack-v2.5.3-gitpkg",
+    "@callstack/repack": "blitzstudios/repack.git#callstack-repack-v2.6.1-gitpkg",
     "@callstack/repack-dev-server": "blitzstudios/repack.git#callstack-repack-dev-server-v1.0.5-gitpkg",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/lodash": "^4.14.182",
