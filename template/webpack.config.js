@@ -275,7 +275,7 @@ module.exports = env => {
           {
             include: new RegExp('.*'),
             type: 'remote',
-            outputPath: path.join(__dirname, 'bundles', 'dist'),
+            outputPath: path.join(__dirname, 'dist', config.name, platform),
           },
         ],
         listenerIP: config.LISTENER_IP,
