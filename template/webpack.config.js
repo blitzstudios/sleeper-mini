@@ -278,7 +278,7 @@ module.exports = env => {
             outputPath: path.join(__dirname, 'dist', config.name, platform),
           },
         ],
-        listenerIP: config.LISTENER_IP,
+        listenerIP: config.remoteIP,
       }),
 
       new Repack.plugins.ModuleFederationPlugin({
