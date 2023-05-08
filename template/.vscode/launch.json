@@ -12,6 +12,6 @@
       "platform": "ios",
       "target": "iPhone 14",
       "enableDebug": true,
-  },
+    },
   ]
 }
