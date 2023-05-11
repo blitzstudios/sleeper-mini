@@ -8,6 +8,11 @@ type OwnProps = {
   context: Types.Context;
 };
 
+type Mode = {
+  name: string;
+  render: () => JSX.Element | null;
+};
+
 const Fetch = (props: OwnProps) => {
   const {
     user,
@@ -19,14 +24,15 @@ const Fetch = (props: OwnProps) => {
     playoffsInLeagueMap,
     transactionsInLeagueMap,
     transactionsMap,
-    sportInfoMap, 
+    sportInfoMap,
     draftsInLeagueMap,
     draftPickTradesInLeagueMap,
     draftPicksInDraftMap,
-    playersInSportMap
+    playersInSportMap,
   } = props.context;
 
   const [selectedLeague, setSelectedLeague] = useState<string>();
+  const [selectedMode, setSelectedMode] = useState<Mode>();
 
   const selectedRosterMap =
     !!selectedLeague && rostersInLeagueMap[selectedLeague];
@@ -36,16 +42,8 @@ const Fetch = (props: OwnProps) => {
     Object.keys(usersInLeagueMap[selectedLeague]);
   const selectedSport = !!selectedLeague && leaguesMap[selectedLeague].sport;
 
-  return (
-    <RN.View style={styles.container}>
-      <RN.View style={styles.itemContainer}>
-        <RN.View style={styles.horizontal}>
-          <Sleeper.Text style={styles.header}>User:</Sleeper.Text>
-          <Sleeper.Text style={styles.text}>
-            {` ${user?.display_name}`}
-          </Sleeper.Text>
-        </RN.View>
-      </RN.View>
+  const renderLeagueList = () => {
+    return (
       <RN.View style={styles.itemContainer}>
         <Sleeper.Text style={styles.header}>Pick a League:</Sleeper.Text>
         <RN.FlatList
@@ -59,121 +57,233 @@ const Fetch = (props: OwnProps) => {
           )}
         />
       </RN.View>
-      {/* {!!selectedRosterMap && (
-        <RN.View style={styles.itemContainer}>
-          <Sleeper.Text style={styles.header}>
-            Roster Owners ({leaguesMap[selectedLeague].name}):
-          </Sleeper.Text>
-          <RosterOwners rostersMap={selectedRosterMap} userMap={userMap} />
-        </RN.View>
-      )} */}
-      {/* {!!leagueUserIdList && (
-        <RN.View style={styles.itemContainer}>
-          <Sleeper.Text style={styles.header}>
-            Users ({leaguesMap[selectedLeague].name}):
-          </Sleeper.Text>
+    );
+  };
 
-          <RN.FlatList
-            style={styles.scroll}
-            data={leagueUserIdList}
-            renderItem={({item}) => (
-              <Sleeper.Text style={styles.text}>
-                {userMap[item].display_name}
-              </Sleeper.Text>
-            )}
-          />
-        </RN.View>
-      )} */}
-      {/* {!!selectedLeague && !!playoffsInLeagueMap[selectedLeague] && (
-        <RN.View style={styles.itemContainer}>
-          <Sleeper.Text style={styles.header}>
-            Playoffs ({leaguesMap[selectedLeague].name}):
-          </Sleeper.Text>
+  const renderRosters = () => {
+    if (!selectedRosterMap) {
+      return null;
+    }
 
-          <RN.FlatList
-            style={styles.scroll}
-            data={playoffsInLeagueMap[selectedLeague].bracket}
-            renderItem={({item}) => (
-              <Sleeper.Text style={styles.text}>
-                {selectedRosterMap[item.t1]?.owner_id ?? 'No Owner'} vs{' '}
-                {selectedRosterMap[item.t2]?.owner_id ?? 'No Owner'}
-              </Sleeper.Text>
-            )}
-          />
-        </RN.View>
-      )} */}
-      {/* {!!selectedLeague && selectedSport && (
-        <RN.View style={styles.itemContainer}>
-          <Sleeper.Text style={styles.header}>
-            Sport: ({selectedSport}) (
-          </Sleeper.Text>
-          <Sleeper.Text style={styles.header}>
-            League season: ({sportInfoMap[selectedSport]?.league_season ?? 'No season'}):
-          </Sleeper.Text>
-        </RN.View>
-      )} */}
-      {/* {!!selectedLeague && !!transactionsInLeagueMap[selectedLeague] && (
-        <RN.View style={styles.itemContainer}>
-          <Sleeper.Text style={styles.header}>
-            Transaction Creators ({leaguesMap[selectedLeague].name}):
-          </Sleeper.Text>
+    return (
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>
+          Roster Owners ({leaguesMap[selectedLeague].name}):
+        </Sleeper.Text>
+        <RosterOwners rostersMap={selectedRosterMap} userMap={userMap} />
+      </RN.View>
+    );
+  };
 
-          <RN.FlatList
-            style={styles.scroll}
-            data={transactionsInLeagueMap[selectedLeague]}
-            renderItem={({item}) => (
-              <Sleeper.Text style={styles.text}>
-                {!!transactionsMap[item].creator &&
-                  userMap[transactionsMap[item].creator]?.display_name}
-              </Sleeper.Text>
-            )}
-          />
-        </RN.View>
-      )} */}
-      {/* {!!selectedLeague && !!draftsInLeagueMap[selectedLeague] && (
-        <RN.View style={styles.itemContainer}>
-          <Sleeper.Text style={styles.header}>
-            Draft Types ({leaguesMap[selectedLeague].name}):
-          </Sleeper.Text>
+  const renderUsers = () => {
+    if (!leagueUserIdList) {
+      return null;
+    }
 
-          <RN.FlatList
-            style={styles.scroll}
-            data={draftsInLeagueMap[selectedLeague]}
-            renderItem={({item}) => (
-              <Sleeper.Text style={styles.text}>
-                {!!item.type && item.type} -
-                {item.draft_id &&
-                  !!draftPicksInDraftMap[item.draft_id] &&
-                  !!draftPicksInDraftMap[item.draft_id][0] &&
-                  !!draftPicksInDraftMap[item.draft_id][0].player_id &&
-                  selectedSport &&
-                  playersInSportMap[selectedSport][draftPicksInDraftMap[item.draft_id][0].player_id]
-                    .first_name + ' ' +
-                    playersInSportMap[selectedSport][draftPicksInDraftMap[item.draft_id][0].player_id]
-                    .last_name}
-              </Sleeper.Text>
-            )}
-          />
-        </RN.View>
-      )} */}
-      {!!selectedLeague && !!draftPickTradesInLeagueMap[selectedLeague] && (
-        <RN.View style={styles.itemContainer}>
-          <Sleeper.Text style={styles.header}>
-            Draft Trades ({leaguesMap[selectedLeague].name}):
-          </Sleeper.Text>
+    return (
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>
+          Users ({leaguesMap[selectedLeague].name}):
+        </Sleeper.Text>
 
-          <RN.FlatList
-            style={styles.scroll}
-            data={draftPickTradesInLeagueMap[selectedLeague]}
-            renderItem={({item}) => (
+        <RN.FlatList
+          style={styles.scroll}
+          data={leagueUserIdList}
+          renderItem={({item}) => (
+            <Sleeper.Text style={styles.text}>
+              {userMap[item].display_name}
+            </Sleeper.Text>
+          )}
+        />
+      </RN.View>
+    );
+  };
+
+  const renderPlayoffs = () => {
+    if (!selectedLeague || !playoffsInLeagueMap[selectedLeague]) {
+      return null;
+    }
+
+    return (
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>
+          Playoffs ({leaguesMap[selectedLeague].name}):
+        </Sleeper.Text>
+
+        <RN.FlatList
+          style={styles.scroll}
+          data={playoffsInLeagueMap[selectedLeague].bracket}
+          renderItem={({item}) => (
+            <Sleeper.Text style={styles.text}>
+              {selectedRosterMap[item.t1]?.owner_id ?? 'No Owner'} vs{' '}
+              {selectedRosterMap[item.t2]?.owner_id ?? 'No Owner'}
+            </Sleeper.Text>
+          )}
+        />
+      </RN.View>
+    );
+  };
+
+  const renderSportInfo = () => {
+    if (!selectedLeague || !selectedSport) {
+      return null;
+    }
+
+    return (
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>
+          Sport: ({selectedSport}) (
+        </Sleeper.Text>
+        <Sleeper.Text style={styles.header}>
+          League season: (
+          {sportInfoMap[selectedSport]?.league_season ?? 'No season'}):
+        </Sleeper.Text>
+      </RN.View>
+    );
+  };
+
+  const renderTransactions = () => {
+    if (
+      !selectedLeague ||
+      !transactionsInLeagueMap[selectedLeague] ||
+      !transactionsMap ||
+      !userMap
+    ) {
+      return null;
+    }
+
+    return (
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>
+          Transaction Creators ({leaguesMap[selectedLeague].name}):
+        </Sleeper.Text>
+
+        <RN.FlatList
+          style={styles.scroll}
+          data={transactionsInLeagueMap[selectedLeague]}
+          renderItem={({item}) => {
+            const creator = transactionsMap[item]?.creator;
+            if (!creator) {
+              return null;
+            }
+
+            return (
               <Sleeper.Text style={styles.text}>
-                {selectedRosterMap[item?.roster_id].owner_id} to{' '}
-                {selectedRosterMap[item.owner_id].owner_id}
+                {userMap[creator]?.display_name}
               </Sleeper.Text>
-            )}
-          />
+            );
+          }}
+        />
+      </RN.View>
+    );
+  };
+
+  const renderDrafts = () => {
+    if (!selectedLeague || !draftsInLeagueMap[selectedLeague]) {
+      return null;
+    }
+
+    return (
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>
+          Draft Types ({leaguesMap[selectedLeague].name}):
+        </Sleeper.Text>
+
+        <RN.FlatList
+          style={styles.scroll}
+          data={draftsInLeagueMap[selectedLeague]}
+          renderItem={({item}) => {
+            if (
+              !item.draft_id ||
+              !selectedSport ||
+              !draftPicksInDraftMap[item.draft_id]
+            ) {
+              return null;
+            }
+
+            const topPickId = draftPicksInDraftMap[item.draft_id][0]?.player_id;
+            if (!topPickId) {
+              return null;
+            }
+            const topPlayer = playersInSportMap[selectedSport][topPickId]
+
+            return (
+              <Sleeper.Text style={styles.text}>
+                Type: {item.type} - Top Pick:{' '}
+                {topPlayer.first_name + ' ' + topPlayer.last_name}
+              </Sleeper.Text>
+            );
+          }}
+        />
+      </RN.View>
+    );
+  };
+
+  const renderDraftPicks = () => {
+    if (!selectedLeague || !draftPickTradesInLeagueMap[selectedLeague]) {
+      return null;
+    }
+
+    return (
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>
+          Draft Trades ({leaguesMap[selectedLeague].name}):
+        </Sleeper.Text>
+
+        <RN.FlatList
+          style={styles.scroll}
+          data={draftPickTradesInLeagueMap[selectedLeague]}
+          renderItem={({item}) => {
+            if (!item.roster_id || !item.owner_id) {
+              return null;
+            }
+            return (
+              <Sleeper.Text style={styles.text}>
+                {selectedRosterMap[item.roster_id]?.owner_id} to{' '}
+                {selectedRosterMap[item.owner_id]?.owner_id}
+              </Sleeper.Text>
+            );
+          }}
+        />
+      </RN.View>
+    );
+  };
+
+  const modes: Mode[] = [
+    {name: 'Rosters', render: renderRosters},
+    {name: 'Users', render: renderUsers},
+    {name: 'Playoffs', render: renderPlayoffs},
+    {name: 'Sport Info', render: renderSportInfo},
+    {name: 'Transactions', render: renderTransactions},
+    {name: 'Drafts', render: renderDrafts},
+    {name: 'Draft Picks', render: renderDraftPicks},
+  ];
+
+  return (
+    <RN.View style={styles.container}>
+      <RN.View style={styles.itemContainer}>
+        <RN.View style={styles.horizontal}>
+          <Sleeper.Text style={styles.header}>User:</Sleeper.Text>
+          <Sleeper.Text style={styles.text}>
+            {` ${user?.display_name}`}
+          </Sleeper.Text>
         </RN.View>
-      )}
+      </RN.View>
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>Select Mode:</Sleeper.Text>
+        <RN.FlatList
+          style={styles.scroll}
+          data={modes}
+          renderItem={({item}) => (
+            <Sleeper.Button
+              text={item.name}
+              onPress={() => setSelectedMode(item)}
+            />
+          )}
+        />
+      </RN.View>
+      {renderLeagueList()}
+      {!!selectedMode && selectedMode.render()}
     </RN.View>
   );
 };
