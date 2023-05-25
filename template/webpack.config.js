@@ -300,24 +300,6 @@ module.exports = env => {
           ...sharedDeps,
           // if we don't do the above, then instead each package that is not included in this list will
           // split off into a seperate chunk, and named chunks will break (assume that's a bug that we can fix).
-          react: {
-            ...Repack.Federated.SHARED_REACT,
-            requiredVersion: '17.0.2',
-          },
-          'react-native': {
-            ...Repack.Federated.SHARED_REACT_NATIVE,
-            requiredVersion: '0.66.5',
-          },
-          'react-native-linear-gradient': {
-            requiredVersion: '2.5.6',
-            singleton: true,
-            eager: true,
-          },
-          'react-native-svg': {
-            requiredVersion: '13.7.0',
-            singleton: true,
-            eager: true,
-          },
         },
       }),
     ],

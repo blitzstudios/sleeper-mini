@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {DevServer, Types} from '@sleeperhq/mini-core';
 
+import './package_list';
 import config from './app.json';
 import Project from 'app';
 
