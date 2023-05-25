@@ -1,7 +1,7 @@
 {
   "name": "template",
   "displayName": "template",
-  "remoteIP": "192.168.86.250",
+  "remoteIP": "192.168.86.244",
   "samples": ["App", "Fetch"],
   "selectedSample": 1,
   "dev": true

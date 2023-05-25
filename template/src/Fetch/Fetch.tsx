@@ -41,6 +41,7 @@ const Fetch = (props: OwnProps) => {
 
   const renderLeagueList = (props: OwnProps) => {
     const {userLeagueList, leaguesMap} = props.context;
+
     return (
       <RN.View style={styles.itemContainer}>
         <Sleeper.Text style={styles.header}>Pick a League:</Sleeper.Text>
@@ -49,7 +50,7 @@ const Fetch = (props: OwnProps) => {
           data={userLeagueList}
           renderItem={({item}) => (
             <Sleeper.Button
-              text={leaguesMap[item].name || item}
+              text={leaguesMap[item]?.name || item}
               onPress={() => setSelectedLeague(item)}
             />
           )}
@@ -64,7 +65,7 @@ const Fetch = (props: OwnProps) => {
     return (
       <RN.View style={styles.itemContainer}>
         <Sleeper.Text style={styles.header}>
-          Select Mode ({!!selectedLeague && leaguesMap[selectedLeague].name}):
+          Select Mode ({!!selectedLeague && leaguesMap?.[selectedLeague]?.name}):
         </Sleeper.Text>
         <RN.FlatList
           style={styles.scroll}
@@ -136,7 +137,7 @@ const Fetch = (props: OwnProps) => {
         data={leagueUserIdList}
         renderItem={({item}) => (
           <Sleeper.Text style={styles.text}>
-            {userMap[item].display_name}
+            {userMap[item]?.display_name}
           </Sleeper.Text>
         )}
       />
@@ -156,8 +157,8 @@ const Fetch = (props: OwnProps) => {
         data={playoffsInLeagueMap[selectedLeague].bracket}
         renderItem={({item}) => (
           <Sleeper.Text style={styles.text}>
-            {selectedRosterMap[item.t1]?.owner_id ?? 'No Owner'} vs{' '}
-            {selectedRosterMap[item.t2]?.owner_id ?? 'No Owner'}
+            {selectedRosterMap?.[item.t1]?.owner_id ?? 'No Owner'} vs{' '}
+            {selectedRosterMap?.[item.t2]?.owner_id ?? 'No Owner'}
           </Sleeper.Text>
         )}
       />
@@ -234,16 +235,16 @@ const Fetch = (props: OwnProps) => {
             return null;
           }
 
-          const topPickId = draftPicksInDraftMap[item.draft_id][0]?.player_id;
+          const topPickId = draftPicksInDraftMap[item.draft_id]?.[0]?.player_id;
           if (!topPickId) {
             return null;
           }
-          const topPlayer = playersInSportMap[selectedSport][topPickId]
+          const topPlayer = playersInSportMap?.[selectedSport]?.[topPickId];
 
           return (
             <Sleeper.Text style={styles.text}>
               Type: {item.type} - Top Pick:{' '}
-              {topPlayer.first_name + ' ' + topPlayer.last_name}
+              {topPlayer?.first_name + ' ' + topPlayer?.last_name}
             </Sleeper.Text>
           );
         }}

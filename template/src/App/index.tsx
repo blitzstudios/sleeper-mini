@@ -18,7 +18,14 @@ const Template = () => {
   const [connected, setConnected] = useState<boolean>(false);
 
   const _onContextChanged = useCallback((data: Types.Context) => {
-    setContext(data);
+    setContext(oldData => {
+      const newData = {
+        ...oldData,
+        ...data,
+      };
+
+      return newData;
+    });
   }, []);
 
   const _onConnected = useCallback((value: boolean) => {

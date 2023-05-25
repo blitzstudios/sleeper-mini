@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useRef} from 'react';
 import {
   AppRegistry,
   ActivityIndicator,
@@ -10,15 +10,23 @@ import {DevServer, Types} from '@sleeperhq/mini-core';
 
 import Fetch from './Fetch';
 import config from '../../app.json';
+import _ from 'lodash';
 
 DevServer.init(config);
 
 const Template = () => {
   const [context, setContext] = useState<Types.Context>({});
   const [connected, setConnected] = useState<boolean>(false);
+  const contextProxy = useRef<Types.Context>({});
 
-  const _onContextChanged = useCallback((data: Types.Context) => {
-    setContext(data);
+  const _onContextChanged = useCallback((data: Types.Context, handler) => {
+    setContext(oldData => {
+      const newData = _.merge({}, oldData, data);
+      console.log("Luke - onContextChanged", newData);
+
+      contextProxy.current = new Proxy(newData, handler);
+      return newData;
+    });
   }, []);
 
   const _onConnected = useCallback((value: boolean) => {
@@ -40,7 +48,7 @@ const Template = () => {
         onContextChanged={_onContextChanged}
         onConnected={_onConnected}
       />
-      {connected && <Fetch context={context} />}
+      {connected && <Fetch context={contextProxy.current} />}
       {!connected && _renderWaitingForConnection()}
     </View>
   );
