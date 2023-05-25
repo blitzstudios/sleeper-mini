@@ -9,10 +9,8 @@ const sharedDeps = Object.keys(dependencies).reduce((acc, key) => {
   return acc;
 }, {});
 
-const samples = config.samples;
-const selectedSample = config.selectedSample;
-const sampleClassPath = `./src/${samples[selectedSample]}/${samples[selectedSample]}.tsx`;
-const sampleEntry = `./src/${samples[selectedSample]}/index.tsx`;
+const {samples, selectedSample} = config;
+const sampleClassPath = path.join('./src', samples[selectedSample]);
 
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
@@ -33,7 +31,7 @@ module.exports = env => {
   const {
     mode = 'development',
     context = __dirname,
-    entry = sampleEntry,
+    entry = './index.tsx',
     platform,
     minimize = mode === 'production',
     devServer = undefined,
@@ -108,6 +106,9 @@ module.exports = env => {
       // alias: {
       //   'react-native': reactNativePath,
       // },
+      alias: {
+        app: path.resolve(__dirname, sampleClassPath),
+      },
     },
     /**
      * Configures output.

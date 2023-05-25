@@ -1,81 +1,117 @@
-import React, {useCallback, useState} from 'react';
-import {
-  AppRegistry,
-  ActivityIndicator,
-  Text,
-  View,
-  StyleSheet,
-} from 'react-native';
-import {DevServer, Types} from '@sleeperhq/mini-core';
+import React from 'react';
+import * as RN from 'react-native';
+import {Types, Sleeper} from '@sleeperhq/mini-core';
 
-import App from './App';
-import config from '../../app.json';
+type OwnProps = {
+  context: Types.Context;
+};
 
-DevServer.init(config);
+const App = (props: OwnProps) => {
+  const {context} = props;
 
-const Template = () => {
-  const [context, setContext] = useState<Types.Context>({} as Types.Context);
-  const [connected, setConnected] = useState<boolean>(false);
-  const [, updateState] = React.useState<any>();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
+  const user = context?.user;
+  const league = context?.league;
+  const navigation = context?.navigation;
 
-  const _onContextChanged = useCallback((data: Types.Context) => {
-    setContext(data);
-  }, []);
-
-  const _onContextUpdated = useCallback(
-    (data: any) => {
-      setContext(existing => {
-        for (const key in data) {
-          existing[key] = data[key];
-        }
-        return existing;
-      });
-      forceUpdate();
-    },
-    [forceUpdate],
-  );
-
-  const _onConnected = useCallback((value: boolean) => {
-    setConnected(value);
-  }, []);
-
-  const _renderWaitingForConnection = () => {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Waiting for connection...</Text>
-        <ActivityIndicator size={50} />
-      </View>
-    );
+  const _onPressButton = () => {
+    // Note that actions have no effect in the local app.
+    // They only execute when run from within Sleeper.
+    context?.actions?.navigate('DRAFTBOARDS', 1);
   };
 
   return (
-    <View style={styles.container}>
-      <DevServer
-        onContextChanged={_onContextChanged}
-        onContextUpdated={_onContextUpdated}
-        onConnected={_onConnected}
-      />
-      {connected && <App context={context} />}
-      {!connected && _renderWaitingForConnection()}
-    </View>
+    <RN.View style={styles.container}>
+      <RN.View style={styles.itemContainer}>
+        <RN.View style={styles.horizontal}>
+          <RN.Image
+            style={styles.userAvatar}
+            source={{
+              uri: `https://sleepercdn.com/avatars/${user?.avatar}`,
+            }}
+          />
+          <Sleeper.Jersey
+            style={styles.jersey}
+            sport={'nfl'}
+            number={'42'}
+            fill={'green'}
+          />
+        </RN.View>
+        <RN.View style={styles.horizontal}>
+          <Sleeper.Text style={styles.header}>User:</Sleeper.Text>
+          <Sleeper.Text style={styles.text}>
+            {` ${user?.display_name}`}
+          </Sleeper.Text>
+        </RN.View>
+
+        <RN.View style={styles.horizontal}>
+          <Sleeper.Text style={styles.header}>Cookies:</Sleeper.Text>
+          <Sleeper.Text style={styles.text}>{` ${user?.cookies}`}</Sleeper.Text>
+        </RN.View>
+      </RN.View>
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>Selected League:</Sleeper.Text>
+        {!!league && (
+          <RN.View style={styles.horizontal}>
+            <RN.Image
+              style={styles.leagueAvatar}
+              source={{
+                uri: `https://sleepercdn.com/avatars/${league?.avatar}`,
+              }}
+            />
+            <Sleeper.Text style={styles.text}>{league?.name}</Sleeper.Text>
+          </RN.View>
+        )}
+        {!league && <Sleeper.Text style={styles.text}>-none-</Sleeper.Text>}
+      </RN.View>
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>Selected nav type:</Sleeper.Text>
+        <Sleeper.Text style={styles.text}>
+          {navigation?.selectedNavType}
+        </Sleeper.Text>
+      </RN.View>
+      <Sleeper.Button text="Mock Draft" onPress={_onPressButton} />
+    </RN.View>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = RN.StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#18202f',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  loadingText: {
-    color: 'white',
+  userAvatar: {
+    width: 50,
+    height: 50,
+  },
+  leagueAvatar: {
+    width: 25,
+    height: 25,
+  },
+  text: {
     fontSize: 20,
   },
-  loadingContainer: {
-    flex: 1,
+  header: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  horizontal: {
+    flexDirection: 'row',
+  },
+  itemContainer: {
+    backgroundColor: 'grey',
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: 'white',
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 20,
+    margin: 5,
+  },
+  jersey: {
+    width: 50,
+    height: 50,
   },
 });
 
-AppRegistry.registerComponent(config.name, () => Template);
+export default App;
