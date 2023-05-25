@@ -8,18 +8,34 @@ import {
 } from 'react-native';
 import {DevServer, Types} from '@sleeperhq/mini-core';
 
-import App from './src/App';
+import './package_list';
 import config from './app.json';
+import Project from 'app';
 
 DevServer.init(config);
 
 const Template = () => {
-  const [context, setContext] = useState<Types.Context>({});
+  const [context, setContext] = useState<Types.Context>({} as Types.Context);
   const [connected, setConnected] = useState<boolean>(false);
+  const [, updateState] = React.useState<any>();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   const _onContextChanged = useCallback((data: Types.Context) => {
     setContext(data);
   }, []);
+
+  const _onContextUpdated = useCallback(
+    (data: any) => {
+      setContext(existing => {
+        for (const key in data) {
+          existing[key] = data[key];
+        }
+        return existing;
+      });
+      forceUpdate();
+    },
+    [forceUpdate],
+  );
 
   const _onConnected = useCallback((value: boolean) => {
     setConnected(value);
@@ -38,9 +54,10 @@ const Template = () => {
     <View style={styles.container}>
       <DevServer
         onContextChanged={_onContextChanged}
+        onContextUpdated={_onContextUpdated}
         onConnected={_onConnected}
       />
-      {connected && <App context={context} />}
+      {connected && <Project context={context} />}
       {!connected && _renderWaitingForConnection()}
     </View>
   );

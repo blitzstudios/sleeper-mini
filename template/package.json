@@ -8,11 +8,11 @@
     "start": "react-native webpack-start --port 9000",
     "test": "jest",
     "lint": "eslint .",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package && yarn preload-packages"
   },
   "dependencies": {
     "@react-native-community/netinfo": "9.3.7",
-    "@sleeperhq/mini-core": "1.1.0",
+    "@sleeperhq/mini-core": "1.2.1",
     "axios": "0.15.3",
     "lodash": "4.17.21",
     "react": "17.0.2",

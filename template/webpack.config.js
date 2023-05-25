@@ -9,6 +9,9 @@ const sharedDeps = Object.keys(dependencies).reduce((acc, key) => {
   return acc;
 }, {});
 
+const {samples, selectedSample} = config;
+const sampleClassPath = `./src/${samples[selectedSample]}`;
+
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
  * https://github.com/callstack/repack/blob/main/README.md
@@ -103,6 +106,9 @@ module.exports = env => {
       // alias: {
       //   'react-native': reactNativePath,
       // },
+      alias: {
+        app: path.resolve(__dirname, sampleClassPath),
+      },
     },
     /**
      * Configures output.
@@ -284,7 +290,7 @@ module.exports = env => {
       new Repack.plugins.ModuleFederationPlugin({
         name: config.name,
         exposes: {
-          app: './src/App',
+          app: sampleClassPath,
         },
         shared: {
           // Adding this here fixes the named chunks problem.
@@ -294,24 +300,6 @@ module.exports = env => {
           ...sharedDeps,
           // if we don't do the above, then instead each package that is not included in this list will
           // split off into a seperate chunk, and named chunks will break (assume that's a bug that we can fix).
-          react: {
-            ...Repack.Federated.SHARED_REACT,
-            requiredVersion: '17.0.2',
-          },
-          'react-native': {
-            ...Repack.Federated.SHARED_REACT_NATIVE,
-            requiredVersion: '0.66.5',
-          },
-          'react-native-linear-gradient': {
-            requiredVersion: '2.5.6',
-            singleton: true,
-            eager: true,
-          },
-          'react-native-svg': {
-            requiredVersion: '13.7.0',
-            singleton: true,
-            eager: true,
-          },
         },
       }),
     ],
