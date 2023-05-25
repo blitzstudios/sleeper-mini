@@ -156,8 +156,8 @@ const Fetch = (props: OwnProps) => {
         data={playoffsInLeagueMap[selectedLeague].bracket}
         renderItem={({item}) => (
           <Sleeper.Text style={styles.text}>
-            {selectedRosterMap[item.t1]?.owner_id ?? 'No Owner'} vs{' '}
-            {selectedRosterMap[item.t2]?.owner_id ?? 'No Owner'}
+            {selectedRosterMap?.[item.t1]?.owner_id ?? 'No Owner'} vs{' '}
+            {selectedRosterMap?.[item.t2]?.owner_id ?? 'No Owner'}
           </Sleeper.Text>
         )}
       />
@@ -216,7 +216,7 @@ const Fetch = (props: OwnProps) => {
   };
 
   const renderDrafts = (props: OwnProps) => {
-    const { draftsInLeagueMap, draftPicksInDraftMap} = props.context;
+    const {draftsInLeagueMap, draftPicksInDraftMap} = props.context;
     if (!selectedLeague || !draftsInLeagueMap[selectedLeague]) {
       return null;
     }
@@ -234,17 +234,22 @@ const Fetch = (props: OwnProps) => {
             return null;
           }
 
-          const topPickId = draftPicksInDraftMap[item.draft_id][0]?.player_id;
-          if (!topPickId) {
-            return null;
-          }
-          const topPlayer = playersInSportMap[selectedSport][topPickId]
+          const topPickId =
+            draftPicksInDraftMap[item.draft_id][0]?.player_id || '';
+          const topPlayer = playersInSportMap[selectedSport][topPickId];
 
           return (
-            <Sleeper.Text style={styles.text}>
-              Type: {item.type} - Top Pick:{' '}
-              {topPlayer.first_name + ' ' + topPlayer.last_name}
-            </Sleeper.Text>
+            <RN.View style={styles.horizontal}>
+              <Sleeper.Text style={styles.text}>
+                {item.draft_id}:{item.type}
+              </Sleeper.Text>
+              {!!topPlayer && (
+                <Sleeper.Text style={styles.text}>
+                  - 1st:{' '}
+                  {topPlayer.first_name?.[0] + '. ' + topPlayer.last_name}
+                </Sleeper.Text>
+              )}
+            </RN.View>
           );
         }}
       />
@@ -268,8 +273,8 @@ const Fetch = (props: OwnProps) => {
           }
           return (
             <Sleeper.Text style={styles.text}>
-              {selectedRosterMap[item.roster_id]?.owner_id} to{' '}
-              {selectedRosterMap[item.owner_id]?.owner_id}
+              {selectedRosterMap?.[item.roster_id]?.owner_id} to{' '}
+              {selectedRosterMap?.[item.owner_id]?.owner_id}
             </Sleeper.Text>
           );
         }}
