@@ -10,7 +10,7 @@ const sharedDeps = Object.keys(dependencies).reduce((acc, key) => {
 }, {});
 
 const {samples, selectedSample} = config;
-const sampleClassPath = path.join('./src', samples[selectedSample]);
+const sampleClassPath = `./src/${samples[selectedSample]}`;
 
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
