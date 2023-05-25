@@ -8,7 +8,7 @@
     "start": "react-native webpack-start --port 9000",
     "test": "jest",
     "lint": "eslint .",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package && yarn preload-packages"
   },
   "dependencies": {
     "@react-native-community/netinfo": "9.3.7",
