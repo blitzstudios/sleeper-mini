@@ -37,17 +37,17 @@
 
 ## Editing the app
 
-1. All user changes should hook into the main entry file: [App.tsx](https://github.com/blitzstudios/sleeper-mini/blob/main/template/src/App.tsx). Feel free to delete or modify components here as necessary, but refrain from modifying any library files or [index.tsx](https://github.com/blitzstudios/sleeper-mini/blob/main/template/index.tsx), as those handle some behind the scenes communication events.
-2. Some types and components have been provided for use through an included `@sleeperhq/mini-core` package. You can check out the repo [here](https://github.com/blitzstudios/sleeper-mini-core).
-3. Further documentation and API hooks are in development.
+1. We've prepackaged this project with a few starter templates, located [here](https://github.com/blitzstudios/sleeper-mini/tree/main/template/src).
+2. Select a project to start with by editing [app.json](https://github.com/blitzstudios/sleeper-mini/blob/6938294b47fb4f764f9e5e70e8b7d00749f38b4e/template/app.json#L6) and changing the selected sample ID. Restart your packager each time you change this value.
+3. All user changes should hook into the main index.js file of the sample you selected from [these folders](https://github.com/blitzstudios/sleeper-mini/tree/main/template/src). Feel free to delete or modify components as necessary, but refrain from modifying any library files or [index.tsx](https://github.com/blitzstudios/sleeper-mini/blob/main/template/index.tsx), as those handle some behind the scenes communication events.
+4. Feel free to edit the top level `package.json` and add new packages to your project. Note that these packages either must already exist within Sleeper (if they include native code), or must be entirely comprised of javascript. Contact us for an exhaustive list of supported native packages, or request new ones be added.
+5. Some types and components have been provided for use through an included `@sleeperhq/mini-core` package. You can check out the repo [here](https://github.com/blitzstudios/sleeper-mini-core).
+6. Further documentation and API hooks are in development.
 
 ## Troubleshooting
 
 ### Auto refresh stops working, or socket-related errors appear in the console.
 Try restarting the phone that Sleeper is running on. Also stop and restart the packager for your development app.
 
-### Adding a new npm package is causing errors.
-Packages with native code cannot be added to mini projects. However, you are safe to add pure javascript packages.
-
 ### How do I submit my mini?
-This is a work in progress. More details will be available soon.
+You can run `yarn build-mini` to generate a .zip file containing all of your source code. Please contact us and send this file over when you are ready to release. In the future, this process will be automated.
