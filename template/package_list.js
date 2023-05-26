@@ -14,3 +14,5 @@ import 'react-native-linear-gradient';
 import 'react-native-svg';
 import 'react-native-tcp-socket';
 import 'react-native-webview';
+import 'react-native-modal';
+import '@react-native-picker/picker';

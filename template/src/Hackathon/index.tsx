@@ -1,19 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import * as RN from 'react-native';
 import {Types, Sleeper} from '@sleeperhq/mini-core';
 import axios from 'axios';
 import _ from 'lodash';
 import {getShortLabelFromWagerType} from './dfs_stat_helpers';
+import Modal from 'react-native-modal';
+import {Dimensions} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 
 type OwnProps = {
   context: Types.Context;
 };
+
+const green = '#00ceb9';
+const red = '#ff6086';
+const windowWidth = Dimensions.get('window').width;
 
 const Hackathon = (props: OwnProps) => {
   const {context} = props;
   const {playersInSportMap} = context;
   const [lineGroups, setLineGroups] = useState([]);
   const [myLines, setMyLines] = useState([]);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [numLegs, setNumLegs] = useState(8);
 
   useEffect(() => {
     _fetchData();
@@ -31,8 +40,12 @@ const Hackathon = (props: OwnProps) => {
     }
   };
 
+  const _toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   const _getRandomLineGroups = () => {
-    const items = _.sampleSize(lineGroups, 8).map(lineGroup => {
+    const items = _.sampleSize(lineGroups, numLegs).map(lineGroup => {
       return _.sample(lineGroup.options);
     });
     setMyLines(items);
@@ -103,8 +116,38 @@ const Hackathon = (props: OwnProps) => {
     );
   };
 
+  const _renderFiltersModal = () => {
+    return (
+      <RN.View>
+        <Modal
+          isVisible={isModalVisible}
+          useNativeDriverForBackdrop>
+          <RN.View style={styles.modal}>
+            <Sleeper.Text>{`Number of Legs`}</Sleeper.Text>
+            <RN.View>
+              <Picker
+                selectedValue={numLegs}
+                onValueChange={(itemValue, itemIndex) => {
+                  setNumLegs(itemValue);
+                  _toggleModal();
+                }}>
+                <Picker.Item label="2" value="2" />
+                <Picker.Item label="3" value="3" />
+                <Picker.Item label="4" value="4" />
+                <Picker.Item label="5" value="5" />
+                <Picker.Item label="6" value="6" />
+                <Picker.Item label="7" value="7" />
+                <Picker.Item label="8" value="8" />
+              </Picker>
+            </RN.View>
+          </RN.View>
+        </Modal>
+      </RN.View>
+    );
+  };
+
   const totalMultiplier = _.reduce(
-    _.map(myLines, line => line.payout_multiplier),
+    _.map(myLines, line => line.payout_multiplier || 1),
     (count, value) => {
       return count * value;
     },
@@ -129,11 +172,26 @@ const Hackathon = (props: OwnProps) => {
         )}
       </RN.View>
       <RN.View style={styles.footer}>
+        <RN.View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            marginBottom: 16,
+          }}>
+          <Sleeper.Button gradient={['#a3bbd3', '#a3bbd3']} text={`NUM LEGS: ${numLegs}`} onPress={_toggleModal} />
+        </RN.View>
         <Sleeper.Button
           text="SHOW ME THE MONEY!"
           onPress={_getRandomLineGroups}
         />
+        {/* <RN.View style={{ marginTop: 16 }}>
+          <Sleeper.Button
+            text="COPY TO ENTRY SLIP"
+            gradient={['rgb(219,132,255)', 'rgb(145,57,255)']}
+          />
+        </RN.View> */}
       </RN.View>
+      {_renderFiltersModal()}
     </RN.View>
   );
 };
@@ -142,6 +200,16 @@ const styles = RN.StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    width: windowWidth,
+  },
+  modal: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'space-between',
+    borderRadius: 16,
+    borderTopRightRadius: 16,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    minHeight: 80,
   },
   header: {
     fontSize: 20,
@@ -203,11 +271,11 @@ const styles = RN.StyleSheet.create({
   },
   overTriangle: {
     fontSize: 20,
-    color: 'green',
+    color: green,
   },
   underTriangle: {
     fontSize: 20,
-    color: 'red',
+    color: red,
   },
 });
 
