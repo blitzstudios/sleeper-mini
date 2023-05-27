@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import * as RN from 'react-native';
 import {Types, Sleeper} from '@sleeperhq/mini-core';
 import axios from 'axios';
@@ -21,8 +21,10 @@ const Hackathon = (props: OwnProps) => {
   const {playersInSportMap} = context;
   const [lineGroups, setLineGroups] = useState([]);
   const [myLines, setMyLines] = useState([]);
-  const [isModalVisible, setModalVisible] = useState(false);
-  const [numLegs, setNumLegs] = useState(8);
+  const [isNumLegsModalVisible, setNumLegsModalVisible] = useState(false);
+  const [isFilterModalVisible, setFilterModalVisible] = useState(false);
+  const [numLegs, setNumLegs] = useState(4);
+  const [filter, setFilter] = useState('None');
 
   useEffect(() => {
     _fetchData();
@@ -31,7 +33,7 @@ const Hackathon = (props: OwnProps) => {
   const _fetchData = async () => {
     const today = new Date().toJSON().slice(0, 10);
     const response = await axios.get(
-      `https://api.sleeper.app/lines?date_from=${today}&date_to=${today}&include_promotions=true&dynamic=true`,
+      `https://sleeper.app/lines/available?date_from=${today}&date_to=${today}&include_promotions=true&dynamic=true`,
     );
     if (response.status === 200) {
       setLineGroups(response.data);
@@ -40,15 +42,100 @@ const Hackathon = (props: OwnProps) => {
     }
   };
 
-  const _toggleModal = () => {
-    setModalVisible(!isModalVisible);
+  const _toggleNumLegsModal = () => {
+    setNumLegsModalVisible(!isNumLegsModalVisible);
   };
 
-  const _getRandomLineGroups = () => {
-    const items = _.sampleSize(lineGroups, numLegs).map(lineGroup => {
-      return _.sample(lineGroup.options);
-    });
-    setMyLines(items);
+  const _toggleFilterModal = () => {
+    setFilterModalVisible(!isFilterModalVisible);
+  };
+
+  const filteredLineGroups = useMemo(() => {
+    switch (filter) {
+      case 'Popular': {
+        // Return top 20 line groups
+        const sortedLineGroups = _.orderBy(
+          lineGroups,
+          [
+            lineGroup => {
+              return lineGroup.pick_stats?.popularity || 0;
+            },
+          ],
+          ['desc'],
+        );
+        return _.take(sortedLineGroups, 20);
+      }
+      // Return line groups with multipliers under 2
+      case 'Low Multipliers': {
+        return _.filter(lineGroups, lineGroup => {
+          return _.some(lineGroup.options, line => {
+            return line.payout_multiplier < 2;
+          });
+        });
+      }
+      // Return line groups with multipliers over 3
+      case 'High Multipliers': {
+        return _.filter(lineGroups, lineGroup => {
+          return _.some(lineGroup.options, line => {
+            return line.payout_multiplier >= 3;
+          });
+        });
+      }
+      default:
+        return lineGroups;
+    }
+  }, [filter, lineGroups]);
+
+  const _getMyLineGroups = () => {
+    let lineGroupsSample = _.sampleSize(filteredLineGroups, numLegs);
+    let lines;
+    switch (filter) {
+      case 'Popular': {
+        lines = lineGroupsSample.map(lineGroup => {
+          const numOver = lineGroup.pick_stats?.counts?.over;
+          const numUnder = lineGroup.pick_stats?.counts?.under;
+          return _.find(lineGroup.options, line => {
+            if (numOver > numUnder) {
+              return line.outcome === 'over';
+            } else {
+              return line.outcome === 'under';
+            }
+          });
+        });
+        break;
+      }
+      // Return line groups with multipliers under 2
+      case 'Low Multipliers': {
+        lines = lineGroupsSample.map(lineGroup => {
+          const line1 = lineGroup.options[0];
+          const line2 = lineGroup.options[1];
+          if (line1.payout_multiplier < line2.payout_multiplier) {
+            return line1;
+          } else {
+            return line2;
+          }
+        });
+        break;
+      }
+      // Return line groups with multipliers over 3
+      case 'High Multipliers': {
+        lines = lineGroupsSample.map(lineGroup => {
+          const line1 = lineGroup.options[0];
+          const line2 = lineGroup.options[1];
+          if (line1.payout_multiplier > line2.payout_multiplier) {
+            return line1;
+          } else {
+            return line2;
+          }
+        });
+        break;
+      }
+      default:
+        lines = lineGroupsSample.map(lineGroup => {
+          return _.sample(lineGroup.options);
+        });
+    }
+    setMyLines(lines);
   };
 
   const _getPlayerAvatarSourceUrl = (sport, playerId) => {
@@ -116,20 +203,18 @@ const Hackathon = (props: OwnProps) => {
     );
   };
 
-  const _renderFiltersModal = () => {
+  const _renderNumLegsModal = () => {
     return (
       <RN.View>
-        <Modal
-          isVisible={isModalVisible}
-          useNativeDriverForBackdrop>
+        <Modal isVisible={isNumLegsModalVisible} useNativeDriverForBackdrop>
           <RN.View style={styles.modal}>
-            <Sleeper.Text>{`Number of Legs`}</Sleeper.Text>
+            <Sleeper.Text>Number of Legs</Sleeper.Text>
             <RN.View>
               <Picker
                 selectedValue={numLegs}
                 onValueChange={(itemValue, itemIndex) => {
                   setNumLegs(itemValue);
-                  _toggleModal();
+                  _toggleNumLegsModal();
                 }}>
                 <Picker.Item label="2" value="2" />
                 <Picker.Item label="3" value="3" />
@@ -138,6 +223,34 @@ const Hackathon = (props: OwnProps) => {
                 <Picker.Item label="6" value="6" />
                 <Picker.Item label="7" value="7" />
                 <Picker.Item label="8" value="8" />
+              </Picker>
+            </RN.View>
+          </RN.View>
+        </Modal>
+      </RN.View>
+    );
+  };
+
+  const _renderFilterModal = () => {
+    return (
+      <RN.View>
+        <Modal isVisible={isFilterModalVisible} useNativeDriverForBackdrop>
+          <RN.View style={styles.modal}>
+            <Sleeper.Text>Filter</Sleeper.Text>
+            <RN.View>
+              <Picker
+                selectedValue={filter}
+                onValueChange={(itemValue, itemIndex) => {
+                  setFilter(itemValue);
+                  _toggleFilterModal();
+                }}>
+                <Picker.Item label="None" value="None" />
+                <Picker.Item label="Popular" value="Popular" />
+                <Picker.Item label="Low Multipliers" value="Low Multipliers" />
+                <Picker.Item
+                  label="High Multipliers"
+                  value="High Multipliers"
+                />
               </Picker>
             </RN.View>
           </RN.View>
@@ -178,20 +291,21 @@ const Hackathon = (props: OwnProps) => {
             justifyContent: 'space-around',
             marginBottom: 16,
           }}>
-          <Sleeper.Button gradient={['#a3bbd3', '#a3bbd3']} text={`NUM LEGS: ${numLegs}`} onPress={_toggleModal} />
-        </RN.View>
-        <Sleeper.Button
-          text="SHOW ME THE MONEY!"
-          onPress={_getRandomLineGroups}
-        />
-        {/* <RN.View style={{ marginTop: 16 }}>
           <Sleeper.Button
-            text="COPY TO ENTRY SLIP"
-            gradient={['rgb(219,132,255)', 'rgb(145,57,255)']}
+            gradient={['#a3bbd3', '#a3bbd3']}
+            text={`NUM LEGS: ${numLegs}`}
+            onPress={_toggleNumLegsModal}
           />
-        </RN.View> */}
+          <Sleeper.Button
+            gradient={['#a3bbd3', '#a3bbd3']}
+            text={`FILTER: ${filter}`}
+            onPress={_toggleFilterModal}
+          />
+        </RN.View>
+        <Sleeper.Button text="SHOW ME THE MONEY!" onPress={_getMyLineGroups} />
       </RN.View>
-      {_renderFiltersModal()}
+      {_renderNumLegsModal()}
+      {_renderFilterModal()}
     </RN.View>
   );
 };
