@@ -5,6 +5,7 @@ import {
   Text,
   View,
   StyleSheet,
+  SafeAreaView,
 } from 'react-native';
 import {DevServer, Types} from '@sleeperhq/mini-core';
 
@@ -51,7 +52,7 @@ const Template = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <DevServer
         onContextChanged={_onContextChanged}
         onContextUpdated={_onContextUpdated}
@@ -59,7 +60,7 @@ const Template = () => {
       />
       {connected && <Project context={context} />}
       {!connected && _renderWaitingForConnection()}
-    </View>
+    </SafeAreaView>
   );
 };
 

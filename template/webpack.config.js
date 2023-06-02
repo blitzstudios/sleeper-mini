@@ -5,7 +5,7 @@ const config = require('./app.json');
 const {dependencies} = require('./package.json');
 
 const sharedDeps = Object.keys(dependencies).reduce((acc, key) => {
-  acc[key] = {singleton: true, eager: true};
+  acc[key] = {singleton: true, eager: true, requiredVersion: dependencies[key]};
   return acc;
 }, {});
 
