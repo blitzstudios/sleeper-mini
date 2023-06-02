@@ -282,6 +282,22 @@ const Fetch = (props: OwnProps) => {
     );
   };
 
+  const _onNavigate = (props: OwnProps) => () => {
+    // Note that actions have no effect in the local app.
+    // They only execute when run from within Sleeper.
+    const actions = props.context.actions;
+    actions.navigateTab &&
+      actions.navigateTab('LeaguesDetailScreen', {leagueId: selectedLeague});
+  };
+
+  const renderNavigateButton = (props: OwnProps) => {
+    if (!selectedLeague) {
+      return null;
+    }
+    const label = `Navigate to ${leaguesMap[selectedLeague].name}`;
+    return <Sleeper.Button text={label} onPress={_onNavigate(props)} />;
+  };
+
   const modes: Mode[] = [
     {name: 'Rosters', render: renderRosters},
     {name: 'Users', render: renderUsers},
@@ -295,6 +311,7 @@ const Fetch = (props: OwnProps) => {
   return (
     <RN.View style={styles.container}>
       {renderLeagueList(props)}
+      {renderNavigateButton(props)}
       {renderMode(props)}
     </RN.View>
   );
