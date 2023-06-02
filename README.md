@@ -14,6 +14,7 @@
 | java | zulu-11.56.19 |
 | nodejs | 16.13.1 |
 | ruby | 3.1.0 |
+| cocoapods | 1.12.1 |
 
 3. Install the latest version of our custom vscode-react-native [plugin](https://github.com/blitzstudios/sleeper-mini/blob/main/template/dev_tools/vscode-react-native-3.2.0.vsix). This is a [fork](https://github.com/blitzstudios/vscode-react-native/commits/release/3.2) of the official project that includes fixes to run webpack with react native.
 4. Clone this repo locally.

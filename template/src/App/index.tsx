@@ -11,16 +11,41 @@ const App = (props: OwnProps) => {
 
   const user = context?.user;
   const league = context?.league;
-  const navigation = context?.navigation;
+  const actions = context?.actions;
 
-  const _onPressButton = () => {
-    // Note that actions have no effect in the local app.
-    // They only execute when run from within Sleeper.
-    context?.actions?.navigate('DRAFTBOARDS', 1);
+  const renderTabList = () => {
+    const screens: {screen: Types.NavigationTabId; name: string}[] = [
+      {screen: 'LeaguesIndexScreen', name: 'Fantasy'},
+      {screen: 'ScoreIndexScreen', name: 'Scores'},
+      {screen: 'PicksIndexScreen', name: 'Games'},
+      {screen: 'FeedIndexScreen', name: 'Feed'},
+      {screen: 'InboxIndexScreen', name: 'Inbox'},
+      {screen: 'MinisIndexScreen', name: 'Minis'},
+    ];
+
+    return (
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>Pick a Tab:</Sleeper.Text>
+        <RN.FlatList
+          style={styles.horizontalScroll}
+          horizontal={true}
+          data={screens}
+          renderItem={({item}) => (
+            <RN.View style={styles.tabItem}>
+              <Sleeper.Button
+                text={item.name}
+                onPress={() => actions.navigate?.(item.screen)}
+              />
+            </RN.View>
+          )}
+        />
+      </RN.View>
+    );
   };
 
   return (
     <RN.View style={styles.container}>
+      {renderTabList()}
       <RN.View style={styles.itemContainer}>
         <RN.View style={styles.horizontal}>
           <RN.Image
@@ -63,13 +88,6 @@ const App = (props: OwnProps) => {
         )}
         {!league && <Sleeper.Text style={styles.text}>-none-</Sleeper.Text>}
       </RN.View>
-      <RN.View style={styles.itemContainer}>
-        <Sleeper.Text style={styles.header}>Selected nav type:</Sleeper.Text>
-        <Sleeper.Text style={styles.text}>
-          {navigation?.selectedNavType}
-        </Sleeper.Text>
-      </RN.View>
-      <Sleeper.Button text="Mock Draft" onPress={_onPressButton} />
     </RN.View>
   );
 };
@@ -98,6 +116,10 @@ const styles = RN.StyleSheet.create({
   horizontal: {
     flexDirection: 'row',
   },
+  horizontalScroll: {
+    height: 40,
+    flexGrow: 0,
+  },
   itemContainer: {
     backgroundColor: 'grey',
     alignItems: 'center',
@@ -105,12 +127,15 @@ const styles = RN.StyleSheet.create({
     borderColor: 'white',
     borderWidth: 2,
     borderRadius: 10,
-    padding: 20,
+    padding: 15,
     margin: 5,
   },
   jersey: {
     width: 50,
     height: 50,
+  },
+  tabItem: {
+    paddingHorizontal: 3,
   },
 });
 

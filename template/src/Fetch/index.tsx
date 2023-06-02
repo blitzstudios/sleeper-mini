@@ -286,8 +286,8 @@ const Fetch = (props: OwnProps) => {
     // Note that actions have no effect in the local app.
     // They only execute when run from within Sleeper.
     const actions = props.context.actions;
-    actions.navigateTab &&
-      actions.navigateTab('LeaguesDetailScreen', {leagueId: selectedLeague});
+    actions.navigate &&
+      actions.navigate('LeaguesDetailScreen', {leagueId: selectedLeague});
   };
 
   const renderNavigateButton = (props: OwnProps) => {
