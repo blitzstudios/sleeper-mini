@@ -15,7 +15,7 @@ import Project from 'app';
 
 DevServer.init(config);
 
-const Template = () => {
+const SleeperMini = () => {
   const [context, setContext] = useState<Types.Context>({} as Types.Context);
   const [connected, setConnected] = useState<boolean>(false);
   const [, updateState] = React.useState<any>();
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent(config.name, () => Template);
+AppRegistry.registerComponent(config.name, () => SleeperMini);

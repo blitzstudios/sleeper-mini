@@ -6,7 +6,7 @@ type OwnProps = {
   context: Types.Context;
 };
 
-const Hackathon = (props: OwnProps) => {
+const Template = (props: OwnProps) => {
   const {context} = props;
 
   return (
@@ -30,4 +30,4 @@ const styles = RN.StyleSheet.create({
   },
 });
 
-export default Hackathon;
+export default Template;
