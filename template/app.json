@@ -2,6 +2,6 @@
   "name": "template",
   "displayName": "template",
   "remoteIP": "192.168.86.190",
-  "samples": ["Template", "Fetch", "Actions"],
-  "selectedSample": 1
+  "samples": ["Mini", "Fetch", "Actions"],
+  "selectedSample": 0
 } 

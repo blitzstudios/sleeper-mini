@@ -6,7 +6,7 @@ type OwnProps = {
   context: Types.Context;
 };
 
-const Template = (props: OwnProps) => {
+const Mini = (props: OwnProps) => {
   const {context} = props;
 
   return (
@@ -30,4 +30,4 @@ const styles = RN.StyleSheet.create({
   },
 });
 
-export default Template;
+export default Mini;
