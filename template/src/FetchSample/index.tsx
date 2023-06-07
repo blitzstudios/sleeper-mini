@@ -13,7 +13,7 @@ type Mode = {
   render: (props: OwnProps) => JSX.Element | null;
 };
 
-const Fetch = (props: OwnProps) => {
+const FetchSample = (props: OwnProps) => {
   const {leaguesMap, rostersInLeagueMap, playersInSportMap} = props.context;
 
   const [selectedLeague, setSelectedLeague] = useState<string>();
@@ -38,6 +38,10 @@ const Fetch = (props: OwnProps) => {
   useEffect(() => {
     setSelectedMode(undefined);
   }, [selectedLeague]);
+
+  const renderEmpty = () => {
+    return <Sleeper.Text style={styles.text}>---none---</Sleeper.Text>;
+  }
 
   const renderLeagueList = (props: OwnProps) => {
     const {userLeagueList, leaguesMap} = props.context;
@@ -112,7 +116,7 @@ const Fetch = (props: OwnProps) => {
     const {userMap} = props.context;
 
     if (!selectedRosterMap || !selectedLeague) {
-      return null;
+      return renderEmpty();
     }
 
     return <RosterOwners rostersMap={selectedRosterMap} userMap={userMap} />;
@@ -127,7 +131,7 @@ const Fetch = (props: OwnProps) => {
       Object.keys(usersInLeagueMap[selectedLeague]);
 
     if (!leagueUserIdList) {
-      return null;
+      return renderEmpty();
     }
 
     return (
@@ -147,7 +151,7 @@ const Fetch = (props: OwnProps) => {
     const {playoffsInLeagueMap} = props.context;
 
     if (!selectedLeague || !playoffsInLeagueMap[selectedLeague]) {
-      return null;
+      return renderEmpty();
     }
 
     return (
@@ -168,16 +172,15 @@ const Fetch = (props: OwnProps) => {
     const {sportInfoMap} = props.context;
 
     if (!selectedLeague || !selectedSport) {
-      return null;
+      return renderEmpty();
     }
 
     return (
       <RN.View>
-        <Sleeper.Text style={styles.header}>
-          Sport: {selectedSport}
-        </Sleeper.Text>
-        <Sleeper.Text style={styles.header}>
-          League season: {sportInfoMap[selectedSport]?.league_season ?? 'No season'}:
+        <Sleeper.Text style={styles.text}>Sport: {selectedSport}</Sleeper.Text>
+        <Sleeper.Text style={styles.text}>
+          League season:{' '}
+          {sportInfoMap[selectedSport]?.league_season ?? 'No season'}
         </Sleeper.Text>
       </RN.View>
     );
@@ -189,10 +192,11 @@ const Fetch = (props: OwnProps) => {
     if (
       !selectedLeague ||
       !transactionsInLeagueMap[selectedLeague] ||
+      transactionsInLeagueMap[selectedLeague].length === 0 ||
       !transactionsMap ||
       !userMap
     ) {
-      return null;
+      return renderEmpty();
     }
 
     return (
@@ -202,12 +206,16 @@ const Fetch = (props: OwnProps) => {
         renderItem={({item}) => {
           const creator = transactionsMap[item]?.creator;
           if (!creator) {
-            return null;
+            return (
+              <Sleeper.Text style={styles.text}>
+                No creator detected
+              </Sleeper.Text>
+            );
           }
 
           return (
             <Sleeper.Text style={styles.text}>
-              {userMap[creator]?.display_name}
+              {userMap[creator]?.display_name || 'none'}
             </Sleeper.Text>
           );
         }}
@@ -218,7 +226,7 @@ const Fetch = (props: OwnProps) => {
   const renderDrafts = (props: OwnProps) => {
     const {draftsInLeagueMap, draftPicksInDraftMap} = props.context;
     if (!selectedLeague || !draftsInLeagueMap[selectedLeague]) {
-      return null;
+      return renderEmpty();
     }
 
     return (
@@ -260,7 +268,7 @@ const Fetch = (props: OwnProps) => {
     const {draftPickTradesInLeagueMap} = props.context;
 
     if (!selectedLeague || !draftPickTradesInLeagueMap[selectedLeague]) {
-      return null;
+      return renderEmpty();
     }
 
     return (
@@ -282,6 +290,22 @@ const Fetch = (props: OwnProps) => {
     );
   };
 
+  const _onNavigate = (props: OwnProps) => () => {
+    // Note that actions have no effect in the local app.
+    // They only execute when run from within Sleeper.
+    const actions = props.context.actions;
+    actions.navigate &&
+      actions.navigate('LeaguesDetailScreen', {leagueId: selectedLeague});
+  };
+
+  const renderNavigateButton = (props: OwnProps) => {
+    if (!selectedLeague) {
+      return null;
+    }
+    const label = `Navigate to ${leaguesMap[selectedLeague].name}`;
+    return <Sleeper.Button text={label} onPress={_onNavigate(props)} />;
+  };
+
   const modes: Mode[] = [
     {name: 'Rosters', render: renderRosters},
     {name: 'Users', render: renderUsers},
@@ -295,6 +319,7 @@ const Fetch = (props: OwnProps) => {
   return (
     <RN.View style={styles.container}>
       {renderLeagueList(props)}
+      {renderNavigateButton(props)}
       {renderMode(props)}
     </RN.View>
   );
@@ -347,4 +372,4 @@ const styles = RN.StyleSheet.create({
   },
 });
 
-export default Fetch;
+export default FetchSample;

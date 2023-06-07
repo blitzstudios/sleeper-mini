@@ -970,9 +970,9 @@
     source-map "^0.7.3"
     ws "^8.7.0"
 
-"@callstack/repack@blitzstudios/repack.git#callstack-repack-v2.6.1-gitpkg":
-  version "2.6.1"
-  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/c1fee8f16047216dc9fde863779e991138c5aed9"
+"@callstack/repack@blitzstudios/repack.git#callstack-repack-v2.6.3-gitpkg":
+  version "2.6.3"
+  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/21a2629f69632dcb9cc3402eb4916940efa4755f"
   dependencies:
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.7"
     colorette "^1.2.2"
@@ -1590,10 +1590,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.2.2.tgz#92e2aa52103c5ba6757158cdd9552b466f008fd2"
-  integrity sha512-AEKXGzicqnQwH6+H2nGV44O1Qblj6n1QD5VVD+e65kfgQLHUaC7tOZ5J6UBgxa465TQTdTxrbFd/XaSd3KjNyg==
+"@sleeperhq/mini-core@1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.2.4.tgz#771838c8639f2f1f3ce0df6bcc733cc10e2c01b2"
+  integrity sha512-TBBBRDd/6tkI8GKBUR/Iw4QRXs5vJAlfD1xxN95iTFOJ477FySXrWZ+v6QTtKkWiga6UwhzcxEvfzHmmChjHcg==
 
 "@tootallnate/once@1":
   version "1.1.2"

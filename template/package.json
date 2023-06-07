@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@react-native-community/netinfo": "9.3.7",
-    "@sleeperhq/mini-core": "1.2.2",
+    "@sleeperhq/mini-core": "1.2.4",
     "axios": "0.15.3",
     "lodash": "4.17.21",
     "react": "17.0.2",
@@ -26,7 +26,7 @@
     "@babel/core": "^7.12.9",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.12.5",
-    "@callstack/repack": "blitzstudios/repack.git#callstack-repack-v2.6.1-gitpkg",
+    "@callstack/repack": "blitzstudios/repack.git#callstack-repack-v2.6.3-gitpkg",
     "@callstack/repack-dev-server": "blitzstudios/repack.git#callstack-repack-dev-server-v1.0.5-gitpkg",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/lodash": "^4.14.182",
