@@ -6,7 +6,7 @@ type OwnProps = {
   context: Types.Context;
 };
 
-const Actions = (props: OwnProps) => {
+const ActionSample = (props: OwnProps) => {
   const {context} = props;
 
   const user = context?.user;
@@ -139,4 +139,4 @@ const styles = RN.StyleSheet.create({
   },
 });
 
-export default Actions;
+export default ActionSample;

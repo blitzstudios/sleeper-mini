@@ -13,7 +13,7 @@ type Mode = {
   render: (props: OwnProps) => JSX.Element | null;
 };
 
-const Fetch = (props: OwnProps) => {
+const FetchSample = (props: OwnProps) => {
   const {leaguesMap, rostersInLeagueMap, playersInSportMap} = props.context;
 
   const [selectedLeague, setSelectedLeague] = useState<string>();
@@ -372,4 +372,4 @@ const styles = RN.StyleSheet.create({
   },
 });
 
-export default Fetch;
+export default FetchSample;

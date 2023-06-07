@@ -15,7 +15,7 @@ import Project from 'app';
 
 DevServer.init(config);
 
-const SleeperMini = () => {
+const Root = () => {
   const [context, setContext] = useState<Types.Context>({} as Types.Context);
   const [connected, setConnected] = useState<boolean>(false);
   const [, updateState] = React.useState<any>();
@@ -47,6 +47,9 @@ const SleeperMini = () => {
       <View style={styles.loadingContainer}>
         <Text style={styles.loadingText}>Waiting for connection...</Text>
         <ActivityIndicator size={50} />
+        <Text style={styles.loadingText}>
+          Make sure to update app.json with your phone's IP address.
+        </Text>
       </View>
     );
   };
@@ -72,6 +75,7 @@ const styles = StyleSheet.create({
   loadingText: {
     color: 'white',
     fontSize: 20,
+    textAlign: 'center',
   },
   loadingContainer: {
     flex: 1,
@@ -80,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent(config.name, () => SleeperMini);
+AppRegistry.registerComponent(config.name, () => Root);
