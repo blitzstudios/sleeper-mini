@@ -56,6 +56,43 @@
 		<string>Muli-ExtraBold.ttf</string>
 		<string>Lato-Regular.ttf</string>
 		<string>Lato-Heavy.ttf</string>
+		<string>Chaney-Extended.ttf</string>
+		<string>Druk-SuperItalic.otf</string>
+		<string>Inter-Black.ttf</string>
+		<string>Inter-Bold.ttf</string>
+		<string>Inter-ExtraBold.ttf</string>
+		<string>Inter-ExtraLight.ttf</string>
+		<string>Inter-Light.ttf</string>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-SemiBold.ttf</string>
+		<string>Inter-Thin.ttf</string>
+		<string>Lato-Black.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-Hairline.ttf</string>
+		<string>Lato-Light.ttf</string>
+		<string>Lato-Medium.ttf</string>
+		<string>Lato-Thin.ttf</string>
+		<string>Muli-Black.ttf</string>
+		<string>Muli-Bold.ttf</string>
+		<string>Muli-ExtraLight.ttf</string>
+		<string>Muli-Light.ttf</string>
+		<string>Muli-Regular.ttf</string>
+		<string>Muli-SemiBold.ttf</string>
+		<string>Oswald-Bold.ttf</string>
+		<string>Oswald-ExtraLight.ttf</string>
+		<string>Oswald-Light.ttf</string>
+		<string>Oswald-Medium.ttf</string>
+		<string>Oswald-Regular.ttf</string>
+		<string>Oswald-SemiBold.ttf</string>
+		<string>Poppins-Black.ttf</string>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-ExtraBold.ttf</string>
+		<string>Poppins-Light.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-SemiBold.ttf</string>
+		<string>Poppins-Thin.ttf</string>
 	</array>
 </dict>
 </plist>
