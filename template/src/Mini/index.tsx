@@ -1,6 +1,6 @@
 import React from 'react';
 import * as RN from 'react-native';
-import {Types, Sleeper} from '@sleeperhq/mini-core';
+import {Types, Sleeper, Fonts, Theme} from '@sleeperhq/mini-core';
 
 type OwnProps = {
   context: Types.Context;
@@ -37,13 +37,13 @@ const styles = RN.StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 20,
-    color: 'white',
+    color: Theme.primaryText,
     padding: 10,
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 10,
     margin: 5,
+    ...Fonts.Styles.Body1,
   },
 });
 
