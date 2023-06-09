@@ -173,6 +173,7 @@ module.exports = env => {
             /node_modules(.*[/\\])+@expo/,
             /node_modules(.*[/\\])+pretty-format/,
             /node_modules(.*[/\\])+metro/,
+            /node_modules(.*[/\\])+he/,
             /node_modules(.*[/\\])+abort-controller/,
             /node_modules(.*[/\\])+@callstack\/repack/,
             /node_modules(.*[/\\])+@sleeperhq\/mini-core/,
