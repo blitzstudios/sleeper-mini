@@ -1,6 +1,6 @@
 import React from 'react';
 import {Types} from '@sleeperhq/mini-core';
-import Videos from './videos';
+import Podcasts from './podcasts';
 type OwnProps = {
   context: Types.Context;
 };
@@ -8,7 +8,7 @@ type OwnProps = {
 const Mini = (props: OwnProps) => {
   const {context} = props;
 
-  return <Videos context={context} />;
+  return <Podcasts context={context} />;
 };
 
 export default Mini;

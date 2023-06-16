@@ -6,7 +6,7 @@ import he from 'he';
 import moment from 'moment-timezone';
 import FastImage from 'react-native-fast-image';
 
-type VideoMiniProps = {
+type PodcastMiniProps = {
   context: Types.Context;
 };
 
@@ -38,15 +38,15 @@ const decodeMessage = message => {
   return message;
 };
 
-const videoKeyExtractor = video => video.topic_id;
-const getVideoData = video => {
-  const titleKey = removeEmbedTokenBrackets(video.title);
-  return video.title_map?.[titleKey] || EMPTY_OBJECT;
+const podcastKeyExtractor = podcast => podcast.topic_id;
+const getPodcastData = podcast => {
+  const titleKey = removeEmbedTokenBrackets(podcast.title);
+  return podcast.title_map?.[titleKey] || EMPTY_OBJECT;
 };
 
-const Videos = (props: VideoMiniProps) => {
+const Podcasts = (props: PodcastMiniProps) => {
   const {context} = props;
-  const videos = context?.topics?.videos || [];
+  const podcasts = context?.topics?.podcasts || [];
 
   // const lastTopicIdLoadedRef = useRef<string>(null);
   // const [isRefreshing, setIsRefreshing] = React.useState(false);
@@ -54,11 +54,12 @@ const Videos = (props: VideoMiniProps) => {
   // const [isLoadingOlder, setIsLoadingOlder] = React.useState(false);
   // const [hasAttemptedLoad, setHasAttemptedLoad] = React.useState(false);
 
-  const renderVideo = useCallback(({item: video}: {item}) => {
-    const {youtube, data = {}} = getVideoData(video);
-    const {url, thumbnail, info} = data;
+  const renderPodcast = useCallback(({item: item}: {item}) => {
+    const {data = {}} = getPodcastData(item);
+    const {url, thumbnail, info, podcast} = data;
+    const {name} = podcast;
     // If we're missing core info, do not render...
-    if (!info || !url || !youtube) {
+    if (!info || !url || !podcast) {
       return null;
     }
     const onPress = async () => {
@@ -89,27 +90,25 @@ const Videos = (props: VideoMiniProps) => {
     };
 
     return (
-      <RN.TouchableOpacity style={styles.videoContainer} onPress={onPress}>
-        <RN.View style={styles.videoHeaderContainer}>
+      <RN.TouchableOpacity style={styles.podcastContainer} onPress={onPress}>
+        <RN.View style={styles.podcastHeaderContainer}>
           {thumbnail && (
             <FastImage
-              style={styles.videoThumbnail}
+              style={styles.podcastThumbnail}
               source={{uri: thumbnail.url}}
             />
           )}
-          <RN.View style={styles.videoContentContainer}>
-            <RN.View style={styles.videoMetaContainer}>
-              {youtube.channel && (
-                <RN.Text style={styles.videoMetaText}>
-                  {youtube.channel}
-                  {' • '}
-                </RN.Text>
-              )}
-              <RN.Text style={styles.videoMetaText}>
-                {formatTimeSinceWithDayOfWeek(video.created)}
+          <RN.View style={styles.podcastContentContainer}>
+            <RN.View style={styles.podcastMetaContainer}>
+              <RN.Text style={styles.podcastMetaText}>
+                {name}
+                {' • '}
+              </RN.Text>
+              <RN.Text style={styles.podcastMetaText}>
+                {formatTimeSinceWithDayOfWeek(item.created)}
               </RN.Text>
             </RN.View>
-            <RN.Text style={styles.videoTitleText}>
+            <RN.Text style={styles.podcastTitleText}>
               {decodeMessage(info.title)}
             </RN.Text>
           </RN.View>
@@ -121,12 +120,12 @@ const Videos = (props: VideoMiniProps) => {
   return (
     <FlashList
       style={styles.container}
-      data={videos}
+      data={podcasts}
       // ListEmptyComponent={
       //   <>
       //     {hasAttemptedLoad && (
       //       // Add app error image
-      //       <RN.Text style={styles.errorText}>Could not load videos.</RN.Text>
+      //       <RN.Text style={styles.errorText}>Could not load podcasts.</RN.Text>
       //     )}
       //   </>
       // }
@@ -135,8 +134,8 @@ const Videos = (props: VideoMiniProps) => {
       //     {isLoadingOlder && <RN.ActivityIndicator color="white" />}
       //   </SafeAreaView>
       // }
-      keyExtractor={videoKeyExtractor}
-      renderItem={renderVideo}
+      keyExtractor={podcastKeyExtractor}
+      renderItem={renderPodcast}
       // onEndReached={onEndReached}
       // refreshControl={
       //   <RN.RefreshControl
@@ -174,35 +173,35 @@ const styles = RN.StyleSheet.create({
     textAlign: 'center',
     marginHorizontal: 16,
   },
-  videoContainer: {
+  podcastContainer: {
     paddingHorizontal: 16,
     paddingVertical: 6,
   },
-  videoHeaderContainer: {
+  podcastHeaderContainer: {
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
-  videoThumbnail: {
+  podcastThumbnail: {
     height: 72,
     aspectRatio: 1.33,
     borderRadius: 8,
     overflow: 'hidden',
   },
-  videoContentContainer: {
+  podcastContentContainer: {
     flex: 1,
     paddingLeft: 8,
   },
-  videoMetaContainer: {
+  podcastMetaContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  videoMetaText: {
+  podcastMetaText: {
     fontFamily: Fonts.INTER_REGULAR,
     fontSize: 12,
     marginBottom: 4,
     color: Theme.gray300,
   },
-  videoTitleText: {
+  podcastTitleText: {
     fontFamily: Fonts.INTER_SEMIBOLD,
     color: 'white',
     fontSize: 14,
@@ -210,4 +209,4 @@ const styles = RN.StyleSheet.create({
   },
 });
 
-export default Videos;
+export default Podcasts;
