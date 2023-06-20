@@ -232,11 +232,9 @@ module.exports = env => {
           use: {
             loader: '@callstack/repack/assets-loader',
             options: {
-              // In order to support codepush updates for remote chunks,
-              // we need to encode their image dependencies directly into their bundle files as base64.
-              // However, in dev, this slows down source mapping as bundles now include image data.
-              // We can disable in dev and allow images to be hosted by localhost through the normal process instead.
-              inline: !dev,
+              // In order to support single file bundle uploads through our submission process,
+              // we need to encode image dependencies directly into the main bundle file as base64.
+              inline: true,
               platform,
               devServerEnabled: Boolean(devServer),
               scalableAssetExtensions: Repack.SCALABLE_ASSETS,
@@ -248,7 +246,7 @@ module.exports = env => {
           use: {
             loader: '@callstack/repack/assets-loader',
             options: {
-              inline: false, // all other assets must be included in the main bundle.
+              inline: false, // all other assets must be uploaded separately, as they cannot be inlined.
               platform,
               devServerEnabled: Boolean(devServer),
               scalableAssetExtensions: Repack.SCALABLE_ASSETS,
