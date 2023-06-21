@@ -62,7 +62,26 @@ const ActionSample = (props: OwnProps) => {
         />
         <Sleeper.Button
           text={'Toast!'}
-          onPress={() => actions.showToast?.(toastMessage)}
+          onPress={() =>
+            actions.showToast?.({text: toastMessage, icon: 'error'})
+          }
+        />
+        <Sleeper.Switch
+          options={[
+            {
+              icon: null,
+              colorToggleActive: Theme.primaryText,
+              colorIconActive: Theme.getColorForSport('nfl'),
+              colorIconInactive: Theme.primaryText,
+            },
+            {
+              icon: null,
+              colorToggleActive: Theme.primaryText,
+              colorIconActive: Theme.getColorForSport('nfl'),
+              colorIconInactive: Theme.primaryText,
+            },
+          ]}
+          value={0}
         />
       </RN.View>
     );
