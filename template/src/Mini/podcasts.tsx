@@ -1,10 +1,11 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import * as RN from 'react-native';
 import {Types, Fonts, Theme} from '@sleeperhq/mini-core';
 import {FlashList} from '@shopify/flash-list';
 import he from 'he';
 import moment from 'moment-timezone';
 import FastImage from 'react-native-fast-image';
+import {Topic} from '@sleeperhq/mini-core/declarations/types';
 
 type PodcastMiniProps = {
   context: Types.Context;
@@ -46,15 +47,31 @@ const getPodcastData = podcast => {
 
 const Podcasts = (props: PodcastMiniProps) => {
   const {context} = props;
-  const podcasts = context?.topics?.podcasts || [];
+  const [page, setPage] = React.useState(0);
+  const [isRefreshing, setIsRefreshing] = React.useState(false);
+  const [podcastsMap, setPodcastMap] = React.useState<Record<string, Topic[]>>(
+    {},
+  );
+  const tempPodcasts = context?.podcasts?.[page] || [];
 
-  // const lastTopicIdLoadedRef = useRef<string>(null);
-  // const [isRefreshing, setIsRefreshing] = React.useState(false);
-  // const [isEndReached, setIsEndReached] = React.useState(false);
-  // const [isLoadingOlder, setIsLoadingOlder] = React.useState(false);
-  // const [hasAttemptedLoad, setHasAttemptedLoad] = React.useState(false);
+  useEffect(() => {
+    if (tempPodcasts.length !== 0) {
+      setPodcastMap({...podcastsMap, [page]: tempPodcasts});
+      setIsRefreshing(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, tempPodcasts]);
 
-  const renderPodcast = useCallback(({item: item}: {item}) => {
+  const podcasts = useMemo(() => {
+    const podcastArray = [];
+    Object.keys(podcastsMap).forEach(videoIndex => {
+      const videoValues = podcastsMap[videoIndex];
+      podcastArray.push(...videoValues);
+    });
+    return podcastArray;
+  }, [podcastsMap]);
+
+  const renderPodcast = useCallback(({item: item}: {item: Topic}) => {
     const {data = {}} = getPodcastData(item);
     const {url, thumbnail, info, podcast} = data;
     const {name} = podcast;
@@ -117,33 +134,39 @@ const Podcasts = (props: PodcastMiniProps) => {
     );
   }, []);
 
+  const onEndReached = useCallback(() => {
+    if (tempPodcasts.length === 20 && isRefreshing === false) {
+      setPage(page + 1);
+    }
+  }, [isRefreshing, page, tempPodcasts.length]);
+
+  const onRefresh = useCallback(() => {
+    setIsRefreshing(true);
+    setPage(-1);
+    setPodcastMap({});
+    setTimeout(() => {
+      setPage(0);
+      setPodcastMap({});
+    }, 0);
+  }, []);
+
   return (
     <FlashList
       style={styles.container}
       data={podcasts}
-      // ListEmptyComponent={
-      //   <>
-      //     {hasAttemptedLoad && (
-      //       // Add app error image
-      //       <RN.Text style={styles.errorText}>Could not load podcasts.</RN.Text>
-      //     )}
-      //   </>
-      // }
-      // ListFooterComponent={
-      //   <SafeAreaView edges={['bottom']}>
-      //     {isLoadingOlder && <RN.ActivityIndicator color="white" />}
-      //   </SafeAreaView>
-      // }
+      ListEmptyComponent={
+        <RN.Text style={styles.errorText}>No Videos.</RN.Text>
+      }
       keyExtractor={podcastKeyExtractor}
       renderItem={renderPodcast}
-      // onEndReached={onEndReached}
-      // refreshControl={
-      //   <RN.RefreshControl
-      //     refreshing={isRefreshing}
-      //     onRefresh={onRefresh}
-      //     tintColor="white"
-      //   />
-      // }
+      onEndReached={onEndReached}
+      refreshControl={
+        <RN.RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={onRefresh}
+          tintColor="white"
+        />
+      }
     />
   );
 };
