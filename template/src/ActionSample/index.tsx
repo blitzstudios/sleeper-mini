@@ -88,6 +88,15 @@ const ActionSample = (props: OwnProps) => {
         )}
         {!league && <Sleeper.Text style={styles.text}>-none-</Sleeper.Text>}
       </RN.View>
+      <RN.View style={styles.itemContainer}>
+        <Sleeper.Text style={styles.header}>
+          User State: {context.location?.state}
+        </Sleeper.Text>
+        <Sleeper.Button
+          text={'Request location'}
+          onPress={() => actions.requestLocation?.()}
+        />
+      </RN.View>
     </RN.View>
   );
 };
