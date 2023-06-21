@@ -89,13 +89,27 @@ const ActionSample = (props: OwnProps) => {
         {!league && <Sleeper.Text style={styles.text}>-none-</Sleeper.Text>}
       </RN.View>
       <RN.View style={styles.itemContainer}>
-        <Sleeper.Text style={styles.header}>
-          User State: {context.location?.state}
-        </Sleeper.Text>
-        <Sleeper.Button
-          text={'Request location'}
-          onPress={() => actions.requestLocation?.()}
-        />
+        {context.location?.hasPermission === 'pending' && (
+          <Sleeper.Button
+            text={'Request location'}
+            onPress={() => actions.requestLocation?.()}
+          />
+        )}
+        {context.location?.hasPermission === 'no' && (
+          <>
+            <Sleeper.Text style={styles.header}>Permission denied</Sleeper.Text>
+            <Sleeper.Button
+              text={'Try again?'}
+              onPress={() => actions.requestLocation?.()}
+            />
+          </>
+        )}
+        {context.location?.hasPermission === 'yes' && (
+          <Sleeper.Text style={styles.header}>
+            User Location: {context.location?.state || '--'},{' '}
+            {context.location?.country || '--'}
+          </Sleeper.Text>
+        )}
       </RN.View>
     </RN.View>
   );
