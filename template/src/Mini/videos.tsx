@@ -1,10 +1,11 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import * as RN from 'react-native';
 import {Types, Fonts, Theme} from '@sleeperhq/mini-core';
 import {FlashList} from '@shopify/flash-list';
 import he from 'he';
 import moment from 'moment-timezone';
 import FastImage from 'react-native-fast-image';
+import {Topic} from '@sleeperhq/mini-core/declarations/types';
 
 type VideoMiniProps = {
   context: Types.Context;
@@ -46,15 +47,31 @@ const getVideoData = video => {
 
 const Videos = (props: VideoMiniProps) => {
   const {context} = props;
-  const videos = context?.topics?.videos || [];
 
-  // const lastTopicIdLoadedRef = useRef<string>(null);
-  // const [isRefreshing, setIsRefreshing] = React.useState(false);
-  // const [isEndReached, setIsEndReached] = React.useState(false);
-  // const [isLoadingOlder, setIsLoadingOlder] = React.useState(false);
-  // const [hasAttemptedLoad, setHasAttemptedLoad] = React.useState(false);
+  const [page, setPage] = React.useState(0);
+  const [isRefreshing, setIsRefreshing] = React.useState(false);
+  const [videosMap, setVideoMap] = React.useState<Record<string, Topic[]>>({});
 
-  const renderVideo = useCallback(({item: video}: {item}) => {
+  const tempVideos = context?.videos?.[page] || [];
+
+  useEffect(() => {
+    if (tempVideos.length !== 0) {
+      setVideoMap({...videosMap, [page]: tempVideos});
+      setIsRefreshing(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, tempVideos]);
+
+  const videos = useMemo(() => {
+    const videoArray = [];
+    Object.keys(videosMap).forEach(videoIndex => {
+      const videoValues = videosMap[videoIndex];
+      videoArray.push(...videoValues);
+    });
+    return videoArray;
+  }, [videosMap]);
+
+  const renderVideo = useCallback(({item: video}: {item: Topic}) => {
     const {youtube, data = {}} = getVideoData(video);
     const {url, thumbnail, info} = data;
     // If we're missing core info, do not render...
@@ -118,33 +135,39 @@ const Videos = (props: VideoMiniProps) => {
     );
   }, []);
 
+  const onEndReached = useCallback(() => {
+    if (tempVideos.length === 20 && isRefreshing === false) {
+      setPage(page + 1);
+    }
+  }, [isRefreshing, page, tempVideos.length]);
+
+  const onRefresh = useCallback(() => {
+    setIsRefreshing(true);
+    setPage(-1);
+    setVideoMap({});
+    setTimeout(() => {
+      setPage(0);
+      setVideoMap({});
+    }, 0);
+  }, []);
+
   return (
     <FlashList
       style={styles.container}
       data={videos}
-      // ListEmptyComponent={
-      //   <>
-      //     {hasAttemptedLoad && (
-      //       // Add app error image
-      //       <RN.Text style={styles.errorText}>Could not load videos.</RN.Text>
-      //     )}
-      //   </>
-      // }
-      // ListFooterComponent={
-      //   <SafeAreaView edges={['bottom']}>
-      //     {isLoadingOlder && <RN.ActivityIndicator color="white" />}
-      //   </SafeAreaView>
-      // }
+      ListEmptyComponent={
+        <RN.Text style={styles.errorText}>No Videos.</RN.Text>
+      }
       keyExtractor={videoKeyExtractor}
       renderItem={renderVideo}
-      // onEndReached={onEndReached}
-      // refreshControl={
-      //   <RN.RefreshControl
-      //     refreshing={isRefreshing}
-      //     onRefresh={onRefresh}
-      //     tintColor="white"
-      //   />
-      // }
+      onEndReached={onEndReached}
+      refreshControl={
+        <RN.RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={onRefresh}
+          tintColor="white"
+        />
+      }
     />
   );
 };
