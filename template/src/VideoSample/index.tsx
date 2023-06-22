@@ -4,6 +4,7 @@ import {Types, Fonts, Theme} from '@sleeperhq/mini-core';
 import {FlashList} from '@shopify/flash-list';
 import {Topic} from '@sleeperhq/mini-core/declarations/types';
 import VideoRow from './VideoRow';
+import {useMergeState} from '../shared/helpers';
 
 type VideoMiniProps = {
   context: Types.Context;
@@ -15,25 +16,29 @@ const EMPTY_OBJECT = {};
 const Videos = (props: VideoMiniProps) => {
   const {context} = props;
 
-  const [page, setPage] = React.useState(0);
-  const [isRefreshing, setIsRefreshing] = React.useState(false);
-  const [paginatedVideosMap, setPaginatedVideoMap] =
-    React.useState<Record<string, Topic[]>>(EMPTY_OBJECT);
+  const [state, setState] = useMergeState({
+    page: 0,
+    isRefreshing: false,
+    paginatedVideosMap: EMPTY_OBJECT,
+  });
+  const {page, isRefreshing, paginatedVideosMap} = state;
 
   const currentPageVideos = context?.videos?.[page] || [];
 
   useEffect(() => {
-    setIsRefreshing(false);
+    setState({isRefreshing: false});
     if (currentPageVideos.length !== 0) {
-      setPaginatedVideoMap({...paginatedVideosMap, [page]: currentPageVideos});
+      setState({
+        paginatedVideosMap: {...paginatedVideosMap, [page]: currentPageVideos},
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, currentPageVideos, isRefreshing]);
 
   const videos = useMemo(() => {
     const videoArray = [];
-    Object.keys(paginatedVideosMap).forEach(videoIndex => {
-      const videoValues = paginatedVideosMap[videoIndex];
+    Object.keys(paginatedVideosMap).forEach(videoPage => {
+      const videoValues = paginatedVideosMap[videoPage];
       videoArray.push(...videoValues);
     });
     return videoArray;
@@ -41,15 +46,13 @@ const Videos = (props: VideoMiniProps) => {
 
   const onEndReached = useCallback(() => {
     if (currentPageVideos.length === PAGE_LIMIT && isRefreshing === false) {
-      setPage(page + 1);
+      setState({page: page + 1});
     }
-  }, [isRefreshing, page, currentPageVideos.length]);
+  }, [currentPageVideos.length, isRefreshing, page, setState]);
 
   const onRefresh = useCallback(() => {
-    setIsRefreshing(true);
-    setPage(0);
-    setPaginatedVideoMap(EMPTY_OBJECT);
-  }, []);
+    setState({page: 0, isRefreshing: true, paginatedVideosMap: EMPTY_OBJECT});
+  }, [setState]);
 
   const renderVideo = useCallback(({item: video}: {item: Topic}) => {
     return <VideoRow videoTopic={video} />;

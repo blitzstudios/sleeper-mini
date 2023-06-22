@@ -1,13 +1,12 @@
 import React from 'react';
 import * as RN from 'react-native';
 import {Fonts, Theme} from '@sleeperhq/mini-core';
-import FastImage from 'react-native-fast-image';
 import {Topic} from '@sleeperhq/mini-core/declarations/types';
 import {
   decodeMessage,
   formatTimeSinceWithDayOfWeek,
   getVideoData,
-} from './helpers';
+} from '../shared/helpers';
 
 type VideoRowProps = {
   videoTopic: Topic;
@@ -52,7 +51,7 @@ const VideoRow = (props: VideoRowProps) => {
     <RN.TouchableOpacity style={styles.videoContainer} onPress={onPress}>
       <RN.View style={styles.videoHeaderContainer}>
         {thumbnail && (
-          <FastImage
+          <RN.Image
             style={styles.videoThumbnail}
             source={{uri: thumbnail.url}}
           />

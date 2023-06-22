@@ -1,13 +1,12 @@
 import React from 'react';
 import * as RN from 'react-native';
 import {Fonts, Theme} from '@sleeperhq/mini-core';
-import FastImage from 'react-native-fast-image';
 import {Topic} from '@sleeperhq/mini-core/declarations/types';
 import {
   decodeMessage,
   formatTimeSinceWithDayOfWeek,
   getPodcastData,
-} from './helpers';
+} from '../shared/helpers';
 
 type PodcastRowProps = {
   podcastTopic: Topic;
@@ -53,7 +52,7 @@ const PodcastRow = (props: PodcastRowProps) => {
     <RN.TouchableOpacity style={styles.podcastContainer} onPress={onPress}>
       <RN.View style={styles.podcastHeaderContainer}>
         {thumbnail && (
-          <FastImage
+          <RN.Image
             style={styles.podcastThumbnail}
             source={{uri: thumbnail.url}}
           />

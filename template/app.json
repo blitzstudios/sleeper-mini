@@ -2,7 +2,6 @@
   "name": "template",
   "displayName": "template",
   "remoteIP": "192.168.68.63",
-  "dev": true,
   "samples": ["Mini", "FetchSample", "ActionSample", "PodcastSample", "VideoSample"],
-  "selectedSample": 4
+  "selectedSample": 0
 } 

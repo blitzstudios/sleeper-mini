@@ -4,6 +4,7 @@ import {Types, Fonts, Theme} from '@sleeperhq/mini-core';
 import {FlashList} from '@shopify/flash-list';
 import {Topic} from '@sleeperhq/mini-core/declarations/types';
 import PodcastRow from './PodcastRow';
+import {useMergeState} from '../shared/helpers';
 
 type PodcastMiniProps = {
   context: Types.Context;
@@ -15,19 +16,23 @@ const EMPTY_OBJECT = {};
 const Podcasts = (props: PodcastMiniProps) => {
   const {context} = props;
 
-  const [page, setPage] = React.useState(0);
-  const [isRefreshing, setIsRefreshing] = React.useState(false);
-  const [paginatedPodcastsMap, setPaginatedPodcastMap] =
-    React.useState<Record<string, Topic[]>>(EMPTY_OBJECT);
+  const [state, setState] = useMergeState({
+    page: 0,
+    isRefreshing: false,
+    paginatedPodcastsMap: EMPTY_OBJECT,
+  });
+  const {page, isRefreshing, paginatedPodcastsMap} = state;
 
   const currentPagePodcasts = context?.podcasts?.[page] || [];
 
   useEffect(() => {
-    setIsRefreshing(false);
+    setState({isRefreshing: false});
     if (currentPagePodcasts.length !== 0) {
-      setPaginatedPodcastMap({
-        ...paginatedPodcastsMap,
-        [page]: currentPagePodcasts,
+      setState({
+        paginatedPodcastsMap: {
+          ...paginatedPodcastsMap,
+          [page]: currentPagePodcasts,
+        },
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,24 +40,22 @@ const Podcasts = (props: PodcastMiniProps) => {
 
   const podcasts = useMemo(() => {
     const podcastArray = [];
-    Object.keys(paginatedPodcastsMap).forEach(videoIndex => {
-      const videoValues = paginatedPodcastsMap[videoIndex];
-      podcastArray.push(...videoValues);
+    Object.keys(paginatedPodcastsMap).forEach(podcastPage => {
+      const podcastValues = paginatedPodcastsMap[podcastPage];
+      podcastArray.push(...podcastValues);
     });
     return podcastArray;
   }, [paginatedPodcastsMap]);
 
   const onEndReached = useCallback(() => {
     if (currentPagePodcasts.length === PAGE_LIMIT && isRefreshing === false) {
-      setPage(page + 1);
+      setState({page: page + 1});
     }
-  }, [isRefreshing, page, currentPagePodcasts.length]);
+  }, [currentPagePodcasts.length, isRefreshing, setState, page]);
 
   const onRefresh = useCallback(() => {
-    setIsRefreshing(true);
-    setPage(0);
-    setPaginatedPodcastMap(EMPTY_OBJECT);
-  }, []);
+    setState({page: 0, isRefreshing: true, paginatedPodcastsMap: EMPTY_OBJECT});
+  }, [setState]);
 
   const renderPodcast = useCallback(({item: item}: {item: Topic}) => {
     return <PodcastRow podcastTopic={item} />;

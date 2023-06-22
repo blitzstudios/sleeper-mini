@@ -6956,10 +6956,6 @@ react-native-codegen@^0.0.7:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-"react-native-fast-image@https://github.com/blitzstudios/react-native-fast-image.git#release/1.1":
-  version "8.5.11"
-  resolved "https://github.com/blitzstudios/react-native-fast-image.git#fad89d31e71c9b8cb198cb9a5ebabd1d42cdd660"
-
 react-native-linear-gradient@2.5.6:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
@@ -6980,11 +6976,6 @@ react-native-rename@^3.2.12:
     replace-in-file "^6.3.5"
     shelljs "^0.8.5"
     update-check "^1.5.4"
-
-react-native-safe-area-context@3.3.2:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.3.2.tgz#9549a2ce580f2374edb05e49d661258d1b8bcaed"
-  integrity sha512-yOwiiPJ1rk+/nfK13eafbpW6sKW0jOnsRem2C1LPJjM3tfTof6hlvV5eWHATye3XOpu2cJ7N+HdkUvUDGwFD2Q==
 
 react-native-svg@13.7.0:
   version "13.7.0"

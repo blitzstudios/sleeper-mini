@@ -16,6 +16,4 @@ import 'react-native-tcp-socket';
 import '@shopify/flash-list';
 import 'he';
 import 'moment-timezone';
-import 'react-native-fast-image';
-import 'react-native-safe-area-context';
 import 'react-native-webview';
