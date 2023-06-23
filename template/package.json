@@ -27,7 +27,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.12.5",
     "@callstack/repack": "blitzstudios/repack.git#callstack-repack-v2.6.3-gitpkg",
-    "@callstack/repack-dev-server": "blitzstudios/repack.git#callstack-repack-dev-server-v1.0.5-gitpkg",
+    "@callstack/repack-dev-server": "blitzstudios/repack.git#callstack-repack-dev-server-v1.0.6-gitpkg",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/lodash": "^4.14.182",
     "@types/react-native": "0.66.5",
