@@ -6956,6 +6956,14 @@ react-native-codegen@^0.0.7:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+"react-native-fast-image@https://github.com/blitzstudios/react-native-fast-image.git#release/1.1":
+  version "8.5.11"
+  resolved "https://github.com/blitzstudios/react-native-fast-image.git#fad89d31e71c9b8cb198cb9a5ebabd1d42cdd660"
+
+"react-native-interactable@https://github.com/blitzstudios/react-native-interactable":
+  version "0.1.10"
+  resolved "https://github.com/blitzstudios/react-native-interactable#0da62f968fba011c6b99808be89b39cf76ea64ab"
+
 react-native-linear-gradient@2.5.6:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
