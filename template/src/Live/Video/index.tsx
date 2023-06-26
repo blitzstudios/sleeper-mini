@@ -23,7 +23,6 @@ const Videos = (props: VideoMiniProps) => {
   });
   const {page, isRefreshing, paginatedVideosMap} = state;
 
-  console.log('$$$$$', context.videos[0]);
   const currentPageVideos = context?.videos?.[page] || [];
 
   useEffect(() => {
