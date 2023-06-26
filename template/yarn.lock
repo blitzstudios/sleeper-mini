@@ -952,9 +952,9 @@
   resolved "https://registry.yarnpkg.com/@callstack/repack-debugger-app/-/repack-debugger-app-1.0.0.tgz#71a40a31247bd73f30d16433e49ed1f02abd7cc3"
   integrity sha512-EdR0JLhdkikjZ7OyXtBnGKKZHximkVG0J0XodybZFwZRRafL7h8E0yCv4GjCGOswA9QnkqwZLexxBel+ma0mmg==
 
-"@callstack/repack-dev-server@blitzstudios/repack.git#callstack-repack-dev-server-v1.0.5-gitpkg":
-  version "1.0.5"
-  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/ac05832de8849b75d997f33f36ab02ca39d50c56"
+"@callstack/repack-dev-server@blitzstudios/repack.git#callstack-repack-dev-server-v1.0.6-gitpkg":
+  version "1.0.6"
+  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/c444282daecf6a28494c47d7519d7af06e7d6ce0"
   dependencies:
     "@babel/code-frame" "^7.16.7"
     "@callstack/repack-debugger-app" "^1.0.0"
