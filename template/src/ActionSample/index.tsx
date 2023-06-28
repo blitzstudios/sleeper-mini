@@ -14,6 +14,7 @@ const ActionSample = (props: OwnProps) => {
   const actions = context?.actions;
 
   const [toastMessage, onChangeToastMessage] = React.useState<string>('');
+  const [toastTypeValue, onChangeToastTypeValue] = React.useState<number>(0);
 
   const renderTabList = () => {
     const screens: {screen: Types.NavigationTabId; name: string}[] = [
@@ -63,25 +64,29 @@ const ActionSample = (props: OwnProps) => {
         <Sleeper.Button
           text={'Toast!'}
           onPress={() =>
-            actions.showToast?.({text: toastMessage, icon: 'error'})
+            actions.showToast?.({
+              text: toastMessage,
+              icon: toastTypeValue === 0 ? 'error' : 'success',
+            })
           }
         />
         <Sleeper.Switch
           options={[
             {
-              icon: null,
+              icon: require('./assets/icon_error.webp'),
               colorToggleActive: Theme.primaryText,
               colorIconActive: Theme.getColorForSport('nfl'),
               colorIconInactive: Theme.primaryText,
             },
             {
-              icon: null,
+              icon: require('./assets/circle_check.webp'),
               colorToggleActive: Theme.primaryText,
               colorIconActive: Theme.getColorForSport('nfl'),
               colorIconInactive: Theme.primaryText,
             },
           ]}
-          value={0}
+          value={toastTypeValue}
+          onChange={onChangeToastTypeValue}
         />
       </RN.View>
     );
