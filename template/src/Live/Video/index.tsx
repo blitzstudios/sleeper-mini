@@ -26,12 +26,18 @@ const Videos = (props: VideoMiniProps) => {
   const currentPageVideos = context?.videos?.[page] || [];
 
   useEffect(() => {
-    setState({isRefreshing: false});
+    // When refreshing, our page indeces may change. We need to perform a full reset.
+    let prevMap = isRefreshing ? {} : paginatedVideosMap;
+
     if (currentPageVideos.length !== 0) {
       setState({
-        paginatedVideosMap: {...paginatedVideosMap, [page]: currentPageVideos},
+        isRefreshing: false,
+        paginatedVideosMap: {...prevMap, [page]: currentPageVideos},
       });
+    } else {
+      setState({isRefreshing: false});
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, currentPageVideos, isRefreshing]);
 
@@ -51,7 +57,7 @@ const Videos = (props: VideoMiniProps) => {
   }, [currentPageVideos.length, isRefreshing, page, setState]);
 
   const onRefresh = useCallback(() => {
-    setState({page: 0, isRefreshing: true, paginatedVideosMap: EMPTY_OBJECT});
+    setState({page: 0, isRefreshing: true});
   }, [setState]);
 
   const renderVideo = useCallback(({item: video}: {item: Topic}) => {

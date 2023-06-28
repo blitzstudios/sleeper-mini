@@ -26,15 +26,18 @@ const Podcasts = (props: PodcastMiniProps) => {
   const currentPagePodcasts = context?.podcasts?.[page] || [];
 
   useEffect(() => {
-    setState({isRefreshing: false});
+    // When refreshing, our page indeces may change. We need to perform a full reset.
+    let prevMap = isRefreshing ? {} : paginatedPodcastsMap;
+
     if (currentPagePodcasts.length !== 0) {
       setState({
-        paginatedPodcastsMap: {
-          ...paginatedPodcastsMap,
-          [page]: currentPagePodcasts,
-        },
+        isRefreshing: false,
+        paginatedPodcastsMap: {...prevMap, [page]: currentPagePodcasts},
       });
+    } else {
+      setState({isRefreshing: false});
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, currentPagePodcasts, isRefreshing]);
 
