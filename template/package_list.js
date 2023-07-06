@@ -6,8 +6,6 @@
 
 import '@react-native-community/netinfo';
 import '@sleeperhq/mini-core';
-import 'axios';
-import 'lodash';
 import 'react';
 import 'react-native';
 import 'react-native-linear-gradient';
