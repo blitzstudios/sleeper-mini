@@ -15,13 +15,17 @@ type PodcastRowProps = {
 const PodcastRow = (props: PodcastRowProps) => {
   const {podcastTopic} = props;
   const {data = {}} = getPodcastData(podcastTopic);
-  const {url, thumbnail, info, podcast} = data;
+  const {thumbnail, info, podcast} = data;
   const {name} = podcast;
   // If we're missing core info, do not render...
-  if (!info || !url || !podcast) {
+  if (!info || !podcast) {
     return null;
   }
   const onPress = async () => {
+    const url = RN.Platform.select({
+      android: podcast.spotify || podcast.google || podcast.url,
+      ios: podcast.apple || podcast.url,
+    });
     const canOpen = await RN.Linking.canOpenURL(url);
 
     if (canOpen) {
