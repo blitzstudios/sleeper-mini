@@ -16,7 +16,7 @@
 | ruby | 3.1.0 |
 | cocoapods | 1.12.1 |
 
-3. Install the latest version of our custom vscode-react-native [plugin](https://github.com/blitzstudios/sleeper-mini/blob/main/template/dev_tools/vscode-react-native-3.2.0.vsix). This is a [fork](https://github.com/blitzstudios/vscode-react-native/commits/release/3.2) of the official project that includes fixes to run webpack with react native.
+3. Install the latest version of our custom vscode-react-native [plugin](https://github.com/blitzstudios/sleeper-mini/blob/main/template/dev_tools/vscode-react-native-3.3.0.vsix). This is a [fork](https://github.com/blitzstudios/vscode-react-native/commits/release/3.3) of the official project that includes fixes to run webpack with react native.
 4. Clone this repo locally.
 5. Run `yarn` from the `template/` folder and `pod install` from `template/ios` to set up node modules and native dependencies.
 6. If running in VS code, make sure to start the app from the [vscode project file](https://github.com/blitzstudios/sleeper-mini/blob/main/template.code-workspace). This will automatically set your webpack dev server to the correct ports.
