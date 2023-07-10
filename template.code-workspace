@@ -7,5 +7,6 @@
     "settings": {
         "react-native-tools.reactNativePackagerCommandName": "webpack-start",
         "react-native.packager.port": 9000,
+        "react-native.packager.arguments": "--webpackConfig node_modules/@sleeperhq/mini-core/webpack.config.js",
     }
 }

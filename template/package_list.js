@@ -4,13 +4,10 @@
   Please do not edit manually.
 */
 
-import '@react-native-community/netinfo';
 import '@sleeperhq/mini-core';
 import 'react';
 import 'react-native';
-import 'react-native-linear-gradient';
 import 'react-native-svg';
-import 'react-native-tcp-socket';
 import '@shopify/flash-list';
 import 'he';
 import 'moment-timezone';
