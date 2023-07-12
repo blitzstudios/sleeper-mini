@@ -11,13 +11,13 @@
     "postinstall": "patch-package && yarn preload-packages"
   },
   "dependencies": {
+    "@shopify/flash-list": "1.4.1",
     "@sleeperhq/mini-core": "1.4.0",
+    "he": "1.2.0",
+    "moment-timezone": "0.5.11",
     "react": "17.0.2",
     "react-native": "0.66.5",
     "react-native-svg": "13.7.0",
-    "@shopify/flash-list": "1.4.1",
-    "he": "1.2.0",
-    "moment-timezone": "0.5.11",
     "react-native-webview": "11.23.1"
   },
   "devDependencies": {
