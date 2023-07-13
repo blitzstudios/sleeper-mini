@@ -4,11 +4,11 @@
   Please do not edit manually.
 */
 
+import '@shopify/flash-list';
 import '@sleeperhq/mini-core';
+import 'he';
+import 'moment-timezone';
 import 'react';
 import 'react-native';
 import 'react-native-svg';
-import '@shopify/flash-list';
-import 'he';
-import 'moment-timezone';
 import 'react-native-webview';
