@@ -22,7 +22,6 @@ const ActionSample = (props: OwnProps) => {
       {screen: 'ScoreIndexScreen', name: 'Scores'},
       {screen: 'PicksIndexScreen', name: 'Games'},
       {screen: 'FeedIndexScreen', name: 'Feed'},
-      {screen: 'InboxIndexScreen', name: 'Inbox'},
       {screen: 'MinisIndexScreen', name: 'Minis'},
     ];
 
