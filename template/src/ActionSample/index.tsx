@@ -1,6 +1,6 @@
 import React from 'react';
 import * as RN from 'react-native';
-import {Types, Sleeper} from '@sleeperhq/mini-core';
+import {Types, Sleeper, Fonts, Theme} from '@sleeperhq/mini-core';
 
 type OwnProps = {
   context: Types.Context;
@@ -13,13 +13,15 @@ const ActionSample = (props: OwnProps) => {
   const league = context?.league;
   const actions = context?.actions;
 
+  const [toastMessage, onChangeToastMessage] = React.useState<string>('');
+  const [toastTypeValue, onChangeToastTypeValue] = React.useState<number>(0);
+
   const renderTabList = () => {
     const screens: {screen: Types.NavigationTabId; name: string}[] = [
       {screen: 'LeaguesIndexScreen', name: 'Fantasy'},
       {screen: 'ScoreIndexScreen', name: 'Scores'},
       {screen: 'PicksIndexScreen', name: 'Games'},
       {screen: 'FeedIndexScreen', name: 'Feed'},
-      {screen: 'InboxIndexScreen', name: 'Inbox'},
       {screen: 'MinisIndexScreen', name: 'Minis'},
     ];
 
@@ -43,9 +45,56 @@ const ActionSample = (props: OwnProps) => {
     );
   };
 
+  const renderToast = () => {
+    return (
+      <RN.View style={styles.itemContainer}>
+        <RN.TextInput
+          placeholder={'Enter Message Here'}
+          placeholderTextColor={Theme.secondaryText}
+          autoCorrect={false}
+          autoFocus={true}
+          underlineColorAndroid={'transparent'}
+          keyboardAppearance={'dark'}
+          style={styles.textInput}
+          selectionColor={Theme.mint}
+          onChangeText={onChangeToastMessage}
+          value={toastMessage.toString()}
+        />
+        <Sleeper.Button
+          text={'Toast!'}
+          onPress={() =>
+            actions.showToast?.({
+              text: toastMessage,
+              icon: toastTypeValue === 0 ? 'error' : 'success',
+            })
+          }
+        />
+        <Sleeper.Switch
+          options={[
+            {
+              icon: require('./assets/icon_error.webp'),
+              colorToggleActive: Theme.primaryText,
+              colorIconActive: Theme.getColorForSport('nfl'),
+              colorIconInactive: Theme.primaryText,
+            },
+            {
+              icon: require('./assets/circle_check.webp'),
+              colorToggleActive: Theme.primaryText,
+              colorIconActive: Theme.getColorForSport('nfl'),
+              colorIconInactive: Theme.primaryText,
+            },
+          ]}
+          value={toastTypeValue}
+          onChange={onChangeToastTypeValue}
+        />
+      </RN.View>
+    );
+  };
+
   return (
     <RN.View style={styles.container}>
       {renderTabList()}
+      {renderToast()}
       <RN.View style={styles.itemContainer}>
         <RN.View style={styles.horizontal}>
           <RN.Image
@@ -159,6 +208,17 @@ const styles = RN.StyleSheet.create({
   },
   tabItem: {
     paddingHorizontal: 3,
+  },
+  textInput: {
+    height: 32,
+    textAlign: 'center',
+    fontSize: 16,
+    fontFamily: Fonts.POPPINS_SEMIBOLD,
+    color: Theme.primaryText,
+    backgroundColor: Theme.backgroundDark,
+    paddingHorizontal: 5,
+    paddingVertical: 0,
+    marginBottom: 5,
   },
 });
 
