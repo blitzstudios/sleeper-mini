@@ -2039,10 +2039,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.1.tgz#77bd11944f597ec03bc370f94bdf803937fcde66"
-  integrity sha512-Ud0QRwIQhZ2xc1LoguiFMxYd18tlAOBjuf3jIatq/YWBYpAaYoVHkyV0yMY3k9rtrjirToicI9yilIpZMYTq1Q==
+"@sleeperhq/mini-core@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.2.tgz#113a9e4950a8a7b7e467f3a1844c032c365e7100"
+  integrity sha512-Pq90xf9fiCejjxbuUkcSZgHRmbTA5I/XTFsx/AKhoAo6Z04bmlk6877q01cLrlOM4b8bzGXTUgmMFteqK5YC6Q==
   dependencies:
     "@callstack/repack" blitzstudios/repack.git#callstack-repack-v2.6.3-gitpkg
     "@callstack/repack-dev-server" blitzstudios/repack.git#callstack-repack-dev-server-v1.0.7-gitpkg
