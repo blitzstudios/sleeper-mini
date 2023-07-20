@@ -1,10 +1,23 @@
+diff --git a/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.cpp b/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.cpp
+index 2c68674..ea95e40 100644
+--- a/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.cpp
++++ b/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.cpp
+@@ -2229,7 +2229,7 @@ static float YGDistributeFreeSpaceSecondPass(
+         depth,
+         generationCount);
+     node->setLayoutHadOverflow(
+-        node->getLayout().hadOverflow() |
++        node->getLayout().hadOverflow() ||
+         currentRelativeChild->getLayout().hadOverflow());
+   }
+   return deltaFreeSpace;
 diff --git a/node_modules/react-native/scripts/launchPackager.bat b/node_modules/react-native/scripts/launchPackager.bat
-index aed322d..fe9e3df 100644
+index aed322d..1853852 100644
 --- a/node_modules/react-native/scripts/launchPackager.bat
 +++ b/node_modules/react-native/scripts/launchPackager.bat
 @@ -4,7 +4,7 @@
  :: LICENSE file in the root directory of this source tree.
- 
+
  @echo off
 -title Metro
 +title Bundler
@@ -17,12 +30,12 @@ index 4a77481..296a09e 100755
 +++ b/node_modules/react-native/scripts/launchPackager.command
 @@ -5,7 +5,7 @@
  # LICENSE file in the root directory of this source tree.
- 
+
  # Set terminal title
 -echo -en "\\033]0;Metro\\a"
 +echo -en "\\033]0;Bundler\\a"
  clear
- 
+
  THIS_DIR=$(cd -P "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo "${BASH_SOURCE[0]}")")" && pwd)
 diff --git a/node_modules/react-native/scripts/packager.sh b/node_modules/react-native/scripts/packager.sh
 index 6ad9250..7918b9b 100755
@@ -30,7 +43,7 @@ index 6ad9250..7918b9b 100755
 +++ b/node_modules/react-native/scripts/packager.sh
 @@ -5,6 +5,7 @@
  # LICENSE file in the root directory of this source tree.
- 
+
  # scripts directory
 +PACKAGER_CMD=${PACKAGER_CMD:-'start'}
  THIS_DIR=$(cd -P "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo "${BASH_SOURCE[0]}")")" && pwd)
