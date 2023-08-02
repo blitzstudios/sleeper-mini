@@ -1373,7 +1373,7 @@
   resolved "https://registry.yarnpkg.com/@callstack/repack-debugger-app/-/repack-debugger-app-1.0.2.tgz#89d09dc7ccc39ccfac262fcce416cfea7be17a06"
   integrity sha512-/r1CKfzsbinc8C6z+G9E5L4pPEs+fzzWw6pjTenBTRlBJaK3QTmPtPJdMCFDvJQ4ypSuvqUGG3GTzpemyO2VmA==
 
-"@callstack/repack-dev-server@github:blitzstudios/repack#callstack-repack-dev-server-v1.0.7-gitpkg":
+"@callstack/repack-dev-server@blitzstudios/repack.git#callstack-repack-dev-server-v1.0.7-gitpkg":
   version "1.0.7"
   resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/b96dbf64c04c0d5061674573875b0ec14cd225cc"
   dependencies:
@@ -1391,9 +1391,9 @@
     source-map "^0.7.3"
     ws "^8.7.0"
 
-"@callstack/repack@github:blitzstudios/repack#callstack-repack-v2.6.3-gitpkg":
-  version "2.6.3"
-  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/21a2629f69632dcb9cc3402eb4916940efa4755f"
+"@callstack/repack@blitzstudios/repack.git#callstack-repack-v2.7.0-gitpkg":
+  version "2.7.0"
+  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/d09bc0d220ee127e32583874c2fc686efb2ca2da"
   dependencies:
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.7"
     colorette "^1.2.2"
@@ -2039,12 +2039,12 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.2.tgz#113a9e4950a8a7b7e467f3a1844c032c365e7100"
-  integrity sha512-Pq90xf9fiCejjxbuUkcSZgHRmbTA5I/XTFsx/AKhoAo6Z04bmlk6877q01cLrlOM4b8bzGXTUgmMFteqK5YC6Q==
+"@sleeperhq/mini-core@1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.3.tgz#cac27624932cc246da19af6ddd0c7c814e7c564c"
+  integrity sha512-mtdcztEQ+hO5Rs1gh8L9WoaXugBiOrUAWrceW6VAxZ1V0BZpYIMloWkVQbYnYFDWsASQrJorQ4j/7xxJe/cq6w==
   dependencies:
-    "@callstack/repack" blitzstudios/repack.git#callstack-repack-v2.6.3-gitpkg
+    "@callstack/repack" blitzstudios/repack.git#callstack-repack-v2.7.0-gitpkg
     "@callstack/repack-dev-server" blitzstudios/repack.git#callstack-repack-dev-server-v1.0.7-gitpkg
     "@react-native-community/cli" "6.4.0"
     "@react-native-community/cli-types" "6.0.0"
