@@ -1391,9 +1391,9 @@
     source-map "^0.7.3"
     ws "^8.7.0"
 
-"@callstack/repack@github:blitzstudios/repack#callstack-repack-v2.6.3-gitpkg":
-  version "2.6.3"
-  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/21a2629f69632dcb9cc3402eb4916940efa4755f"
+"@callstack/repack@github:blitzstudios/repack#callstack-repack-v2.7.0-gitpkg":
+  version "2.7.0"
+  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/d09bc0d220ee127e32583874c2fc686efb2ca2da"
   dependencies:
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.7"
     colorette "^1.2.2"
@@ -2039,12 +2039,12 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.2.tgz#113a9e4950a8a7b7e467f3a1844c032c365e7100"
-  integrity sha512-Pq90xf9fiCejjxbuUkcSZgHRmbTA5I/XTFsx/AKhoAo6Z04bmlk6877q01cLrlOM4b8bzGXTUgmMFteqK5YC6Q==
+"@sleeperhq/mini-core@1.4.4":
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.4.tgz#403e54252a94bd239ba1350f5114b38cef746364"
+  integrity sha512-YWY2ROxHXV/LyofBnRb5lBO3ST/sCVaGi1LpasPggwgu/EMlGZ1hJHfXvUnuDQpXmHQzKVhCwTyfzXaascoEHw==
   dependencies:
-    "@callstack/repack" blitzstudios/repack.git#callstack-repack-v2.6.3-gitpkg
+    "@callstack/repack" blitzstudios/repack.git#callstack-repack-v2.7.0-gitpkg
     "@callstack/repack-dev-server" blitzstudios/repack.git#callstack-repack-dev-server-v1.0.7-gitpkg
     "@react-native-community/cli" "6.4.0"
     "@react-native-community/cli-types" "6.0.0"
