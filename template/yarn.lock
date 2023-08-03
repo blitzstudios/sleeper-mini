@@ -1373,7 +1373,7 @@
   resolved "https://registry.yarnpkg.com/@callstack/repack-debugger-app/-/repack-debugger-app-1.0.2.tgz#89d09dc7ccc39ccfac262fcce416cfea7be17a06"
   integrity sha512-/r1CKfzsbinc8C6z+G9E5L4pPEs+fzzWw6pjTenBTRlBJaK3QTmPtPJdMCFDvJQ4ypSuvqUGG3GTzpemyO2VmA==
 
-"@callstack/repack-dev-server@blitzstudios/repack.git#callstack-repack-dev-server-v1.0.7-gitpkg":
+"@callstack/repack-dev-server@github:blitzstudios/repack#callstack-repack-dev-server-v1.0.7-gitpkg":
   version "1.0.7"
   resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/b96dbf64c04c0d5061674573875b0ec14cd225cc"
   dependencies:
@@ -1391,7 +1391,7 @@
     source-map "^0.7.3"
     ws "^8.7.0"
 
-"@callstack/repack@blitzstudios/repack.git#callstack-repack-v2.7.0-gitpkg":
+"@callstack/repack@github:blitzstudios/repack#callstack-repack-v2.7.0-gitpkg":
   version "2.7.0"
   resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/d09bc0d220ee127e32583874c2fc686efb2ca2da"
   dependencies:
@@ -2039,10 +2039,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.4.3":
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.3.tgz#cac27624932cc246da19af6ddd0c7c814e7c564c"
-  integrity sha512-mtdcztEQ+hO5Rs1gh8L9WoaXugBiOrUAWrceW6VAxZ1V0BZpYIMloWkVQbYnYFDWsASQrJorQ4j/7xxJe/cq6w==
+"@sleeperhq/mini-core@1.4.4":
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.4.tgz#403e54252a94bd239ba1350f5114b38cef746364"
+  integrity sha512-YWY2ROxHXV/LyofBnRb5lBO3ST/sCVaGi1LpasPggwgu/EMlGZ1hJHfXvUnuDQpXmHQzKVhCwTyfzXaascoEHw==
   dependencies:
     "@callstack/repack" blitzstudios/repack.git#callstack-repack-v2.7.0-gitpkg
     "@callstack/repack-dev-server" blitzstudios/repack.git#callstack-repack-dev-server-v1.0.7-gitpkg
