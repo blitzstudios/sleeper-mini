@@ -65,11 +65,14 @@ const FetchSample = (props: OwnProps) => {
   const renderModeList = (props: OwnProps) => {
     const {leaguesMap} = props.context;
 
+    const league = !!selectedLeague && leaguesMap[selectedLeague];
+
     return (
       <RN.View style={styles.itemContainer}>
         <Sleeper.Text style={styles.header}>
           Select Mode ({!!selectedLeague && leaguesMap[selectedLeague].name}):
         </Sleeper.Text>
+        {!!selectedLeague && <Sleeper.AvatarLeague league={league} />}
         <RN.FlatList
           style={styles.scroll}
           data={modes}
@@ -90,7 +93,7 @@ const FetchSample = (props: OwnProps) => {
     }
 
     return (
-      <Sleeper.Text style={styles.header}>{selectedMode.name}</Sleeper.Text>
+        <Sleeper.Text style={styles.header}>{selectedMode.name}</Sleeper.Text>
     );
   };
 
@@ -113,13 +116,19 @@ const FetchSample = (props: OwnProps) => {
   };
 
   const renderRosters = (props: OwnProps) => {
-    const {userMap} = props.context;
+    const {userMap, playersInSportMap} = props.context;
 
-    if (!selectedRosterMap || !selectedLeague) {
+    if (!selectedRosterMap || !selectedLeague || !selectedSport) {
       return renderEmpty();
     }
 
-    return <RosterOwners rostersMap={selectedRosterMap} userMap={userMap} />;
+    return (
+      <RosterOwners
+        rostersMap={selectedRosterMap}
+        userMap={userMap}
+        playersMap={playersInSportMap[selectedSport]}
+      />
+    );
   };
 
   const renderUsers = (props: OwnProps) => {
@@ -247,15 +256,22 @@ const FetchSample = (props: OwnProps) => {
           const topPlayer = playersInSportMap[selectedSport][topPickId];
 
           return (
-            <RN.View style={styles.horizontal}>
+            <RN.View>
               <Sleeper.Text style={styles.text}>
                 {item.draft_id}:{item.type}
               </Sleeper.Text>
-              {!!topPlayer && (
-                <Sleeper.Text style={styles.text}>
-                  - 1st:{' '}
-                  {topPlayer.first_name?.[0] + '. ' + topPlayer.last_name}
-                </Sleeper.Text>
+              {!!topPlayer && selectedSport && (
+                <RN.View style={styles.horizontal}>
+                  <Sleeper.Text style={styles.text}>1st Pick:</Sleeper.Text>
+                  <Sleeper.AvatarPlayer player={topPlayer} />
+                  <Sleeper.Text style={styles.text}>
+                    {topPlayer.first_name?.[0] + '. ' + topPlayer.last_name}
+                  </Sleeper.Text>
+                  <Sleeper.AvatarTeam
+                    team={topPlayer.team}
+                    sport={selectedSport}
+                  />
+                </RN.View>
               )}
             </RN.View>
           );

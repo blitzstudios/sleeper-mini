@@ -4,22 +4,41 @@ import {Types, Sleeper} from '@sleeperhq/mini-core';
 
 type OwnProps = {
   rostersMap: Types.RostersMap;
+  playersMap: Types.PlayersMap;
   userMap: Types.UserMap;
 };
 
 const RosterOwners = (props: OwnProps) => {
-  const {rostersMap, userMap} = props;
+  const {playersMap, rostersMap, userMap} = props;
 
   const rosterIdList = Object.keys(rostersMap);
 
+  const renderRosterPlayers = (players: string[]) => {
+    return (
+      <RN.View style={styles.horizontal}>
+        {players?.map(playerId => {
+          const player = playersMap[playerId];
+          return <Sleeper.AvatarPlayer player={player} />;
+        })}
+      </RN.View>
+    );
+  };
+
   const renderRosterOwner = ({item}) => {
-    const ownerId = rostersMap[item].owner_id;
+    const roster = rostersMap[item];
+    const ownerId = roster.owner_id;
     const ownerName = ownerId
       ? userMap[ownerId]
         ? userMap[ownerId].display_name
         : ownerId
       : 'No Owner';
-    return <Sleeper.Text style={styles.text}>{ownerName}</Sleeper.Text>;
+    return (
+      <RN.View style={styles.horizontal}>
+        <Sleeper.Avatar user={ownerId ? userMap[ownerId] : null} />
+        <Sleeper.Text style={styles.text}>{ownerName}</Sleeper.Text>
+        {renderRosterPlayers(roster.players)}
+      </RN.View>
+    );
   };
 
   return (
@@ -35,6 +54,9 @@ const styles = RN.StyleSheet.create({
   scroll: {
     height: 200,
     flexGrow: 0,
+  },
+  horizontal: {
+    flexDirection: 'row',
   },
   text: {
     fontSize: 20,
