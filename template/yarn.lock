@@ -1718,7 +1718,7 @@
   resolved "https://registry.yarnpkg.com/@callstack/repack-debugger-app/-/repack-debugger-app-1.0.2.tgz#89d09dc7ccc39ccfac262fcce416cfea7be17a06"
   integrity sha512-/r1CKfzsbinc8C6z+G9E5L4pPEs+fzzWw6pjTenBTRlBJaK3QTmPtPJdMCFDvJQ4ypSuvqUGG3GTzpemyO2VmA==
 
-"@callstack/repack-dev-server@blitzstudios/repack.git#callstack-repack-dev-server-v1.0.7-gitpkg":
+"@callstack/repack-dev-server@github:blitzstudios/repack#callstack-repack-dev-server-v1.0.7-gitpkg":
   version "1.0.7"
   resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/b96dbf64c04c0d5061674573875b0ec14cd225cc"
   dependencies:
@@ -1736,7 +1736,7 @@
     source-map "^0.7.3"
     ws "^8.7.0"
 
-"@callstack/repack@blitzstudios/repack.git#callstack-repack-v2.7.0-gitpkg":
+"@callstack/repack@github:blitzstudios/repack#callstack-repack-v2.7.0-gitpkg":
   version "2.7.0"
   resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/d09bc0d220ee127e32583874c2fc686efb2ca2da"
   dependencies:
@@ -2463,10 +2463,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.4.6":
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.4.6.tgz#b086c90736462ad91e34e59e07956949649ec899"
-  integrity sha512-3Ce8xxKHBaJVBtXAWKyy5BuF4nL2bJK0v0p9OFOUPQoiWmRfs9KAlLhMxJCk0bH3cN0bJQriM/sOFTk2QyGCJg==
+"@sleeperhq/mini-core@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.5.2.tgz#d62496ec1da86d58530f088d608111e4d6883309"
+  integrity sha512-IdmNImfIfkg6DclpeGYSmDLVK4m7Of9X0lyUUl+NghIAlpMHdd53DfoVyC9AGeXh0kZ9xvHpBbRaJDYCppuXRg==
   dependencies:
     "@babel/plugin-transform-runtime" "7.15.0"
     "@babel/runtime" "7.15.4"
@@ -8071,13 +8071,13 @@ react-native-codegen@^0.0.7:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-"react-native-fast-image@https://github.com/blitzstudios/react-native-fast-image.git#release/1.1":
+"react-native-fast-image@git+https://github.com/blitzstudios/react-native-fast-image.git#release/1.1":
   version "8.5.11"
-  resolved "https://github.com/blitzstudios/react-native-fast-image.git#fad89d31e71c9b8cb198cb9a5ebabd1d42cdd660"
+  resolved "git+https://github.com/blitzstudios/react-native-fast-image.git#fad89d31e71c9b8cb198cb9a5ebabd1d42cdd660"
 
-"react-native-interactable@https://github.com/blitzstudios/react-native-interactable":
+"react-native-interactable@git+https://github.com/blitzstudios/react-native-interactable.git":
   version "0.1.10"
-  resolved "https://github.com/blitzstudios/react-native-interactable#0da62f968fba011c6b99808be89b39cf76ea64ab"
+  resolved "git+https://github.com/blitzstudios/react-native-interactable.git#0da62f968fba011c6b99808be89b39cf76ea64ab"
 
 react-native-linear-gradient@2.5.6:
   version "2.5.6"
