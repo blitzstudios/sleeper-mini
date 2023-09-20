@@ -59,7 +59,7 @@ const TradeSample = (props: OwnProps) => {
           // remove our roster id from the list
           const rosterIds = _.reject(
             allRosterIds,
-            rosterId => rosterId === myRosterId,
+            rosterId => rosterId === Number(myRosterId),
           );
 
           _.forEach(transaction.adds, (rosterId, playerId) => {
