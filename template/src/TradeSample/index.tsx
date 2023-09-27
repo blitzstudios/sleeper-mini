@@ -23,7 +23,14 @@ const TradeSample = (props: OwnProps) => {
   } = props.context;
 
   if (!league) {
-    return null;
+    return (
+      <RN.View style={styles.container}>
+        <Sleeper.Text style={styles.header}>
+          No League Selected, select a league. Make sure leagueSelector is
+          enabled in app.json
+        </Sleeper.Text>
+      </RN.View>
+    );
   }
 
   const leagueId = league.league_id;
