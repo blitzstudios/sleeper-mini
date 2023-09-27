@@ -17,7 +17,7 @@ const ActionSample = (props: OwnProps) => {
   const [toastTypeValue, onChangeToastTypeValue] = React.useState<number>(0);
 
   const renderTabList = () => {
-    const screens: {screen: Types.NavigationTabId; name: string}[] = [
+    const screens: {screen: Types.NavigationScreen; name: string}[] = [
       {screen: 'LeaguesIndexScreen', name: 'Fantasy'},
       {screen: 'ScoreIndexScreen', name: 'Scores'},
       {screen: 'PicksIndexScreen', name: 'Games'},
