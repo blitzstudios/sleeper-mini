@@ -4,6 +4,9 @@ import {Types, Sleeper, Fonts, Theme} from '@sleeperhq/mini-core';
 
 type OwnProps = {
   context: Types.Context;
+  actions: Types.Actions;
+  entitlements: Types.Entitlements;
+  events: Types.Events;
 };
 
 const Mini = (props: OwnProps) => {
