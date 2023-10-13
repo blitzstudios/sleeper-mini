@@ -1,10 +1,6 @@
 import React from 'react';
 import * as RN from 'react-native';
 import {Types, Sleeper} from '@sleeperhq/mini-core';
-import {
-  LeagueTransaction,
-  PlayersMap,
-} from '@sleeperhq/mini-core/declarations/types';
 import _ from 'lodash';
 
 type OwnProps = {
@@ -34,10 +30,28 @@ const TradeSample = (props: OwnProps) => {
   }
 
   const leagueId = league.league_id;
-  const players: PlayersMap = playersInSportMap[league.sport];
+  const players: Types.PlayersMap = playersInSportMap[league.sport];
   const userId = user.user_id;
   const rosters = rostersInLeagueMap[leagueId];
   const myRosterId = _.findKey(rosters, roster => roster.owner_id === userId);
+
+  const renderPlayerMove = (
+    player: Types.Player,
+    rosterId: Types.RosterId,
+    key: number,
+  ) => {
+    return (
+      <Sleeper.Text
+        style={styles.text}
+        key={key}
+        onPress={() => {
+          actions.navigate?.('PlayerPopupScreen', {
+            playerId: player.player_id,
+            sport: player.sport,
+          });
+        }}>{`${player.first_name} ${player.last_name} to ${rosterId}\n`}</Sleeper.Text>
+    );
+  };
 
   return (
     <RN.View style={styles.container}>
@@ -49,7 +63,7 @@ const TradeSample = (props: OwnProps) => {
         style={styles.scroll}
         data={transactionsInLeagueMap[leagueId]}
         renderItem={({item}) => {
-          const transaction: LeagueTransaction = transactionsMap[item];
+          const transaction: Types.LeagueTransaction = transactionsMap[item];
           if (
             transaction.type !== 'trade' ||
             transaction.status !== 'proposed'
@@ -57,7 +71,7 @@ const TradeSample = (props: OwnProps) => {
             return;
           }
 
-          let output = '';
+          let output = [];
           const transactionId = transaction.transaction_id;
           const allRosterIds = transaction.roster_ids;
           const addMap = {};
@@ -68,6 +82,8 @@ const TradeSample = (props: OwnProps) => {
             allRosterIds,
             rosterId => rosterId === Number(myRosterId),
           );
+
+          let key = 0;
 
           _.forEach(transaction.adds, (rosterId, playerId) => {
             let adds = addMap[rosterId] || [];
@@ -86,14 +102,14 @@ const TradeSample = (props: OwnProps) => {
                 return;
               }
               const player = players[playerId];
-              output += `${player.first_name} ${player.last_name} to ${rosterId}\n`;
+              output.push(renderPlayerMove(player, rosterId, key++));
             });
             _.each(transaction.drops, (transactionRosterId, playerId) => {
               if (rosterId !== transactionRosterId) {
                 return;
               }
               const player = players[playerId];
-              output += `${player.first_name} ${player.last_name} from ${rosterId}\n`;
+              output.push(renderPlayerMove(player, rosterId, key++));
             });
           });
           return (
