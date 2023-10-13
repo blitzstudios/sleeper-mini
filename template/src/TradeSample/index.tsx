@@ -76,6 +76,10 @@ const TradeSample = (props: OwnProps) => {
           const allRosterIds = transaction.roster_ids;
           const addMap = {};
           const dropMap = {};
+          const addPicksMap = {};
+          const dropPicksMap = {};
+          const addWaiverMap = {};
+          const dropWaiverMap = {};
 
           // remove our roster id from the list
           const rosterIds = _.reject(
@@ -112,6 +116,32 @@ const TradeSample = (props: OwnProps) => {
               output.push(renderPlayerMove(player, rosterId, key++));
             });
           });
+          _.each(transaction.draft_picks, (pickTradeFormat: string) => {
+            const pickInfo = pickTradeFormat.split(','); // original team id, season, round, to team id, from team id
+            const originalId = pickInfo[0];
+            const season = pickInfo[1];
+            const round = pickInfo[2];
+            const toId = pickInfo[3];
+            const fromId = pickInfo[4];
+            output.push(
+              `OriginalId: ${originalId}, season ${season}, round ${round}, to ${toId}, from ${fromId}\n`,
+            );
+            addPicksMap[toId] = addPicksMap[toId] || [];
+            addPicksMap[toId].push(pickTradeFormat);
+            dropPicksMap[fromId] = dropPicksMap[toId] || [];
+            dropPicksMap[fromId].push(pickTradeFormat);
+          });
+          _.each(transaction.waiver_budget, (waiverFormat: string) => {
+            const budgetInfo = waiverFormat.split(','); // from, to, amount
+            const fromId = budgetInfo[0];
+            const toId = budgetInfo[1];
+            const amount = budgetInfo[2];
+            output.push(`amount: $${amount}, from ${fromId}, to ${toId}\n`);
+            addWaiverMap[toId] = addWaiverMap[toId] || [];
+            addWaiverMap[toId].push(waiverFormat);
+            dropWaiverMap[fromId] = dropWaiverMap[toId] || [];
+            dropWaiverMap[fromId].push(waiverFormat);
+          });
           return (
             <RN.View style={styles.itemContainer}>
               <Sleeper.Text style={styles.text}>{output}</Sleeper.Text>
@@ -133,6 +163,10 @@ const TradeSample = (props: OwnProps) => {
                     rosterIds,
                     addMap,
                     dropMap,
+                    addPicksMap,
+                    dropPicksMap,
+                    addWaiverMap,
+                    dropWaiverMap
                   })
                 }
               />
