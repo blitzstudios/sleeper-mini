@@ -33,7 +33,11 @@ const TradeSample = (props: OwnProps) => {
   const players: Types.PlayersMap = playersInSportMap[league.sport];
   const userId = user.user_id;
   const rosters = rostersInLeagueMap[leagueId];
-  const myRosterId = _.findKey(rosters, roster => roster.owner_id === userId);
+  const myRosterIdString = _.findKey(
+    rosters,
+    roster => roster.owner_id === userId,
+  );
+  const myRosterId = Number(myRosterIdString);
 
   const renderPlayerMove = (
     player: Types.Player,
@@ -84,7 +88,7 @@ const TradeSample = (props: OwnProps) => {
           // remove our roster id from the list
           const rosterIds = _.reject(
             allRosterIds,
-            rosterId => rosterId === Number(myRosterId),
+            rosterId => rosterId === myRosterId,
           );
 
           let key = 0;
