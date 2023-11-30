@@ -8,18 +8,19 @@
     "start": "react-native webpack-start --webpackConfig node_modules/@sleeperhq/mini-core/webpack.config.js --port 9000",
     "test": "jest",
     "lint": "eslint .",
-    "postinstall": "patch-package && yarn preload-packages"
+    "postinstall": "patch-package && yarn preload-packages",
+    "clean-deps": "rm -rf node_modules"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "7.15.0",
     "@babel/runtime": "7.15.4",
     "@shopify/flash-list": "1.4.1",
-    "@sleeperhq/mini-core": "1.6.2",
+    "@sleeperhq/mini-core": "1.8.2",
     "he": "1.2.0",
     "moment-timezone": "0.5.11",
-    "react": "17.0.2",
-    "react-native": "0.66.5",
-    "react-native-svg": "13.7.0",
+    "react": "18.2.0",
+    "react-native": "0.72.6",
+    "react-native-svg": "13.14.0",
     "react-native-webview": "11.23.1",
     "regenerator-runtime": "0.13.9"
   },
@@ -28,7 +29,8 @@
     "@babel/preset-env": "7.15.8",
     "@babel/preset-typescript": "7.21.4",
     "@react-native-community/eslint-config": "^2.0.0",
-    "@types/react-native": "0.67.7",
+    "@types/react": "18.0.24",
+    "@types/react-native": "0.72.5",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "babel-jest": "26.6.3",
@@ -41,5 +43,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "engines": {
+    "node": "^16.13.1"
   }
 }
