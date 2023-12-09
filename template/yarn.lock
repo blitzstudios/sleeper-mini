@@ -1800,10 +1800,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.6.2.tgz#1e1dfc6d53034752ee78dfbe4a0d7807ebf53801"
-  integrity sha512-hCor2bIvejM52j77JfOVE2bE8X3i3g4Ol4HkZNwywD+gBx1N5xIlBzxXXojRtE7qE1OT+EG525nSG7HigB1M1g==
+"@sleeperhq/mini-core@1.7.3":
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.7.3.tgz#0bc3a1639bbd7ec68de6ecd16efdfe815fdcec96"
+  integrity sha512-tJUAos8+9r2Qby1ReXDeHkerQGm008HVYiPrcmaCHLQfYq+njI7x3+hB+kd2fL4WA1B4ZYxMlHRkK6msPPYi7g==
   dependencies:
     "@babel/plugin-transform-runtime" "7.15.0"
     "@babel/runtime" "7.15.4"
