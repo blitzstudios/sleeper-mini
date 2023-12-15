@@ -1,24 +1,3 @@
-diff --git a/node_modules/react-native/Libraries/BatchedBridge/NativeModules.js b/node_modules/react-native/Libraries/BatchedBridge/NativeModules.js
-index 26961d7..8649cca 100644
---- a/node_modules/react-native/Libraries/BatchedBridge/NativeModules.js
-+++ b/node_modules/react-native/Libraries/BatchedBridge/NativeModules.js
-@@ -175,7 +175,16 @@ function updateErrorWithErrorData(
- }
- 
- let NativeModules: {[moduleName: string]: $FlowFixMe, ...} = {};
-+global.disabledNativeModules = {};
- if (global.nativeModuleProxy) {
-+  global.nativeModuleProxy = new Proxy(global.nativeModuleProxy, {
-+    get: function(target, name) {
-+      if (global.disabledNativeModules?.[name]) {
-+        return {};
-+      }
-+      return target[name];
-+    },
-+  });
-   NativeModules = global.nativeModuleProxy;
- } else if (!global.nativeExtensions) {
-   const bridgeConfig = global.__fbBatchedBridgeConfig;
 diff --git a/node_modules/react-native/Libraries/Core/Devtools/symbolicateStackTrace.js b/node_modules/react-native/Libraries/Core/Devtools/symbolicateStackTrace.js
 index b45bc36..3835539 100644
 --- a/node_modules/react-native/Libraries/Core/Devtools/symbolicateStackTrace.js
@@ -50,14 +29,28 @@ index 4247d3b..a5bd828 100644
 -  require('./setUpReactRefresh');
 +  // require('./setUpReactRefresh');
  }
-diff --git a/node_modules/react-native/React/.DS_Store b/node_modules/react-native/React/.DS_Store
-new file mode 100644
-index 0000000..84d697a
-Binary files /dev/null and b/node_modules/react-native/React/.DS_Store differ
 diff --git a/node_modules/react-native/React/Base/RCTDefines.h b/node_modules/react-native/React/Base/RCTDefines.h
-index 68fa842..2191c76 100644
+index 68fa842..6901b0b 100644
 --- a/node_modules/react-native/React/Base/RCTDefines.h
 +++ b/node_modules/react-native/React/Base/RCTDefines.h
+@@ -122,7 +122,7 @@
+  * Add the default Metro packager port number
+  */
+ #ifndef RCT_METRO_PORT
+-#define RCT_METRO_PORT 8081
++#define RCT_METRO_PORT 9000
+ #else
+ // test if RCT_METRO_PORT is empty
+ #define RCT_METRO_PORT_DO_EXPAND(VAL) VAL##1
+@@ -131,7 +131,7 @@
+ // Only here if RCT_METRO_PORT is not defined
+ // OR RCT_METRO_PORT is the empty string
+ #undef RCT_METRO_PORT
+-#define RCT_METRO_PORT 8081
++#define RCT_METRO_PORT 9000
+ #endif
+ #endif
+ 
 @@ -139,7 +139,7 @@
   * Add the default packager name
   */
@@ -68,7 +61,7 @@ index 68fa842..2191c76 100644
  
  /**
 diff --git a/node_modules/react-native/scripts/packager.sh b/node_modules/react-native/scripts/packager.sh
-index cb8b101..1342890 100755
+index cb8b101..eced6df 100755
 --- a/node_modules/react-native/scripts/packager.sh
 +++ b/node_modules/react-native/scripts/packager.sh
 @@ -21,4 +21,4 @@ then
@@ -76,7 +69,7 @@ index cb8b101..1342890 100755
  # Start packager from PROJECT_ROOT
  cd "$PROJECT_ROOT" || exit
 -"$NODE_BINARY" "$REACT_NATIVE_ROOT/cli.js" start --custom-log-reporter-path "$THIS_DIR/packager-reporter.js" "$@"
-+"$NODE_BINARY" "$REACT_NATIVE_ROOT/cli.js" webpack-start --custom-log-reporter-path "$THIS_DIR/packager-reporter.js" "$@"
++"$NODE_BINARY" "$REACT_NATIVE_ROOT/cli.js" webpack-start --webpackConfig node_modules/@sleeperhq/mini-core/webpack.config.js --custom-log-reporter-path "$THIS_DIR/packager-reporter.js" "$@"
 diff --git a/node_modules/react-native/scripts/react-native-xcode.sh b/node_modules/react-native/scripts/react-native-xcode.sh
 index e6fc8d1..23d40c6 100755
 --- a/node_modules/react-native/scripts/react-native-xcode.sh

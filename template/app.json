@@ -1,8 +1,8 @@
 {
   "name": "template",
   "displayName": "template",
-  "remoteIP": "192.168.86.34",
+  "remoteIP": "192.168.86.39",
   "samples": ["Mini", "FetchSample", "ActionSample", "Live/Video", "Live/Podcast", "TradeSample"],
   "selectedSample": 0,
   "headerOptions": { "useLeagueSelector": false }
-} 
+}
