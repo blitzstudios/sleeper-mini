@@ -9,10 +9,10 @@
 
 | Tool | Version |
 | --- | --- |
-| XCode | 14.2 |
-| MacOS | 12.6 |
+| XCode | 15.0 |
+| MacOS | 13.6 |
 | java | zulu-11.56.19 |
-| nodejs | 16.13.1 |
+| nodejs | 20.10.0 |
 | ruby | 3.1.0 |
 | cocoapods | 1.12.1 |
 

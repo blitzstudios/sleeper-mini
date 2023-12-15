@@ -45,6 +45,6 @@
     "preset": "react-native"
   },
   "engines": {
-    "node": "^16.13.1"
+    "node": ">=20.10.0"
   }
 }
