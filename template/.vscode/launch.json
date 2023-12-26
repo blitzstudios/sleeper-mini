@@ -5,12 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug iPhone 13",
+      "name": "Debug iPhone 14",
       "cwd": "${workspaceFolder}",
       "type": "reactnative",
       "request": "launch",
       "platform": "ios",
-      "target": "iPhone 13",
+      "target": "iPhone 14",
       "enableDebug": true,
     },
   ]

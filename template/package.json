@@ -22,7 +22,7 @@
     "react-native": "0.72.7",
     "react-native-svg": "13.14.0",
     "react-native-webview": "11.23.1",
-    "regenerator-runtime": "0.13.9"
+    "regenerator-runtime": "0.13.11"
   },
   "devDependencies": {
     "@babel/core": "7.15.8",
