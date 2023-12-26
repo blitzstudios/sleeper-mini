@@ -2004,10 +2004,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.8.4":
-  version "1.8.4"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.8.4.tgz#1d0c4f8cf5c364e20ea5ac3c4ea39ea1781712c8"
-  integrity sha512-spjfBj8K3Izl75bUnSno8t96kg5X63ZNEgevjjD69+G31I3eIUQyIIBRiKOYyoicN/86Wq6Xqm74KFg+dT6vIQ==
+"@sleeperhq/mini-core@1.8.5":
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.8.5.tgz#eedfe16c2e8fbda66cb1ea16823e38aac94d5a8c"
+  integrity sha512-+Y7CSwbr6u+VmXw0IWvT9RL4rr7K+8Rj6RuAMYAk1qpCKdAMUcxPjvYtbqL54n1c+TM3azU0OrJqs6dW9mwW/w==
   dependencies:
     "@babel/plugin-transform-runtime" "7.15.0"
     "@babel/runtime" "7.15.4"
