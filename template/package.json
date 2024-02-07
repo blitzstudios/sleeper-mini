@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android --no-packager",
     "ios": "react-native run-ios --no-packager",
+    "android": "react-native run-android --no-packager --port 9000",
     "start": "react-native webpack-start --webpackConfig node_modules/@sleeperhq/mini-core/webpack.config.js --port 9000",
     "test": "jest",
     "lint": "eslint .",
