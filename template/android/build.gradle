@@ -3,15 +3,13 @@
 buildscript {
     ext {
         buildToolsVersion = "33.0.0"
-        minSdkVersion = 23
+        minSdkVersion = 21
         compileSdkVersion = 33
         targetSdkVersion = 33
         
         // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
         ndkVersion = "23.1.7779620"
         kotlinVersion = '1.6.20'
-        androidXCore = "1.7.0"
-        reactNativeDevServerPort = 9000
     }
     repositories {
         google()
@@ -22,18 +20,4 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
-
-    // this is needed otherwise some projs like react-native-interactable breaks
-    subprojects { subproject ->
-        afterEvaluate{
-            if((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
-                android {
-                    compileSdkVersion rootProject.ext.compileSdkVersion
-                    buildToolsVersion rootProject.ext.buildToolsVersion
-                }
-            }
-        }
-    }
 }
-
-
