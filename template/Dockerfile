@@ -79,6 +79,6 @@ ENV REACT_NATIVE_PACKAGER_HOSTNAME="192.255.255.255"
 # RUN npx jetify
 # WORKDIR /usr/src/template/android
 # RUN ./gradlew assembleDebug
-CMD yarn start
+CMD yarn && yarn start
 
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
