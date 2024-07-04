@@ -1138,9 +1138,9 @@
     source-map "^0.7.3"
     ws "^8.7.0"
 
-"@callstack/repack@blitzstudios/repack.git#callstack-repack-v3.0.0-gitpkg":
-  version "3.0.0"
-  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/d461466dec61be3a11c65e1860ff3584b1cd7179"
+"@callstack/repack@blitzstudios/repack.git#callstack-repack-v3.1.0-gitpkg":
+  version "3.1.0"
+  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/cec40e4010f4fd8d6aed705f4a0ab3427a2cc067"
   dependencies:
     "@discoveryjs/json-ext" "^0.5.7"
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.7"
@@ -2005,14 +2005,14 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.8.8":
-  version "1.8.8"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.8.8.tgz#9d387f30d08a05ea65d46b7554ef8ec8fb75f26a"
-  integrity sha512-tJ8cLzzHLEYmjR3lIezXbEWdMz2R/nSPg5YAoth3Hcm9/9qG4rxTXIhAR8PMvpvFW5Bt+nvl9awWmS/D7Ew9ag==
+"@sleeperhq/mini-core@1.9.1":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.9.1.tgz#1b8ef2f347b886ae76195a593d49fd9adab132c2"
+  integrity sha512-LCEFwGIJzi7rFDg4kYFwh9hK5OwaH2RMdWKfHOOULVHNgbL4b9QDGvxVO1PxVgtu6/53sOAWddPHug8j5EWhNQ==
   dependencies:
     "@babel/plugin-transform-runtime" "7.15.0"
     "@babel/runtime" "7.15.4"
-    "@callstack/repack" blitzstudios/repack.git#callstack-repack-v3.0.0-gitpkg
+    "@callstack/repack" blitzstudios/repack.git#callstack-repack-v3.1.0-gitpkg
     "@callstack/repack-dev-server" blitzstudios/repack.git#callstack-repack-dev-server-v1.0.7-gitpkg
     "@react-native-community/cli" "6.1.0"
     "@react-native-community/cli-types" "6.0.0"
