@@ -18,18 +18,12 @@ RUN apt clean
 RUN apt-get update
 RUN apt-get install git 
 
-#COPY zulu11.56.19-ca-jdk11.0.15-linux_amd64.deb ./
-# RUN apk update
-#RUN apk add zulu11.56.19-ca-jdk11.0.15-linux_amd64.deb
-#RUN apk add openjdk11
-
 # Install Ruby and Bundler
 RUN apt-get -y install ruby ruby-dev ruby-bundler
 
 # Install build tools for native extensions
 RUN apt-get -y install bash unzip libc6
 RUN apt-get -y install build-essential
-# RUN apt-get -y install  linux-headers-$(uname -r)
 
 # Install Java (required for Android SDK)
 RUN wget "https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz"
@@ -37,7 +31,6 @@ RUN tar -xzvf openjdk-11.0.2_linux-x64_bin.tar.gz
 RUN mv jdk-11.0.2 /usr/lib/jvm/
 ENV JAVA_HOME /usr/lib/jvm/
 ENV PATH=$JAVA_HOME/bin:$PATH
-# RUN apt-get -y install openjdk-8-jdk
 
 RUN apt-get -y install ninja-build
 
@@ -60,25 +53,11 @@ RUN yes | sdkmanager --licenses
 # Install specific Android SDK packages
 RUN sdkmanager "platform-tools" "build-tools;33.0.0" "platforms;android-33" "ndk;23.1.7779620" "cmake;3.22.1"
 
-# COPY package.json yarn.lock ./
-# COPY ./patches ./patches
-# RUN yarn install --frozen-lockfile
-
-# Run the application as a non-root user.
-# USER node
-
-# Copy the rest of the source files into the image.
-# COPY . .
-
 # Expose the port that the application listens on.
 EXPOSE 9000
 
 ENV REACT_NATIVE_PACKAGER_HOSTNAME="192.255.255.255"
 
 # Run the application.
-# RUN npx jetify
-# WORKDIR /usr/src/template/android
-# RUN ./gradlew assembleDebug
 CMD yarn && yarn start
 
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
