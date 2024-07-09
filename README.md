@@ -1,46 +1,55 @@
-# Sleeper-Mini template
+# Sleeper Mini Template
 
 ![Sleeper](https://user-images.githubusercontent.com/61988202/223927288-c54734de-39f9-40c5-bb24-d1b193c9c374.png)
 
+## Getting Started
 
-# Getting Started
+This template project provides a starting point for developing a Sleeper Mini. At a high level, minis are developed in React Native and packaged into bundles for the Sleeper app to load at runtime. The simplest way to get started is by using Docker, which will prepare the correct environment. Having a separate simulator/emulator for mini development can be useful, but is not required.
 
-This template project provides a starting point for developing a Sleeper Mini. At a high level, minis are developed in react-native and packaged into bundles for the Sleeper app to load at runtime. The simplest way to get started is by using docker, which will prepare the correct environment. Have a separate simulator/emulator for mini development can be useful, but is not required.
-
-## Requirements:
+### Requirements
 
 - Git
-- Enable developer-mode on Sleeper App (ask Sleeper Employee)
+- For Windows or Quick Start development:
+  - A [Docker](https://docs.docker.com/get-docker/) installation
+  - [Android Studio](https://developer.android.com/studio) (optional - for Android Emulator support)
+  - [XCode](https://developer.apple.com/xcode/) (optional - for iOS Emulator support)
+- For manual development:
+  - [XCode](https://developer.apple.com/xcode/)
+  - Apple Mac 
 
-## Optional Software Requirements
+## Quick Start Using Docker
 
-- Docker
-- XCode Simulator
-- Android Emulator (part of Android Studio)
+1. Clone this repository:
+    ```sh
+    git clone https://github.com/blitzstudios/sleeper-mini.git
+    ```
+2. Install Docker.
+3. Start Sleeper in developer mode by following the instructions [here](to-connect-with-a-running-prod-app-on-your-local-network).
+4. Open the command line and navigate to the template folder.
+5. Execute:
+    ```sh
+    docker compose up
+    ```
+    This starts the packager and connects to the Sleeper App.
+8. On the Sleeper app, navigate to the minis tab and see the template mini.
+9. You should see compiling messages on the command line.
 
-## Quick Start using Docker
+### Special Notes for iOS Simulator
 
-1. git clone this Repo
-2. install docker
-3. open command line and navigate to template folder
-4. open Sleeper app on any device with developer-mode enabled
-5. use Developer mini overlay to get the IP of your device
-6. Update your device IP in app.json and save
-5. execute "docker compose up" -- this begins the packager and connects to the Sleeper App
-6. on Sleeper app, navigate to minis tab and see template mini
-7. you should see compiling messages on the command line
+- Using the iOS Simulator will require a [Manual Installation](#manual-installation).
 
-### Special Notes for IOS Simulator
+### Special Notes for Android Emulator
 
-- Using ios Simulator will require a manual installations
+1. After following the quick start, open a separate console and navigate to the template folder.
+2. Execute:
+    ```sh
+    docker compose exec environment sh ./buildapk.sh
+    ```
+    (this step may take a while)
+3. Open any Android emulator.
+4. Find the file `template/mini-debug.apk` and drag it to the emulator.
+5. Run the template app on the Android emulator.
 
-### Special Notes for Android Emulator if using Docker
-
-1. After following quick start, open a separate console and navigate to template folder
-2. execute "docker compose exec environment sh ./buildapk.sh" (this step may take a while)
-3. open any Android emulator
-4. find file template/mini-debug.apk and drag to emulator
-5. run template app on android emulator
 
 ## Manual Installation
 
@@ -72,7 +81,7 @@ This template project provides a starting point for developing a Sleeper Mini. A
 <img width="330" alt="Simulator Screen Shot - iPhone 13 - 2023-04-07 at 14 38 02" src="https://github.com/blitzstudios/sleeper-mini/assets/61988202/71607a24-14ad-45a2-a9b7-e70f32e02f53">
 
 5. Copy the IP address from the dev menu, and paste it in [app.json](https://github.com/blitzstudios/sleeper-mini/blob/main/template/app.json).
-6. Launch this app by following the steps in [Manual Installation](#Manual-Installation) above.
+6. Launch this app by following the steps in [Manual Installation](#Manual-Installation) or [Quick Start Using Docker](#quick-start-using-docker).
 7. If all goes well, the Sleeper app will automatically connect after a few seconds.
 8. You can now make any change you want in the mini, and when you hit the "refresh" button in Sleeper, the new code will update.
 
@@ -88,7 +97,7 @@ This template project provides a starting point for developing a Sleeper Mini. A
 ## Troubleshooting
 
 ### Auto refresh stops working, or socket-related errors appear in the console.
-Try restarting the phone that Sleeper is running on. Also stop and restart the packager for your development app.
+Try restarting the phone that Sleeper is running on. Also stop and restart the packager / docker for your development app.
 
 ### How do I submit my mini?
 You can run `yarn build-mini` to generate a .zip file containing all of your source code. Please contact us and send this file over when you are ready to release. In the future, this process will be automated.
