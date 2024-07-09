@@ -53,7 +53,7 @@ This template project provides a starting point for developing a Sleeper Mini. A
 
 ## Manual Installation
 
-1. This project requires a working setup of [React Native](https://reactnative.dev/docs/environment-setup?guide=native). Follow the steps in this guide under the `React Native CLI Quickstart` tab.
+1. This project requires a working setup of [React Native](https://reactnative.dev/docs/getting-started-without-a-framework). Note that expo is not supported.
 2. Sleeper uses the following tool versions for development. If you run into any issues with setup, you can try changing your environment to point to these versions. We recommend a version manager like [asdf](https://asdf-vm.com/) to automate switching these between projects.
 
 | Tool | Version |
