@@ -24,7 +24,7 @@ This template project provides a starting point for developing a Sleeper Mini. A
     git clone https://github.com/blitzstudios/sleeper-mini.git
     ```
 2. Install Docker.
-3. Start Sleeper in developer mode by following the instructions [here](to-connect-with-a-running-prod-app-on-your-local-network).
+3. Start Sleeper in developer mode by following the instructions [here](#to-connect-with-a-running-prod-app-on-your-local-network).
 4. Open the command line and navigate to the template folder.
 5. Execute:
     ```sh
