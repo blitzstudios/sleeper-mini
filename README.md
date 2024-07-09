@@ -2,7 +2,47 @@
 
 ![Sleeper](https://user-images.githubusercontent.com/61988202/223927288-c54734de-39f9-40c5-bb24-d1b193c9c374.png)
 
-## How to run
+
+# Getting Started
+
+This template project provides a starting point for developing a Sleeper Mini. At a high level, minis are developed in react-native and packaged into bundles for the Sleeper app to load at runtime. The simplest way to get started is by using docker, which will prepare the correct environment. Have a separate simulator/emulator for mini development can be useful, but is not required.
+
+## Requirements:
+
+- Git
+- Enable developer-mode on Sleeper App (ask Sleeper Employee)
+
+## Optional Software Requirements
+
+- Docker
+- XCode Simulator
+- Android Emulator (part of Android Studio)
+
+## Quick Start using Docker
+
+1. git clone this Repo
+2. install docker
+3. open command line and navigate to template folder
+4. open Sleeper app on any device with developer-mode enabled
+5. use Developer mini overlay to get the IP of your device
+6. Update your device IP in app.json and save
+5. execute "docker compose up" -- this begins the packager and connects to the Sleeper App
+6. on Sleeper app, navigate to minis tab and see template mini
+7. you should see compiling messages on the command line
+
+### Special Notes for IOS Simulator
+
+- Using ios Simulator will require a manual installations
+
+### Special Notes for Android Emulator if using Docker
+
+1. After following quick start, open a separate console and navigate to template folder
+2. execute "docker compose exec environment sh ./buildapk.sh" (this step may take a while)
+3. open any Android emulator
+4. find file template/mini-debug.apk and drag to emulator
+5. run template app on android emulator
+
+## Manual Installation
 
 1. This project requires a working setup of [React Native](https://reactnative.dev/docs/environment-setup?guide=native). Follow the steps in this guide under the `React Native CLI Quickstart` tab.
 2. Sleeper uses the following tool versions for development. If you run into any issues with setup, you can try changing your environment to point to these versions. We recommend a version manager like [asdf](https://asdf-vm.com/) to automate switching these between projects.
@@ -32,7 +72,7 @@
 <img width="330" alt="Simulator Screen Shot - iPhone 13 - 2023-04-07 at 14 38 02" src="https://github.com/blitzstudios/sleeper-mini/assets/61988202/71607a24-14ad-45a2-a9b7-e70f32e02f53">
 
 5. Copy the IP address from the dev menu, and paste it in [app.json](https://github.com/blitzstudios/sleeper-mini/blob/main/template/app.json).
-6. Launch this app by following the steps in [how to run](#how-to-run) above.
+6. Launch this app by following the steps in [Manual Installation](#Manual-Installation) above.
 7. If all goes well, the Sleeper app will automatically connect after a few seconds.
 8. You can now make any change you want in the mini, and when you hit the "refresh" button in Sleeper, the new code will update.
 
