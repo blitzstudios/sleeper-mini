@@ -7,6 +7,6 @@
     "settings": {
         "react-native-tools.reactNativePackagerCommandName": "webpack-start",
         "react-native.packager.port": 9000,
-        "react-native.packager.arguments": "--webpackConfig node_modules/@sleeperhq/mini-core/webpack.config.js",
+        "react-native.packager.arguments": "--webpackConfig node_modules/@sleeperhq/mini-core/webpack.config.js  --send-events node_modules/@sleeperhq/mini-core/src/plugins/send_events.mjs",
     }
 }
