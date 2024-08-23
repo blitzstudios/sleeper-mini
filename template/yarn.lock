@@ -2005,10 +2005,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sleeperhq/mini-core@1.9.1":
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.9.1.tgz#1b8ef2f347b886ae76195a593d49fd9adab132c2"
-  integrity sha512-LCEFwGIJzi7rFDg4kYFwh9hK5OwaH2RMdWKfHOOULVHNgbL4b9QDGvxVO1PxVgtu6/53sOAWddPHug8j5EWhNQ==
+"@sleeperhq/mini-core@1.9.8":
+  version "1.9.8"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-1.9.8.tgz#568fdb6df3433d2d51db762a2bfa9fd092204ef5"
+  integrity sha512-zgMyl2i0GzEpdlFx/4QI1H6W8VH/9LVNb1rk8UINaa9i6zYJkeHxKUuchqRw8Uk+AfPX34n1eg5mc+yeoENnCg==
   dependencies:
     "@babel/plugin-transform-runtime" "7.15.0"
     "@babel/runtime" "7.15.4"
@@ -2019,13 +2019,14 @@
     "@react-native-community/netinfo" "9.3.7"
     axios "0.15.3"
     babel-loader "9.1.2"
-    react-native-fast-image "https://github.com/blitzstudios/react-native-fast-image.git#release/1.1"
+    react-native-fast-image "https://github.com/blitzstudios/react-native-fast-image.git#release/1.2"
     react-native-interactable "https://github.com/blitzstudios/react-native-interactable#release/1.1"
     react-native-linear-gradient "2.5.6"
     react-native-rename "^3.2.12"
     react-refresh "0.14.0"
-    react-test-renderer "17.0.2"
     regenerator-runtime "0.13.11"
+    rx "4.1.0"
+    string-replace-loader "3.1.0"
     terser-webpack-plugin "5.3.6"
     webpack "5.75.0"
 
@@ -8019,14 +8020,14 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-is@^17.0.1, react-is@^17.0.2:
+react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-"react-native-fast-image@https://github.com/blitzstudios/react-native-fast-image.git#release/1.1":
+"react-native-fast-image@https://github.com/blitzstudios/react-native-fast-image.git#release/1.2":
   version "8.5.11"
-  resolved "https://github.com/blitzstudios/react-native-fast-image.git#fad89d31e71c9b8cb198cb9a5ebabd1d42cdd660"
+  resolved "https://github.com/blitzstudios/react-native-fast-image.git#ad6c4b52bfb4f1ab2cfb316d373861acc0a9b724"
 
 "react-native-interactable@https://github.com/blitzstudios/react-native-interactable#release/1.1":
   version "2.0.1"
@@ -8130,23 +8131,13 @@ react-refresh@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz#966f1750c191672e76e16c2efa569150cc73ab53"
   integrity sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA==
 
-react-shallow-renderer@^16.13.1, react-shallow-renderer@^16.15.0:
+react-shallow-renderer@^16.15.0:
   version "16.15.0"
   resolved "https://registry.yarnpkg.com/react-shallow-renderer/-/react-shallow-renderer-16.15.0.tgz#48fb2cf9b23d23cde96708fe5273a7d3446f4457"
   integrity sha512-oScf2FqQ9LFVQgA73vr86xl2NaOIX73rh+YFqcOp68CWj56tSfgtGKrEbyhCj0rSijyG9M1CYprTh39fBi5hzA==
   dependencies:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
-
-react-test-renderer@17.0.2:
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-17.0.2.tgz#4cd4ae5ef1ad5670fc0ef776e8cc7e1231d9866c"
-  integrity sha512-yaQ9cB89c17PUb0x6UfWRs7kQCorVdHlutU1boVPEsB8IDZH6n9tHxMacc3y0JoXOJUsZb/t/Mb8FUWMKaM7iQ==
-  dependencies:
-    object-assign "^4.1.1"
-    react-is "^17.0.2"
-    react-shallow-renderer "^16.13.1"
-    scheduler "^0.20.2"
 
 react@18.2.0:
   version "18.2.0"
@@ -8487,6 +8478,11 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
+rx@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
+  integrity sha512-CiaiuN6gapkdl+cZUr67W6I8jquN4lkak3vtIsIWCl4XIPP8ffsoyN6/+PuGXnQy8Cu8W2y9Xxh31Rq4M6wUug==
+
 safe-array-concat@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/safe-array-concat/-/safe-array-concat-1.0.1.tgz#91686a63ce3adbea14d61b14c99572a8ff84754c"
@@ -8568,14 +8564,6 @@ scheduler@0.24.0-canary-efb381bbf-20230505:
   integrity sha512-ABvovCDe/k9IluqSh4/ISoq8tIJnW8euVAWYt5j/bg6dRnqwQwiGO1F/V4AyK96NGF/FB04FhOUDuWj8IKfABA==
   dependencies:
     loose-envify "^1.1.0"
-
-scheduler@^0.20.2:
-  version "0.20.2"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
-  integrity sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 schema-utils@^3.0.0, schema-utils@^3.1.0, schema-utils@^3.1.1:
   version "3.3.0"
@@ -8984,6 +8972,14 @@ string-length@^4.0.1:
   dependencies:
     char-regex "^1.0.2"
     strip-ansi "^6.0.0"
+
+string-replace-loader@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/string-replace-loader/-/string-replace-loader-3.1.0.tgz#11ac6ee76bab80316a86af358ab773193dd57a4f"
+  integrity sha512-5AOMUZeX5HE/ylKDnEa/KKBqvlnFmRZudSOjVJHxhoJg9QYTwl1rECx7SLR8BBH7tfxb4Rp7EM2XVfQFxIhsbQ==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^3.0.0"
 
 string-similarity@^4.0.1:
   version "4.0.4"

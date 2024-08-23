@@ -94,10 +94,16 @@ This template project provides a starting point for developing a Sleeper Mini. A
 5. Some types and components have been provided for use through an included `@sleeperhq/mini-core` package. You can check out the repo [here](https://github.com/blitzstudios/sleeper-mini-core).
 6. Further documentation and API hooks are in development.
 
+## Debugging with logs
+
+1. While debugging directly with the Sleeper app, `console.log()` messages will be shown on the packager console output with the prefix `[MiniLog]`.
+
 ## Troubleshooting
 
 ### Auto refresh stops working, or socket-related errors appear in the console.
 Try restarting the phone that Sleeper is running on. Also stop and restart the packager / docker for your development app.
 
 ### How do I submit my mini?
-You can run `yarn build-mini` to generate a .zip file containing all of your source code. Please contact us and send this file over when you are ready to release. In the future, this process will be automated.
+You can run `yarn build-mini` to generate a .zip file containing all of your source code.
+If you're using the Docker setup, from command line the equivalent is `docker compose run environment yarn build-mini`
+Please contact us and send this file over when you are ready to release. In the future, this process will be automated.
