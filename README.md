@@ -104,6 +104,6 @@ This template project provides a starting point for developing a Sleeper Mini. A
 Try restarting the phone that Sleeper is running on. Also stop and restart the packager / docker for your development app.
 
 ### How do I submit my mini?
-You can run `yarn build-mini` to generate a .zip file containing all of your source code.
-If you're using the Docker setup, from command line the equivalent is `docker compose run environment yarn build-mini`
+You can run `yarn build-mini` to generate a .zip file containing all of your source code.  
+If you're using the Docker setup, from command line the equivalent is `docker compose run environment yarn build-mini`  
 Please contact us and send this file over when you are ready to release. In the future, this process will be automated.
