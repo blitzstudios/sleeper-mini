@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import * as RN from 'react-native';
 import {Types, Sleeper} from '@sleeperhq/mini-core';
-import {RostersMap} from '@sleeperhq/mini-core/declarations/types';
+import type {RostersMap} from '@sleeperhq/mini-core/declarations/types';
 import RosterOwners from './RosterOwners';
 
 type OwnProps = {
@@ -41,7 +41,7 @@ const FetchSample = (props: OwnProps) => {
 
   const renderEmpty = () => {
     return <Sleeper.Text style={styles.text}>---none---</Sleeper.Text>;
-  }
+  };
 
   const renderLeagueList = (props: OwnProps) => {
     const {userLeagueList, leaguesMap} = props.context;
@@ -54,7 +54,13 @@ const FetchSample = (props: OwnProps) => {
           renderItem={({item}) => (
             <Sleeper.Button
               text={leaguesMap[item].name || item}
-              onPress={() => setSelectedLeague(item)}
+              onPress={() => {
+                setSelectedLeague(item);
+                console.log(
+                  'Selected new league:',
+                  leaguesMap[item].name || item,
+                );
+              }}
             />
           )}
         />
