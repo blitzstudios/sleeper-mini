@@ -16,14 +16,14 @@ WORKDIR /usr/src/template
 # into this layer.
 RUN apt clean
 RUN apt-get update
-RUN apt-get install git 
+RUN apt-get install -y git
 
 # Install Ruby and Bundler
-RUN apt-get -y install ruby ruby-dev ruby-bundler
+RUN apt-get install -y ruby ruby-dev ruby-bundler
 
 # Install build tools for native extensions
-RUN apt-get -y install bash unzip libc6
-RUN apt-get -y install build-essential
+RUN apt-get install -y bash unzip libc6
+RUN apt-get install -y build-essential
 
 # Install Java (required for Android SDK)
 RUN wget "https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz"
@@ -32,7 +32,7 @@ RUN mv jdk-11.0.2 /usr/lib/jvm/
 ENV JAVA_HOME /usr/lib/jvm/
 ENV PATH=$JAVA_HOME/bin:$PATH
 
-RUN apt-get -y install ninja-build
+RUN apt-get install -y ninja-build
 
 # Download and unzip Android command-line tools
 RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -O /tmp/cmdline-tools.zip
