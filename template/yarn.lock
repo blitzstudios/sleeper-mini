@@ -1071,7 +1071,7 @@
     source-map "^0.7.4"
     ws "^8.7.0"
 
-"@callstack/repack@blitzstudios/repack.git#callstack-repack-v0.5.3-gitpkg":
+"@callstack/repack@github:blitzstudios/repack#callstack-repack-v0.5.3-gitpkg":
   version "0.5.3"
   resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/8a32dcb160b2dae623f52ea9e2d257ba076b0c4f"
   dependencies:
@@ -1967,10 +1967,10 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@sleeperhq/mini-core@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-0.0.4.tgz#89f591f87acf3ebd81fce30da130b61bfe704a6b"
-  integrity sha512-l7d25hfj0GIw0sjevVdsTa8Ej/z+dYGd6GpeKbcGwrjHl6kp+oWbGyMlbh0XwEwKdlgk/vrkCUJd3bnS7HUuUA==
+"@sleeperhq/mini-core@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-0.0.5.tgz#992ef21d06017f26e694287cbf8f39b366377b00"
+  integrity sha512-c3l0gA5piKMRM388CiIHEpQylRuj38HdCOmcoGG0n3VpbDy7dWUcd/N1L8pSPH3SZ0a/I3TA31dZhUY7dYs+/A==
   dependencies:
     "@babel/plugin-transform-runtime" "7.25.9"
     "@babel/runtime" "7.26.0"
@@ -7403,9 +7403,9 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
-"react-native-fast-image@https://github.com/blitzstudios/react-native-fast-image.git#release/1.4":
+"react-native-fast-image@git+https://github.com/blitzstudios/react-native-fast-image.git#release/1.4":
   version "8.5.11"
-  resolved "https://github.com/blitzstudios/react-native-fast-image.git#8e512296de8748aeb1e801015a3805b64e1ffbc3"
+  resolved "git+https://github.com/blitzstudios/react-native-fast-image.git#8e512296de8748aeb1e801015a3805b64e1ffbc3"
 
 react-native-gesture-handler@2.21.0:
   version "2.21.0"
@@ -7427,7 +7427,7 @@ react-native-linear-gradient@2.8.3:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz#9a116649f86d74747304ee13db325e20b21e564f"
   integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
 
-react-native-rename@blitzstudios/react-native-rename.git#react-native-rename-v3.2.17-gitpkg:
+"react-native-rename@github:blitzstudios/react-native-rename#react-native-rename-v3.2.17-gitpkg":
   version "3.2.17"
   resolved "https://codeload.github.com/blitzstudios/react-native-rename/tar.gz/be564d20742ee60c297230ff53edfedf2d650f2b"
   dependencies:
