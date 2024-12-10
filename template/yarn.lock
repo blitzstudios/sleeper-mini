@@ -1056,9 +1056,9 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@callstack/repack-dev-server@blitzstudios/repack.git#callstack-repack-dev-server-v0.5.3-gitpkg":
-  version "0.5.3"
-  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/a09c48e61553dee8fd030aa34d11f82dcaa74f29"
+"@callstack/repack-dev-server@blitzstudios/repack.git#callstack-repack-dev-server-v5.0.0-gitpkg":
+  version "5.0.0"
+  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/9fc86e57d16015c5fea22085741af68ac6e628b0"
   dependencies:
     "@babel/code-frame" "^7.16.7"
     "@fastify/middie" "^8.3.0"
@@ -1071,11 +1071,11 @@
     source-map "^0.7.4"
     ws "^8.7.0"
 
-"@callstack/repack@blitzstudios/repack.git#callstack-repack-v0.5.4-gitpkg":
-  version "0.5.4"
-  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/cd47c3405d23a3a5055e6ecd95b4f1f00c294d76"
+"@callstack/repack@github:blitzstudios/repack#callstack-repack-v5.0.0-gitpkg":
+  version "5.0.0"
+  resolved "https://codeload.github.com/blitzstudios/repack/tar.gz/c29890c7725f2eca64f706464883b0a5d20cf62b"
   dependencies:
-    "@callstack/repack-dev-server" blitzstudios/repack.git#callstack-repack-dev-server-v0.5.3-gitpkg
+    "@callstack/repack-dev-server" blitzstudios/repack.git#callstack-repack-dev-server-v5.0.0-gitpkg
     "@discoveryjs/json-ext" "^0.5.7"
     colorette "^2.0.20"
     dedent "^0.7.0"
@@ -1967,14 +1967,14 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@sleeperhq/mini-core@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-0.0.7.tgz#b5a54cae626ef53191769b9219c4258b0cd4c39f"
-  integrity sha512-TF2ncy/pHDs7LZ3ytzu7NnrapI3a+oDsTu6CnGl0eV94FzqD9xLXbWPoE3e5c0GSglJZma1GxeqMu66AuZdUww==
+"@sleeperhq/mini-core@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-3.0.1.tgz#59c7efad20d991766c28f5794128971a4281c342"
+  integrity sha512-/74a0DOxwNvJVe4PVKYMgqap8mD99KDy6UszUOaJLNy22R+wltBb4jTj59cKRUcbuYRoL0Wxh7b1geFmorSyUQ==
   dependencies:
     "@babel/plugin-transform-runtime" "7.25.9"
     "@babel/runtime" "7.26.0"
-    "@callstack/repack" blitzstudios/repack.git#callstack-repack-v0.5.4-gitpkg
+    "@callstack/repack" blitzstudios/repack.git#callstack-repack-v5.0.0-gitpkg
     "@react-native-community/cli" "15.0.1"
     "@react-native-community/cli-platform-android" "15.0.1"
     "@react-native-community/cli-platform-apple" "15.0.1"
@@ -7403,9 +7403,9 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
-"react-native-fast-image@https://github.com/blitzstudios/react-native-fast-image.git#release/1.4":
+"react-native-fast-image@git+https://github.com/blitzstudios/react-native-fast-image.git#release/1.4":
   version "8.5.11"
-  resolved "https://github.com/blitzstudios/react-native-fast-image.git#8e512296de8748aeb1e801015a3805b64e1ffbc3"
+  resolved "git+https://github.com/blitzstudios/react-native-fast-image.git#8e512296de8748aeb1e801015a3805b64e1ffbc3"
 
 react-native-gesture-handler@2.21.0:
   version "2.21.0"
@@ -7427,7 +7427,7 @@ react-native-linear-gradient@2.8.3:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz#9a116649f86d74747304ee13db325e20b21e564f"
   integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
 
-react-native-rename@blitzstudios/react-native-rename.git#react-native-rename-v3.2.17-gitpkg:
+"react-native-rename@github:blitzstudios/react-native-rename#react-native-rename-v3.2.17-gitpkg":
   version "3.2.17"
   resolved "https://codeload.github.com/blitzstudios/react-native-rename/tar.gz/be564d20742ee60c297230ff53edfedf2d650f2b"
   dependencies:
