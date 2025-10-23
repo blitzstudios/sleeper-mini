@@ -14,13 +14,13 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "7.25.9",
     "@babel/runtime": "7.26.0",
-    "@shopify/flash-list": "1.7.6",
-    "@sleeperhq/mini-core": "4.0.7",
+    "@shopify/flash-list": "1.8.3",
+    "@sleeperhq/mini-core": "5.0.2",
     "he": "1.2.0",
     "moment-timezone": "0.5.46",
-    "react": "18.3.1",
-    "react-native": "0.77.3",
-    "react-native-gesture-handler": "2.22.0",
+    "react": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-gesture-handler": "2.28.0",
     "react-native-svg": "15.11.2",
     "react-native-webview": "13.13.5",
     "regenerator-runtime": "0.13.11"
@@ -29,30 +29,27 @@
     "@babel/core": "7.26.0",
     "@babel/preset-env": "7.25.9",
     "@babel/preset-typescript": "7.26.0",
-    "@react-native-community/cli": "15.0.1",
-    "@react-native-community/cli-platform-android": "15.0.1",
-    "@react-native-community/cli-platform-apple": "15.0.1",
-    "@react-native-community/cli-platform-ios": "15.0.1",
+    "@react-native-community/cli": "20.0.0",
+    "@react-native-community/cli-platform-android": "20.0.0",
+    "@react-native-community/cli-platform-apple": "20.0.0",
+    "@react-native-community/cli-platform-ios": "20.0.0",
     "@react-native-community/eslint-config": "2.0.0",
-    "@react-native/babel-preset": "0.77.3",
-    "@types/react": "18.2.31",
+    "@react-native/babel-preset": "0.81.4",
+    "@types/react": "19.1.0",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
     "babel-jest": "26.6.3",
     "eslint": "8.38.0",
-    "jest": "26.6.3",
+    "jest": "29.6.3",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "2.1.0",
-    "typescript": "5.2.2"
+    "typescript": "5.8.3"
   },
   "jest": {
     "preset": "react-native"
   },
   "engines": {
-    "node": "20.10.0"
-  },
-  "resolutions": {
-    "@react-native/dev-middleware": "0.77.3"
+    "node": "22.21.0"
   },
   "packageManager": "yarn@1.22.22"
 }

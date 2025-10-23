@@ -1,75 +1,25 @@
-diff --git a/node_modules/react-native/Libraries/Animated/useAnimatedProps.js b/node_modules/react-native/Libraries/Animated/useAnimatedProps.js
-index 7a058f8..064796d 100644
---- a/node_modules/react-native/Libraries/Animated/useAnimatedProps.js
-+++ b/node_modules/react-native/Libraries/Animated/useAnimatedProps.js
-@@ -254,6 +254,14 @@ function addAnimatedValuesListenersToProps(
- function useAnimatedPropsLifecycle_layoutEffects(node: AnimatedProps): void {
-   const prevNodeRef = useRef<?AnimatedProps>(null);
-   const isUnmountingRef = useRef<boolean>(false);
-+  const hasMountedRef = useRef<boolean>(false);
-+  const hasInitiallyAttached = useRef<boolean>(false);
-+
-+  // Attach animated node instantly, avoiding issues with native animations
-+  if (!hasMountedRef.current) {
-+    hasMountedRef.current = true;
-+    node.__attach();
-+  }
- 
-   useEffect(() => {
-     // It is ok for multiple components to call `flushQueue` because it noops
-@@ -284,14 +292,20 @@ function useAnimatedPropsLifecycle_layoutEffects(node: AnimatedProps): void {
-   }, []);
- 
-   useLayoutEffect(() => {
--    node.__attach();
--    if (prevNodeRef.current != null) {
--      const prevNode = prevNodeRef.current;
--      // TODO: Stop restoring default values (unless `reset` is called).
--      prevNode.__restoreDefaultValues();
--      prevNode.__detach();
--      prevNodeRef.current = null;
-+    // This helps us avoid attaching the animated node twice before first render.
-+    if (!hasInitiallyAttached.current && hasMountedRef.current) {
-+      hasInitiallyAttached.current = true;
-+    } else {
-+      node.__attach();
-+      if (prevNodeRef.current != null) {
-+        const prevNode = prevNodeRef.current;
-+        // TODO: Stop restoring default values (unless `reset` is called).
-+        prevNode.__restoreDefaultValues();
-+        prevNode.__detach();
-+        prevNodeRef.current = null;
-+      }
-     }
-+
-     return () => {
-       if (isUnmountingRef.current) {
-         // NOTE: Do not restore default values on unmount, see D18197735.
 diff --git a/node_modules/react-native/Libraries/Core/Devtools/symbolicateStackTrace.js b/node_modules/react-native/Libraries/Core/Devtools/symbolicateStackTrace.js
-index bdd93fc..1df0f55 100644
+index 34cc485..c9462a0 100644
 --- a/node_modules/react-native/Libraries/Core/Devtools/symbolicateStackTrace.js
 +++ b/node_modules/react-native/Libraries/Core/Devtools/symbolicateStackTrace.js
-@@ -38,9 +38,14 @@ async function symbolicateStackTrace(
-     throw new Error('Bundle was not loaded from Metro.');
-   }
+@@ -40,7 +40,11 @@ export default async function symbolicateStackTrace(
  
+   // Lazy-load `fetch` until the first symbolication call to avoid circular requires.
+   const fetch = global.fetch ?? require('../../Network/fetch').fetch;
+-  const response = await fetch(devServer.url + 'symbolicate', {
 +  let platform = 'android';
-+  if (devServer.fullBundleUrl.includes("platform=ios")) {
++  if (devServer.fullBundleUrl?.includes('platform=ios')) {
 +    platform = 'ios';
 +  }
-+
-   // Lazy-load `fetch` until the first symbolication call to avoid circular requires.
-   const fetch = global.fetch ?? require('../../Network/fetch');
--  const response = await fetch(devServer.url + 'symbolicate', {
 +  const response = await fetch(devServer.url + `symbolicate?platform=${platform}`, {
      method: 'POST',
-     body: JSON.stringify({stack, extraData}),
-   });
+     headers: {
+       'Content-Type': 'application/json',
 diff --git a/node_modules/react-native/React/Base/RCTDefines.h b/node_modules/react-native/React/Base/RCTDefines.h
-index ed03868..e61ca2e 100644
+index 228d92c..236bf44 100644
 --- a/node_modules/react-native/React/Base/RCTDefines.h
 +++ b/node_modules/react-native/React/Base/RCTDefines.h
-@@ -113,7 +113,7 @@
+@@ -117,7 +117,7 @@
   * Add the default Metro packager port number
   */
  #ifndef RCT_METRO_PORT
@@ -78,7 +28,7 @@ index ed03868..e61ca2e 100644
  #else
  // test if RCT_METRO_PORT is empty
  #define RCT_METRO_PORT_DO_EXPAND(VAL) VAL##1
-@@ -122,7 +122,7 @@
+@@ -126,7 +126,7 @@
  // Only here if RCT_METRO_PORT is not defined
  // OR RCT_METRO_PORT is the empty string
  #undef RCT_METRO_PORT
@@ -87,7 +37,7 @@ index ed03868..e61ca2e 100644
  #endif
  #endif
  
-@@ -130,7 +130,7 @@
+@@ -134,7 +134,7 @@
   * Add the default packager name
   */
  #ifndef RCT_PACKAGER_NAME
@@ -97,7 +47,7 @@ index ed03868..e61ca2e 100644
  
  /**
 diff --git a/node_modules/react-native/scripts/react-native-xcode.sh b/node_modules/react-native/scripts/react-native-xcode.sh
-index d59caa1..998f897 100755
+index 1dcdf55..8e96217 100755
 --- a/node_modules/react-native/scripts/react-native-xcode.sh
 +++ b/node_modules/react-native/scripts/react-native-xcode.sh
 @@ -34,15 +34,11 @@ fi
@@ -142,9 +92,9 @@ index d59caa1..998f897 100755
 -elif [[ -n "$CONFIG_CMD" ]]; then
 -  EXTRA_ARGS+=("--config-cmd" "$CONFIG_CMD")
 -else
--  EXTRA_ARGS+=("--config-cmd" "$NODE_BINARY $NODE_ARGS $REACT_NATIVE_DIR/cli.js config")
+-  EXTRA_ARGS+=("--config-cmd" "'$NODE_BINARY' $NODE_ARGS '$REACT_NATIVE_DIR/cli.js' config")
 -fi
-+
++#
  
  # shellcheck disable=SC2086
  "$NODE_BINARY" $NODE_ARGS "$CLI_PATH" $BUNDLE_COMMAND \

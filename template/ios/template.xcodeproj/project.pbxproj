@@ -11,7 +11,6 @@
 		116DA6787CCE4C238DDDCBC9 /* Muli-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8BEED1CEB93413EA6418F33 /* Muli-ExtraLight.ttf */; };
 		1238D308DEC449BE9B49D00C /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C399218F7A55420399F53242 /* Lato-Black.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1451A1E09B824F219E5E74C8 /* Muli-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69AF2DCDA487480788D573CE /* Muli-Bold.ttf */; };
 		16D162AAE2514411BF645B38 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A15C23B919884F3385D6013A /* Inter-Thin.ttf */; };
 		1CCE4739C7E74DCEADFFBAFF /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 714C6277337B4B02ABAF08C1 /* Poppins-Light.ttf */; };
@@ -40,7 +39,7 @@
 		9B85E6F03D52491B958C3EC6 /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DCE192281247C4906ABDC9 /* Oswald-Medium.ttf */; };
 		9CE8E9D571F346A8AD5B2484 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01260A5E8555428C9C74407F /* Oswald-Light.ttf */; };
 		9F5D410EB33F4623B7F5EA57 /* Muli-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61CA49EF275948E297C9A05E /* Muli-ExtraBold.ttf */; };
-		A5BE355F2B0D58DC0061934F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5BE355E2B0D58DC0061934F /* AppDelegate.mm */; };
+		A52775472EAADBDB008C2A68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52775462EAADBDB008C2A68 /* AppDelegate.swift */; };
 		A84E70149C604C60AA4D9B4B /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7914FCC189A546718F4AE615 /* Inter-Bold.ttf */; };
 		A86471DDDF0D432BB0280C14 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71B0C08C3D944D48938EF0AA /* Poppins-Thin.ttf */; };
 		AA598B11405C4BFD86F522DB /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7F5EFAE49EF45A5A2F56AD9 /* Oswald-SemiBold.ttf */; };
@@ -59,10 +58,8 @@
 		01260A5E8555428C9C74407F /* Oswald-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-Light.ttf"; path = "../assets/fonts/Oswald-Light.ttf"; sourceTree = "<group>"; };
 		0B5E58D96C454213938DC32E /* Inter-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Black.ttf"; path = "../assets/fonts/Inter-Black.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = template.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = template/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = template/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = template/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = template/main.m; sourceTree = "<group>"; };
 		250155AB9DD243A9B5F3F0DB /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		2825FAE7E2C74EB7AD983777 /* Inter-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Light.ttf"; path = "../assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; };
 		2B63DDAED70EEF3BE9A328F7 /* Pods-template.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-template.debug.xcconfig"; path = "Target Support Files/Pods-template/Pods-template.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,7 +85,8 @@
 		9D7BD742800A431888CC6DD0 /* Druk-SuperItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Druk-SuperItalic.otf"; path = "../assets/fonts/Druk-SuperItalic.otf"; sourceTree = "<group>"; };
 		A15C23B919884F3385D6013A /* Inter-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Thin.ttf"; path = "../assets/fonts/Inter-Thin.ttf"; sourceTree = "<group>"; };
 		A1E6584D982F4BFCAFDE94AF /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
-		A5BE355E2B0D58DC0061934F /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = template/AppDelegate.mm; sourceTree = "<group>"; };
+		A52775462EAADBDB008C2A68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A52775482EAADBE2008C2A68 /* template-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "template-Bridging-Header.h"; sourceTree = "<group>"; };
 		A68CBD85EAED420FA0A92A86 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		ABA212B263E74F7C9C65C0D0 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		AD8EF336CC20975CFF9FE8BC /* Pods-template.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-template.release.xcconfig"; path = "Target Support Files/Pods-template/Pods-template.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,12 +124,11 @@
 		13B07FAE1A68108700A75B9A /* template */ = {
 			isa = PBXGroup;
 			children = (
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				A5BE355E2B0D58DC0061934F /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				A52775462EAADBDB008C2A68 /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
-				13B07FB71A68108700A75B9A /* main.m */,
+				A52775482EAADBE2008C2A68 /* template-Bridging-Header.h */,
 			);
 			name = template;
 			sourceTree = "<group>";
@@ -267,7 +264,7 @@
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1620;
 					};
 				};
 			};
@@ -439,8 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5BE355F2B0D58DC0061934F /* AppDelegate.mm in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				A52775472EAADBDB008C2A68 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +465,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = template;
+				SWIFT_OBJC_BRIDGING_HEADER = "template-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -496,6 +493,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = template;
+				SWIFT_OBJC_BRIDGING_HEADER = "template-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
