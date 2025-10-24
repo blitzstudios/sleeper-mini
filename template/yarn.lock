@@ -2508,10 +2508,10 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@sleeperhq/mini-core@5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-5.0.2.tgz#3f00c03e73650679619b4dd10e33f9579adcdb8c"
-  integrity sha512-tEmOfuQL6z/U21zFk4zrrvJnW3yB8wX/NvBnGqGNkFXLej0+mysZlBO6aIOb3MEpm8WO+3VFayMAw6JCNFKeTA==
+"@sleeperhq/mini-core@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-5.0.3.tgz#135e86b17997efcdaf20d3bcde192ba5463429d4"
+  integrity sha512-dOeDhV8WRcjSQao10RrHrz7ldqWKcNAV1YNHwkSCO7W1mS6Ig+IX24jyBA6r8wzgR2rfGz4XH5AcMzMzJXGCXA==
   dependencies:
     "@babel/plugin-transform-runtime" "7.25.9"
     "@babel/runtime" "7.26.0"
@@ -2530,7 +2530,7 @@
     babel-loader "9.1.3"
     react-native-linear-gradient "2.8.3"
     react-native-reanimated "3.19.2"
-    react-native-rename blitzstudios/react-native-rename.git#react-native-rename-v3.2.17-gitpkg
+    react-native-rename blitzstudios/react-native-rename.git#react-native-rename-v1.0.0-gitpkg
     react-native-turbo-image blitzstudios/react-native-turbo-image.git#react-native-turbo-image-v1.0.7-gitpkg
     regenerator-runtime "0.13.11"
     rx "4.1.0"
@@ -8347,9 +8347,9 @@ react-native-reanimated@3.19.2:
     invariant "^2.2.4"
     react-native-is-edge-to-edge "1.1.7"
 
-"react-native-rename@github:blitzstudios/react-native-rename#react-native-rename-v3.2.17-gitpkg":
-  version "3.2.17"
-  resolved "https://codeload.github.com/blitzstudios/react-native-rename/tar.gz/be564d20742ee60c297230ff53edfedf2d650f2b"
+"react-native-rename@github:blitzstudios/react-native-rename#react-native-rename-v1.0.0-gitpkg":
+  version "1.0.0"
+  resolved "https://codeload.github.com/blitzstudios/react-native-rename/tar.gz/59dcc87446768d011db2837c8c65bd7715c48533"
   dependencies:
     chalk "^5.3.0"
     cheerio "1.0.0-rc.12"
