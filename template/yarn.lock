@@ -2508,10 +2508,10 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@sleeperhq/mini-core@5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-5.0.1.tgz#8da4819fe7e2d467239fcaf33c9f1e9bddc8f768"
-  integrity sha512-cv7MTs+OK80jcz4MwetfWYueDjxPWiuF9buhP+33Tsx02m9gF+Yo6jDaSVMsxCqgEcS2x3iRKh9qU/UTfKN4Cw==
+"@sleeperhq/mini-core@5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@sleeperhq/mini-core/-/mini-core-5.0.2.tgz#3f00c03e73650679619b4dd10e33f9579adcdb8c"
+  integrity sha512-tEmOfuQL6z/U21zFk4zrrvJnW3yB8wX/NvBnGqGNkFXLej0+mysZlBO6aIOb3MEpm8WO+3VFayMAw6JCNFKeTA==
   dependencies:
     "@babel/plugin-transform-runtime" "7.25.9"
     "@babel/runtime" "7.26.0"
