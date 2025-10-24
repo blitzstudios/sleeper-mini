@@ -15,7 +15,7 @@
     "@babel/plugin-transform-runtime": "7.25.9",
     "@babel/runtime": "7.26.0",
     "@shopify/flash-list": "1.8.3",
-    "@sleeperhq/mini-core": "5.0.3",
+    "@sleeperhq/mini-core": "5.0.4",
     "he": "1.2.0",
     "moment-timezone": "0.5.46",
     "react": "19.1.0",
