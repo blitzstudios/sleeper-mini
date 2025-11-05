@@ -5,8 +5,59 @@
         }
     ],
     "settings": {
-        "react-native-tools.reactNativePackagerCommandName": "webpack-start",
         "react-native.packager.port": 9000,
         "react-native.packager.arguments": "--webpackConfig node_modules/@sleeperhq/mini-core/rspack.config.js  --send-events node_modules/@sleeperhq/mini-core/src/plugins/send_events.mjs",
+    },
+    "extensions": {
+      "recommendations": ["sleeper.vscode-react-native"]
+    },
+    "launch": {
+      "version": "0.2.0",
+      "configurations": [
+        {
+            "name": "React Native: Android Device",
+            "type": "reactnativedirect",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "platform": "android",
+            "target": "device",
+            "address": "0.0.0.0",
+            "runArguments": [
+              "--mode=fullDebug"
+            ]
+        },
+        {
+            "name": "React Native: Android Sim",
+            "type": "reactnativedirect",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "platform": "android",
+            "target": "simulator",
+            "runArguments": [
+              "--mode=fullDebug"
+            ]
+        },
+        {
+            "name": "React Native: iOS Device",
+            "type": "reactnativedirect",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "platform": "ios",
+            "target": "${vscode:ios_device_udid}",
+            "address": "${vscode:local_ip}",
+            "runArguments": [
+                "--udid",
+                "${vscode:ios_device_udid}"
+            ]
+        },
+        {
+            "name": "React Native: iOS Sim",
+            "type": "reactnativedirect",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "platform": "ios",
+            "target": "simulator"
+        },
+      ]
     }
 }
